@@ -16,11 +16,12 @@ final class Product extends Model
     protected $guarded = ['id'];
 
     protected $fillable = [
-        'manufacturer_id',
+        'id',
         'ean',
-        'item_number',
+        'sku',
         'factory_code',
         'item_name',
+        'manufacturer_id', // gyártó:name
         'width',
         'aspect_ratio',
         'structure',
@@ -38,6 +39,11 @@ final class Product extends Model
         'weight',
         'season',
         'usage',
+        'all_quantity',
+        'quantity_szt_mihaly',
+        'quantity_kesmark',
+        'net_wholesale_price',
+        'net_retail_price',
         'main_image',
         'min_order_quantity',
         'pattern_name',
@@ -46,6 +52,7 @@ final class Product extends Model
         'item_type_name',
         'rim_model',
         'rim_color',
+        'quantity_nt',
         'for_winter',
         'rim_structure',
         'rim_dedicated',
@@ -56,6 +63,7 @@ final class Product extends Model
         'url',
         'retail_price_eur',
         'wholesale_price_eur',
+
         'created_at',
         'updated_at',
     ];

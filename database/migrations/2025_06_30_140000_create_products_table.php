@@ -16,9 +16,9 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table): void {
             $table->id();
-            $table->foreignIdFor(Manufacturer::class)->nullable()->constrained('manufacturers')->nullOnDelete();
+            $table->foreignIdFor(Manufacturer::class)->nullable();
             $table->string('ean')->nullable();
-            $table->string('item_number')->nullable();
+            $table->string('sku')->nullable();
             $table->string('factory_code')->nullable();
             $table->string('item_name')->nullable();
             $table->string('width')->nullable();
@@ -38,6 +38,11 @@ return new class extends Migration
             $table->string('weight')->nullable();
             $table->string('season')->nullable();
             $table->string('usage')->nullable();
+            $table->string('all_quantity')->nullable();
+            $table->string('quantity_szt_mihaly')->nullable();
+            $table->string('quantity_kesmark')->nullable();
+            $table->string('net_wholesale_price')->nullable();
+            $table->string('net_retail_price')->nullable();
             $table->string('main_image')->nullable();
             $table->string('min_order_quantity')->nullable();
             $table->string('pattern_name')->nullable();
@@ -46,6 +51,7 @@ return new class extends Migration
             $table->string('item_type_name')->nullable();
             $table->string('rim_model')->nullable();
             $table->string('rim_color')->nullable();
+            $table->string('quantity_nt')->nullable();
             $table->string('for_winter')->nullable();
             $table->string('rim_structure')->nullable();
             $table->string('rim_dedicated')->nullable();
