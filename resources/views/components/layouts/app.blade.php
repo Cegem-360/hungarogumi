@@ -21,14 +21,14 @@
 
     </head>
 
-    <body class="antialiased">
+    <body class="antialiased bg-gray-100">
 
         {{ $slot }}
 
         @livewire('notifications')
-        
+
         @filamentScripts
-        
+
     </body>
 
 </html>
