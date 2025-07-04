@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    <head>
-        <meta charset="utf-8" />
+<head>
+    <meta charset="utf-8" />
 
-        <meta name="application-name" content="{{ config('app.name') }}" />
-        <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="application-name" content="{{ config('app.name') }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <title>{{ config('app.name') }}</title>
+    <title>{{ config('app.name') }}</title>
 
-        <style>
-            [x-cloak] {
-                display: none !important;
-            }
-        </style>
+    {{-- add fontawesome cdn --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        crossorigin="anonymous">
 
-        @filamentStyles
-        @vite('resources/js/app.js')
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
 
-    </head>
+    @filamentStyles
+    @vite('resources/js/app.js')
 
-    <body class="antialiased bg-gray-100">
+</head>
 
-        {{ $slot }}
+<body class="antialiased bg-gray-200">
 
-        @livewire('notifications')
+    {{ $slot }}
 
-        @filamentScripts
+    @livewire('notifications')
 
-    </body>
+    @filamentScripts
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/solid.min.js" crossorigin="anonymous">
+    </script>
+</body>
 
 </html>

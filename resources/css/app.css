@@ -8,4 +8,108 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+        --color-brand-anthracite: #293133;
+        --color-brand-blue: #2271B3;
 }
+
+.services .active {
+    @apply bg-brand-blue text-white;
+    .icon {
+        @apply bg-white text-brand-blue;
+        i {
+            @apply text-blue-400;
+        }
+    }
+}
+
+.rating-item {
+    position: relative;
+}
+
+.rating-item::after {
+    content: '';
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 24px;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
+}
+
+.rating-a::after {
+    width: 60px;
+    background-color: #22c55e;
+    /* green-500 */
+}
+
+.rating-b::after {
+    width: 80px;
+    background-color: #84cc16;
+    /* lime-500 */
+}
+
+.rating-c::after {
+    width: 100px;
+    background-color: #eab308;
+    /* yellow-500 */
+}
+
+.rating-d::after {
+    width: 120px;
+    background-color: #f59e0b;
+    /* amber-500 */
+}
+
+.rating-e::after {
+    width: 140px;
+    background-color: #f97316;
+    /* orange-500 */
+}
+
+.rating-f::after {
+    width: 160px;
+    background-color: #ef4444;
+    /* red-500 */
+}
+
+.rating-g::after {
+    width: 180px;
+    background-color: #dc2626;
+    /* red-600 */
+}
+
+.wet-rating-a::after {
+    width: 60px;
+    @apply bg-sky-800
+}
+
+.wet-rating-b::after {
+    width: 80px;
+    @apply bg-sky-700
+}
+
+.wet-rating-c::after {
+    width: 100px;
+    @apply bg-sky-600
+}
+
+.wet-rating-d::after {
+    width: 120px;
+    @apply bg-sky-500
+}
+
+.wet-rating-e::after {
+    width: 140px;
+    @apply bg-sky-400
+}
+
+.wet-rating-f::after {
+    width: 160px;
+    @apply bg-sky-300
+}
+
+.wet-rating-g::after {
+    width: 180px;
+    @apply bg-sky-200
+}
+
