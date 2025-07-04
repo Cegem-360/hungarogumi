@@ -1,7 +1,7 @@
 @use('App\Models\Product')
 
 <!-- Breadcrumb -->
-<div class="max-w-7xl mx-auto px-4 py-3">
+<div class="container mx-auto px-4 py-3">
     <nav class="flex text-sm text-gray-500">
         <a href="#" class="hover:text-gray-700">somigumi.hu</a>
         <span class="mx-2">></span>

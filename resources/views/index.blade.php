@@ -15,6 +15,8 @@
             @include('pages.gumik')
         @elseif (request()->routeIs('felnik') || request()->routeIs('en.felnik'))
             @include('pages.felnik')
+        @elseif (request()->routeIs('termekoldal') || request()->routeIs('en.termekoldal'))
+            @include('pages.termekoldal')
         @elseif (request()->routeIs('kapcsolat') || request()->routeIs('en.kapcsolat'))
             @include('pages.contact')
         @endif

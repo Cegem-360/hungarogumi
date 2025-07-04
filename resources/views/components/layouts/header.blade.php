@@ -2,9 +2,10 @@
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between py-6">
             <!-- Logo -->
-            <div class="flex items-center">
+            <div class="flex items-center justify-center gap-1">
                 <img src="{{ Storage::url('images/somigumi-logo-2.webp') }}" alt="SomiGumi" class="h-16">
-                <h1 class="text-3xl font-bold ml-1 text-brand-anthracite">SomiGumi</h1>
+                <h1 class="sr-only">SomiGumi</h1>
+                <x-svg.logo-title class="text-brand-anthracite" />
             </div>
 
             <!-- Search Bar -->

@@ -11,5 +11,7 @@ Route::get('/', function () {
 Route::view('/', 'index')->name('home');
 Route::view('/gumik', 'index')->name('gumik');
 Route::view('/felnik', 'index')->name('felnik');
+Route::view('/termekoldal', 'index')->name('termekoldal');
+
 Route::view('/rolunk', 'index')->name('rolunk');
 Route::view('/kapcsolat', 'index')->name('kapcsolat');
