@@ -21,7 +21,7 @@ final class Product extends Model
         'sku',
         'factory_code',
         'item_name',
-        'manufacturer_id', // gyártó:name
+        'manufacturer_id', // Manufacturer:id
         'width',
         'aspect_ratio',
         'structure',
