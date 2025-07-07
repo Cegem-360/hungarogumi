@@ -7,6 +7,7 @@
         /* $currentProduct = $products->first(); */
         $currentProduct = $products->skip(5)->first();
     @endphp
+
     <!-- Breadcrumb -->
     <div class="container mx-auto px-4 py-3">
         <nav class="flex text-sm text-gray-500">
@@ -88,7 +89,7 @@
                                     $brutto = isset($currentProduct->net_retail_price)
                                         ? round($currentProduct->net_retail_price * 1.27)
                                         : 0;
-                                    $brutto_formatted = Number::currency($brutto, 'HUF', 'hu', 0);
+                                    $brutto_formatted = number_format($brutto, 0, '', ' ') . ' Ft';
                                 @endphp
                                 <div class="text-3xl font-bold text-gray-900">{{ $brutto_formatted }}</div>
                             </div>
@@ -106,8 +107,7 @@
                                 </select>
                                 <div class="min-w-[7rem] text-right">
                                     <div class="text-sm text-gray-500"
-                                        x-text="`(${quantity} × {{ Number::currency($brutto, 'HUF', 'hu', 0) }})`">
-                                    </div>
+                                        x-text="`(${quantity} × {{ number_format($brutto, 0, '', ' ') }} Ft)`"></div>
                                     <div class="text-xl font-bold text-gray-900"
                                         x-text="total.toLocaleString('hu-HU') + ' Ft'"></div>
                                 </div>
@@ -133,109 +133,10 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div class="lg:col-span-4 space-y-6">
                 <!-- Product Specifications -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-6">Paraméterek</h3>
+                <x-partials.product-specifications :product="$currentProduct" />
 
-                    <div class="grid grid-cols-1">
-                        <div class="">
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Típus</span>
-                                <span
-                                    class="text-sm font-medium text-gray-900">{{ $currentProduct->item_type_name }}</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Márka</span>
-                                <span
-                                    class="text-sm font-medium text-gray-900">{{ $currentProduct->manufacturer->name }}</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Szélesség</span>
-                                <span class="text-sm font-medium text-gray-900">{{ $currentProduct->width }}
-                                    mm</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Per</span>
-                                <span class="text-sm font-medium text-gray-900">{{ $currentProduct->aspect_ratio }}
-                                    %</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Szerkezet</span>
-                                <span class="text-sm font-medium text-gray-900">{{ $currentProduct->structure }}</span>
-                            </div>
-                        </div>
-
-                        <div class="">
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Átmérő</span>
-                                <span class="text-sm font-medium text-gray-900">{{ $currentProduct->diameter }}
-                                    col</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Mintázat</span>
-                                <span
-                                    class="text-sm font-medium text-gray-900">{{ $currentProduct->pattern_name }}</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">DOT</span>
-                                <span class="text-sm font-medium text-gray-900">DOT22</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Peremvédő</span>
-                                <span class="text-sm font-medium text-gray-900">Nem</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Elektronok autónhoz</span>
-                                <span class="text-sm font-medium text-gray-900">Nem</span>
-                            </div>
-                        </div>
-
-                        <div class="">
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Évszak</span>
-                                <span class="text-sm font-medium text-gray-900">Téli gumi</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">TL</span>
-                                <span class="text-sm font-medium text-gray-900">91 = 615 kg</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">SI</span>
-                                <span class="text-sm font-medium text-gray-900">H = 210km/h</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Zajszint</span>
-                                <span class="text-sm font-medium text-gray-900">B</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Gördülési</span>
-                                <span class="text-sm font-medium text-gray-900">E</span>
-                            </div>
-                        </div>
-
-                        <div class="">
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Deflektálás</span>
-                                <span class="text-sm font-medium text-gray-900">-</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">EAN</span>
-                                <span class="text-sm font-medium text-gray-900">4038526921830</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Gyári szám</span>
-                                <span class="text-sm font-medium text-gray-900">576098</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">ID</span>
-                                <span class="text-sm font-medium text-gray-900">574098P0T22</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-300">
-                                <span class="text-sm text-gray-600">Súly</span>
-                                <span class="text-sm font-medium text-gray-900">8.971 kg</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Product Labels -->
+                <x-partials.product-labels :product="$currentProduct" />
 
                 <!-- Warning -->
                 <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-md">
@@ -243,11 +144,9 @@
                         <i class="fa-solid fa-circle-check text-2xl text-green-600"></i>
                         <div class="text-sm">
                             <p class="mb-2"><strong>DOT Garancia</strong></p>
-                            <p class="mb-2 text-gray-600">Gumiabroncsaink garantáltan frissen gyártottak! A HTA -
-                                Magyar
+                            <p class="mb-2 text-gray-600">Gumiabroncsaink garantáltan frissen gyártottak! A HTA - Magyar
                                 Gumiabroncs Szövetség besorolása alapján maximum 3 évesek lehetnek!</p>
-                            <p class="mb-2 text-gray-600">A 3 évnél régebbi gubiabroncsoknál minden esetben az
-                                alábbiak
+                            <p class="mb-2 text-gray-600">A 3 évnél régebbi gubiabroncsoknál minden esetben az alábbiak
                                 szerint
                                 jelöljük a gyártási évet: DOT+évjárat (pl. DOT18 = 2018-as abroncs)</p>
                         </div>
@@ -269,45 +168,47 @@
 
         </div>
 
+
         <!-- Energy Labels -->
-        <div class="mt-8 bg-white rounded-lg shadow-sm p-6">
-            <div class="flex items-center justify-center space-x-8">
-                <div class="text-center">
-                    <div class="energy-label w-24 h-32 rounded-lg flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-white rounded-lg"></div>
-                        <div
-                            class="absolute top-2 left-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-gas-pump text-white text-xs"></i>
-                        </div>
-                        <div class="absolute bottom-2 right-2 text-4xl font-bold text-black">E</div>
+        {{-- <div class="mt-8 bg-white rounded-lg shadow-sm p-6">
+        <div class="flex items-center justify-center space-x-8">
+            <div class="text-center">
+                <div class="energy-label w-24 h-32 rounded-lg flex items-center justify-center relative">
+                    <div class="absolute inset-0 bg-white rounded-lg"></div>
+                    <div
+                        class="absolute top-2 left-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-gas-pump text-white text-xs"></i>
                     </div>
-                    <div class="text-xs text-gray-500 mt-2">Üzemanyag</div>
+                    <div class="absolute bottom-2 right-2 text-4xl font-bold text-black">E</div>
                 </div>
+                <div class="text-xs text-gray-500 mt-2">Üzemanyag</div>
+            </div>
 
-                <div class="text-center">
-                    <div class="energy-label w-24 h-32 rounded-lg flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-white rounded-lg"></div>
-                        <div
-                            class="absolute top-2 left-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-tint text-white text-xs"></i>
-                        </div>
-                        <div class="absolute bottom-2 right-2 text-4xl font-bold text-black">E</div>
+            <div class="text-center">
+                <div class="energy-label w-24 h-32 rounded-lg flex items-center justify-center relative">
+                    <div class="absolute inset-0 bg-white rounded-lg"></div>
+                    <div
+                        class="absolute top-2 left-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-tint text-white text-xs"></i>
                     </div>
-                    <div class="text-xs text-gray-500 mt-2">Nedves</div>
+                    <div class="absolute bottom-2 right-2 text-4xl font-bold text-black">E</div>
                 </div>
+                <div class="text-xs text-gray-500 mt-2">Nedves</div>
+            </div>
 
-                <div class="text-center">
-                    <div class="energy-label w-24 h-32 rounded-lg flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-white rounded-lg"></div>
-                        <div
-                            class="absolute top-2 left-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-volume-up text-white text-xs"></i>
-                        </div>
-                        <div class="absolute bottom-2 right-2 text-2xl font-bold text-black">70dB</div>
+            <div class="text-center">
+                <div class="energy-label w-24 h-32 rounded-lg flex items-center justify-center relative">
+                    <div class="absolute inset-0 bg-white rounded-lg"></div>
+                    <div
+                        class="absolute top-2 left-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-volume-up text-white text-xs"></i>
                     </div>
-                    <div class="text-xs text-gray-500 mt-2">Zaj</div>
+                    <div class="absolute bottom-2 right-2 text-2xl font-bold text-black">70dB</div>
                 </div>
+                <div class="text-xs text-gray-500 mt-2">Zaj</div>
             </div>
         </div>
+    </div> --}}
+        <div class="h-24"></div>
     </div>
-</x-layouts.app
+</x-layouts.app>
