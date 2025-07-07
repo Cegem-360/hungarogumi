@@ -38,8 +38,17 @@
         <!-- Navigation -->
         <nav class="border-t border-gray-200">
             <ul class="flex space-x-8 py-3 text-sm font-medium text-gray-700">
-                <li><a href="#" class="nav-item px-3 py-2 rounded hover:text-brand-blue">GUMIK</a></li>
-                <li><a href="#" class="nav-item px-3 py-2 rounded hover:text-brand-blue">FELNIK</a>
+                <li>
+                    <a wire:navigate href="{{ route('tyres') }}"
+                        class="nav-item px-3 py-2 rounded hover:text-brand-blue">
+                        GUMIK
+                    </a>
+                </li>
+                <li>
+                    <a wire:navigate href="{{ route('wheels') }}"
+                        class="nav-item px-3 py-2 rounded hover:text-brand-blue">
+                        FELNIK
+                    </a>
                 </li>
                 <li><a href="#" class="nav-item px-3 py-2 rounded hover:text-brand-blue">AKKUMULÁTOR</a>
                 </li>

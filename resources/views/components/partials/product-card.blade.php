@@ -31,7 +31,7 @@
     <div class="text-sm font-medium mb-2">{{ $product->manufacturer->name ?? 'Nincs gyártó' }}
         {{ $product->item_name ?? 'Nincs' }}</div>
     <div class="text-xl font-bold text-brand-blue mb-2">
-        {{ $product->net_retail_price ? number_format($product->net_retail_price, 0, '', ' ') . ' Ft' : 'Nincs ár' }}
+        {{ $product->net_retail_price ? Number::currency($product->net_retail_price, 'HUF', 'hu', 0) : 'Nincs ár' }}
     </div>
     <div class="text-xs text-gray-500 mb-3">
         {{ $product->consumption ? 'Energiacímke: ' . $product->consumption : 'Nincs energiacímke' }} |
