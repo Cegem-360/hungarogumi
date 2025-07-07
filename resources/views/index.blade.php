@@ -2,13 +2,6 @@
 
     <body>
 
-        <!-- Top Bar -->
-        <x-layouts.topbar />
-
-        <!-- Header -->
-        <x-layouts.header />
-
-
         @if (request()->routeIs('home') || request()->routeIs('en.home'))
             @include('pages.home')
         @elseif (request()->routeIs('gumik') || request()->routeIs('en.gumik'))
@@ -21,15 +14,9 @@
             @include('pages.contact')
         @endif
 
-
-        <!-- Footer -->
-        <x-layouts.footer />
-
-
-
         <script>
             // Mobile menu toggle
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('livewire:loaded', function() {
                 // Add smooth scrolling
                 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                     anchor.addEventListener('click', function(e) {
@@ -42,20 +29,6 @@
                         }
                     });
                 });
-
-                // Product hover effects
-                /* const productCards = document.querySelectorAll('.product-hover');
-                productCards.forEach(card => {
-                    card.addEventListener('mouseenter', function() {
-                        this.style.transform = 'translateY(-2px)';
-                        this.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
-                    });
-
-                    card.addEventListener('mouseleave', function() {
-                        this.style.transform = 'translateY(0)';
-                        this.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
-                    });
-                }); */
 
                 // Search functionality
                 const searchButton = document.querySelector('.bg-brand-blue');

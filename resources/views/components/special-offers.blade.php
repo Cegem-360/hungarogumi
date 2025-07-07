@@ -7,8 +7,9 @@
                 <div class="flex items-center justify-between">
                     <div class="w-2/3">
                         <h3 class="text-2xl font-bold mb-2">MÁK 3D felni-nézet</h3>
-                        <p class="mb-4">Fedezd fel, hogyan mutat az autódon egy új MÁK alufelni – valósághű
-                            látványtervben!</p>
+                        <p class="mb-4">
+                            Fedezd fel, hogyan mutat az autódon egy új MÁK alufelni – valósághű látványtervben!
+                        </p>
                         <button class="bg-black text-white px-6 py-2 rounded font-semibold">Megnézem</button>
                     </div>
                     <img src="{{ Storage::url('images/mak_banner_rim.svg') }}" alt=""
@@ -22,8 +23,8 @@
                 <div class="flex items-center justify-between">
                     <div class="w-2/3">
                         <h3 class="text-2xl font-bold mb-2">OZ 3D látványfelni</h3>
-                        <p class="mb-4">Próbáld ki, hogyan állna egy OZ felni az autódon – kézzel fogható
-                            vizualizációval!</p>
+                        <p class="mb-4">
+                            Próbáld ki, hogyan állna egy OZ felni az autódon – kézzel fogható vizualizációval!</p>
                         <button class="bg-yellow-400 text-black px-6 py-2 rounded font-semibold">Megnézem</button>
                     </div>
                     <img src="{{ Storage::url('images/oz_banner_rim.svg') }}" alt=""

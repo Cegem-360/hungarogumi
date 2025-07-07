@@ -1,23 +1,25 @@
-        <!-- Hero Section -->
-        <x-layouts.hero />
+<x-layouts.app>
+    <!-- Hero Section -->
+    <x-hero />
 
-        <!-- Services -->
-        <x-layouts.services />
+    <!-- Services -->
+    <x-services />
 
-        <!-- Promotions -->
-        <x-layouts.promotions />
+    <!-- Promotions -->
+    <x-promotions />
 
-        <!-- Featured Products -->
-        <x-layouts.featured-products />
+    <!-- Featured Products -->
+    <x-featured-products />
 
-        <!-- Popular Brands -->
-        <x-layouts.popular-brands />
+    <!-- Popular Brands -->
+    <x-popular-brands />
 
-        <!-- Special Offers -->
-        <x-layouts.special-offers />
+    <!-- Special Offers -->
+    <x-special-offers />
 
-        <!-- Customer Reviews -->
-        <x-layouts.customer-reviews />
+    <!-- Customer Reviews -->
+    <x-customer-reviews />
 
-        <!-- News Section -->
-        <x-layouts.news />
+    <!-- News Section -->
+    <x-news />
+</x-layouts.app>
