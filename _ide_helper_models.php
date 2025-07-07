@@ -65,7 +65,6 @@ namespace App\Models{
  *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OrderItem> $orderItems
  * @property-read int|null $order_items_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OrderItem> $order_items
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order newQuery()
@@ -199,41 +198,28 @@ namespace App\Models{
 	final class Product extends \Eloquent {}
 }
 
-namespace App\Models{
+namespace App\Models\Product{
 /**
  * 
  *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
  * @property-read int|null $products_count
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductCategory newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductCategory newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductCategory query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category query()
  */
-	final class ProductCategory extends \Eloquent {}
+	final class Category extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
  * 
  *
- * @property int $id
- * @property string $shipping_method_id
- * @property string $title
- * @property string $description
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @method static Builder|ShippingMethod newModelQuery()
- * @method static Builder|ShippingMethod newQuery()
- * @method static Builder|ShippingMethod query()
- * @method static Builder|ShippingMethod whereCreatedAt($value)
- * @method static Builder|ShippingMethod whereDescription($value)
- * @method static Builder|ShippingMethod whereId($value)
- * @method static Builder|ShippingMethod whereShippingMethodId($value)
- * @method static Builder|ShippingMethod whereTitle($value)
- * @method static Builder|ShippingMethod whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ShippingMethod newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ShippingMethod newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ShippingMethod query()
  */
-	class ShippingMethod extends \Eloquent {}
+	final class ShippingMethod extends \Eloquent {}
 }
 
 namespace App\Models{

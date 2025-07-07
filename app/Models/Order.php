@@ -64,11 +64,6 @@ final class Order extends Model
         'shipping_cost',
     ];
 
-    public function order_items(): HasMany
-    {
-        return $this->hasMany(OrderItem::class);
-    }
-
     public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItem::class);
@@ -79,20 +74,11 @@ final class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function orderFrontDoorItems(): HasMany
-    {
-        return $this->hasMany(OrderFrontDoorItem::class);
-    }
-
     public function orderTotal(): int|float
     {
         $total = 0;
         foreach ($this->orderItems as $orderItem) {
             $total += $orderItem->total;
-        }
-
-        foreach ($this->orderFrontDoorItems as $orderFrontDoorItem) {
-            $total += $orderFrontDoorItem->total;
         }
 
         return $total;

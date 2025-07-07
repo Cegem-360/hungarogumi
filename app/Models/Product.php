@@ -13,8 +13,6 @@ final class Product extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
-
     protected $fillable = [
         'id',
         'ean',
@@ -63,7 +61,7 @@ final class Product extends Model
         'url',
         'retail_price_eur',
         'wholesale_price_eur',
-
+        'price',
         'created_at',
         'updated_at',
     ];

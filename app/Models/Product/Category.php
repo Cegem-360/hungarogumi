@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace App\Models\Product;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-final class ProductCategory extends Model
+final class Category extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'category_id',
         'name',
         'slug',
         'parent',
