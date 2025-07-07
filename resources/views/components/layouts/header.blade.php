@@ -3,7 +3,7 @@
         <div class="flex items-center justify-between py-6">
             <!-- Logo -->
             <div class="flex items-center justify-center gap-1">
-                <img src="{{ Storage::url('images/somigumi-logo-2.webp') }}" alt="SomiGumi" class="h-16">
+                <img src="{{ Vite::asset('resources/images/somigumi-logo-2.webp') }}" alt="SomiGumi" class="h-16">
                 <h1 class="sr-only">SomiGumi</h1>
                 <x-svg.logo-title class="text-brand-anthracite" />
             </div>

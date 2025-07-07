@@ -3,7 +3,7 @@
         <div class="grid md:grid-cols-5 gap-8">
             <!-- Logo -->
             <div class="flex">
-                <img src="{{ Storage::url('images/somigumi-logo.webp') }}" alt="SomiGumi" class="h-16 invert">
+                <img src="{{ Vite::asset('resources/images/somigumi-logo.webp') }}" alt="SomiGumi" class="h-16 invert">
             </div>
             <!-- Company Info -->
             <div>
