@@ -20,5 +20,5 @@ Route::prefix('termekek')->as('products.')->group(
 );
 Route::view('/termek', 'products.index')->name('termékek');
 
-Route::view('/rolunk', 'index')->name('rolunk');
+Route::view('/rolunk', 'pages.rolunk')->name('rolunk');
 Route::view('/kapcsolat', 'index')->name('kapcsolat');
