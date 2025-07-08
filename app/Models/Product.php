@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Product\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 final class Product extends Model
 {
     use HasFactory;
-
-    protected $guarded = ['id'];
 
     protected $fillable = [
         'id',
@@ -21,7 +21,8 @@ final class Product extends Model
         'sku',
         'factory_code',
         'item_name',
-        'manufacturer_id', // gyártó:name
+        'slug',
+        'manufacturer_id', // Manufacturer:id
         'width',
         'aspect_ratio',
         'structure',
@@ -63,7 +64,9 @@ final class Product extends Model
         'url',
         'retail_price_eur',
         'wholesale_price_eur',
-
+        'price',
+        'is_featured',
+        'categories',
         'created_at',
         'updated_at',
     ];
@@ -82,5 +85,10 @@ final class Product extends Model
     public function stocks(): HasMany
     {
         return $this->hasMany(Stock::class);
+    }
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
     }
 }

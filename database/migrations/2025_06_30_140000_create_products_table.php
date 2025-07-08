@@ -38,11 +38,11 @@ return new class extends Migration
             $table->string('weight')->nullable();
             $table->string('season')->nullable();
             $table->string('usage')->nullable();
-            $table->string('all_quantity')->nullable();
-            $table->string('quantity_szt_mihaly')->nullable();
-            $table->string('quantity_kesmark')->nullable();
-            $table->string('net_wholesale_price')->nullable();
-            $table->string('net_retail_price')->nullable();
+            $table->integer('all_quantity')->nullable();
+            $table->integer('quantity_szt_mihaly')->nullable();
+            $table->integer('quantity_kesmark')->nullable();
+            $table->integer('net_wholesale_price')->nullable();
+            $table->integer('net_retail_price')->nullable();
             $table->string('main_image')->nullable();
             $table->string('min_order_quantity')->nullable();
             $table->string('pattern_name')->nullable();
@@ -60,8 +60,11 @@ return new class extends Migration
             $table->string('tire_spec_data')->nullable();
             $table->string('tire_car_data')->nullable();
             $table->string('url')->nullable();
-            $table->string('retail_price_eur')->nullable();
-            $table->string('wholesale_price_eur')->nullable();
+            $table->integer('retail_price_eur')->nullable();
+            $table->integer('wholesale_price_eur')->nullable();
+            $table->json('categories')->nullable();
+            $table->integer('price')->nullable();
+            $table->boolean('is_featured')->default(false);
             $table->timestamps();
         });
     }
