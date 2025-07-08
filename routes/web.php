@@ -13,7 +13,7 @@ Route::view('/felnik', 'pages.wheels')->name('wheels');
 Route::prefix('termekek')->as('products.')->group(
     function (): void {
         Route::get('/', function () {
-            return view('products.index');
+            return redirect()->route('home');
         })->name('index');
 
         Route::get('/{product}', function (Product $product) {
@@ -23,7 +23,6 @@ Route::prefix('termekek')->as('products.')->group(
         })->name('show');
     }
 );
-Route::view('/termek', 'products.index')->name('termékek');
 
 Route::view('/rolunk', 'pages.rolunk')->name('rolunk');
 Route::view('/szolgaltatasaink', 'pages.szolgaltatasaink')->name('szolháltatásaink');
