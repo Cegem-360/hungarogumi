@@ -20,13 +20,17 @@ final class EnsureCartExists
      */
     public function handle($request, Closure $next)
     {
+        $cart = null;
         $userId = Auth::id();
         if (Auth::check()) {
-            Cart::firstOrCreate(['user_id' => $userId]);
+            $cart = Cart::firstOrCreate(['user_id' => $userId]);
+            Session::put('cart', $cart);
         } else {
             $sessionId = Session::getId();
-            Cart::firstOrCreate(['session_id' => $sessionId]);
+            $cart = Cart::firstOrCreate(['session_id' => $sessionId]);
         }
+
+        Session::put('cart', $cart);
 
         return $next($request);
     }

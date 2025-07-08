@@ -28,10 +28,13 @@
                     <i class="fas fa-heart text-gray-600"></i>
                     <span class="hidden md:inline">Kedvencek</span>
                 </div>
-                <div class="flex items-center space-x-1">
-                    <i class="fas fa-shopping-cart text-gray-600"></i>
-                    <span class="hidden md:inline">Kosár</span>
-                </div>
+
+                <a href="{{ route('cart.index') }}" wire:navigate>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-shopping-cart text-gray-600"></i>
+                        <span class="hidden md:inline">Kosár</span>
+                    </div>
+                </a>
             </div>
         </div>
 

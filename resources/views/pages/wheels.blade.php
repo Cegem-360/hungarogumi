@@ -22,14 +22,6 @@
             <livewire:wheel-list>
         </div>
     </section>
-    <x-featured-products />
-    <x-customer-reviews />
-    <x-hero />
-    <x-services />
-    <x-special-offers />
-    <x-popular-brands />
-    <x-news />
-    <x-promotions />
 
     <x-slot name="scripts">
         <script>

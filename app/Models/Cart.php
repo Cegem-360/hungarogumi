@@ -33,6 +33,11 @@ final class Cart extends Model
         return $this->hasMany(CartItem::class);
     }
 
+    public function items(): HasMany
+    {
+        return $this->hasMany(CartItem::class);
+    }
+
     /**
      * Get the user that owns the cart.
      */
@@ -49,8 +54,8 @@ final class Cart extends Model
     public function total(): int
     {
         $total = 0;
-        foreach ($this->cartItems() as $cartItem) {
-            $total += $cartItem->quantity * $cartItem->product->price;
+        foreach ($this->items as $cartItem) {
+            $total += $cartItem->quantity * $cartItem->product->net_retail_price;
         }
 
         return $total;

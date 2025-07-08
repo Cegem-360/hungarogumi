@@ -35,11 +35,38 @@ Route::view('/kapcsolat', 'pages.kapcsolat')->name('kapcsolat');
 
 Route::middleware([EnsureCartExists::class])->group(function () {
     // Add routes here that require the ensureCartExist middleware
-    Route::view('/kosar', 'cart.index')->name('cart.index');
+    Route::get('/kosar', function () {
+        // You can pass the cart service to the view if needed
+        return view('pages.cart');
+    })->name('cart.index');
+
     // Cart add route using CartService
     Route::post('/cart/add', function (Illuminate\Http\Request $request, CartService $cartService) {
         $cartService->addItem($request->product_id, $request->quantity);
 
         return redirect()->back();
     })->name('cart.add');
+});
+
+Route::middleware([EnsureCartExists::class])->group(function () {
+    // Checkout page
+    Route::get('/checkout', function () {
+        return view('pages.checkout');
+    })->name('checkout.index');
+
+    // Checkout submit (for example, to place an order)
+    Route::post('/checkout', function (Illuminate\Http\Request $request, CartService $cartService) {
+        // Handle checkout logic here, e.g., validate, create order, clear cart, etc.
+        // $cartService->checkout($request->all());
+        return redirect()->route('home')->with('success', 'Order placed successfully!');
+    })->name('checkout.submit');
+
+    Route::get('/checkout/success', function () {
+        return view('pages.checkout-success');
+    })->name('checkout.success');
+
+    Route::get('/checkout/cancel', function () {
+        return view('pages.checkout-cancel');
+    })->name('checkout.cancel');
+
 });
