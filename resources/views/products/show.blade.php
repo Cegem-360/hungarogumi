@@ -1,4 +1,5 @@
 <x-layouts.app>
+    @dump($product);
     <x-slot name="title">{{ $product->item_name ?? 'Termék' }}</x-slot>
     <x-slot name="description">{{ $product->description ?? 'Nincs leírás' }}</x-slot>
     <x-slot name="keywords">{{ $product->keywords ?? 'Nincs kulcsszók' }}</x-slot>

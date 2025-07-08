@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Middleware\EnsureCartExists;
+use App\Models\Product;
 use App\Services\CartService;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,10 @@ Route::prefix('termekek')->as('products.')->group(
             return view('products.index');
         })->name('index');
 
-        Route::get('/{product}', function ($product) {
-            return view('products.show', ['product' => $product]);
+        Route::get('/{product}', function (Product $product) {
+            $relatedProducts = [];
+
+            return view('products.show', ['product' => $product, 'relatedProducts' => $relatedProducts]);
         })->name('show');
     }
 );
