@@ -8,7 +8,7 @@ Route::view('/', 'index')->name('home');
 Route::view('/gumik', 'pages.tyres')->name('tyres');
 Route::view('/felnik', 'pages.wheels')->name('wheels');
 Route::prefix('termekek')->as('products.')->group(
-    function () {
+    function (): void {
         Route::get('/', function () {
             return view('products.index');
         })->name('index');

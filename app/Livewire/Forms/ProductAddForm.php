@@ -12,7 +12,7 @@ final class SimpleProductAddForm extends Form
 
     public $product_id;
 
-    public function store()
+    public function store(): void
     {
         $this->validate([
             'price' => 'required|numeric|min:1',

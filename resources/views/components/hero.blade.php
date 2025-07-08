@@ -1,3 +1,4 @@
+@use('App\Models\Product')
 <section class="hero-bg py-16 text-white"
     style="background: url('{{ Storage::url('images/IMG_5177.webp') }}') no-repeat center center; background-size: cover;">
     <div class="container mx-auto p-12 bg-white/20 border border-white/15 backdrop-blur-2xl shadow-2xl rounded-xl">
@@ -34,6 +35,9 @@
                         <label class="block text-sm font-medium mb-1">Felni átmérő</label>
                         <select
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                            @foreach (Product::get()->pluck('diameter')->unique() as $productDiameter)
+                                <option>{{ $productDiameter }}</option>
+                            @endforeach
                             <option>R15</option>
                             <option>R16</option>
                             <option>R17</option>
@@ -45,14 +49,15 @@
                         <select
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
                             <option>Összes</option>
-                            <option>Nyári</option>
-                            <option>Téli</option>
-                            <option>Négyévszakos</option>
+                            <option value="">Nyári</option>
+                            <option value="">Téli</option>
+                            <option value="">Négyévszakos</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="flex flex-wrap gap-2 mb-4 text-xs">
+
                     <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Runflat</button>
                     <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Peremvédős</button>
                     <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Extra terhelés</button>
@@ -81,19 +86,19 @@
 
         <!-- Statistics -->
         <div class="grid md:grid-cols-4 gap-6 mt-12 text-center">
-            <div class="bg-black bg-brand-anthracite/30 rounded-lg p-4">
+            <div class="bg-brand-anthracite/30 rounded-lg p-4">
                 <div class="text-2xl font-bold mb-2">2 600+</div>
                 <div class="text-sm">gumiabroncs felszerelve évente</div>
             </div>
-            <div class="bg-black bg-brand-anthracite/30 rounded-lg p-4">
+            <div class="bg-brand-anthracite/30 rounded-lg p-4">
                 <div class="text-2xl font-bold mb-2">Részletes visszaigazolás</div>
                 <div class="text-sm">emailben minden rendelés után</div>
             </div>
-            <div class="bg-black bg-brand-anthracite/30 rounded-lg p-4">
+            <div class="bg-brand-anthracite/30 rounded-lg p-4">
                 <div class="text-2xl font-bold mb-2">Plusz védelem</div>
                 <div class="text-sm">új abroncsokra kiterjesztett garancia</div>
             </div>
-            <div class="bg-black bg-brand-anthracite/30 rounded-lg p-4">
+            <div class="bg-brand-anthracite/30 rounded-lg p-4">
                 <div class="text-2xl font-bold mb-2">Tanúsított partnerhálózat</div>
                 <div class="text-sm">szervizek országszerte</div>
             </div>

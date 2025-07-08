@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 final class CartService
 {
@@ -13,10 +14,16 @@ final class CartService
 
     public function __construct()
     {
-        $this->cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
+        $userId = Auth::id();
+        if (Auth::check()) {
+            $this->cart = Cart::firstOrCreate(['user_id' => $userId]);
+        } else {
+            $sessionId = Session::getId();
+            $this->cart = Cart::firstOrCreate(['session_id' => $sessionId]);
+        }
     }
 
-    public function addItem($productId, $quantity)
+    public function addItem($productId, $quantity): void
     {
         $cartItem = $this->cart->items()->where('product_id', $productId)->first();
 
@@ -31,12 +38,22 @@ final class CartService
         }
     }
 
-    public function removeItem($productId)
+    public function updateItem($productId, $quantity): void
+    {
+        $cartItem = $this->cart->items()->where('product_id', $productId)->first();
+
+        if ($cartItem) {
+            $cartItem->quantity = $quantity;
+            $cartItem->save();
+        }
+    }
+
+    public function removeItem($productId): void
     {
         $this->cart->items()->where('product_id', $productId)->delete();
     }
 
-    public function clearCart()
+    public function clearCart(): void
     {
         $this->cart->items()->delete();
     }
@@ -48,7 +65,7 @@ final class CartService
 
     public function getTotal()
     {
-        return $this->cart->items->sum(function ($item) {
+        return $this->cart->items->sum(function ($item): int|float {
             return $item->product->price * $item->quantity;
         });
     }

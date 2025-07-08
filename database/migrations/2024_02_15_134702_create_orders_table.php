@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Enums\OrderStatus;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,11 +13,11 @@ return new class() extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table): void {
             $table->id();
-            $table->text('user_id')->nullable();
+            $table->foreignIdFor(User::class)->nullable();
             $table->string('payment_method')->default('bacs');
             $table->string('payment_method_title')->default('Bank Transfer');
             $table->boolean('set_paid')->default(false);
@@ -49,8 +50,6 @@ return new class() extends Migration
             $table->string('shipping_lines_method_id')->default('flat_rate');
             $table->string('shipping_lines_method_title')->default('Flat Rate');
             $table->string('shipping_lines_total')->default('0');
-
-            $table->string('order_id')->nullable();
             $table->string('order_key')->nullable();
             $table->string('order_status')->default(OrderStatus::PENDING);
             $table->string('order_currency')->default(config('webshop.default_currency'));
@@ -63,7 +62,7 @@ return new class() extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('orders');
     }

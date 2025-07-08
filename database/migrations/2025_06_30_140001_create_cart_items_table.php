@@ -13,9 +13,9 @@ return new class() extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('cart_items', function (Blueprint $table) {
+        Schema::create('cart_items', function (Blueprint $table): void {
             $table->id();
             $table->foreignIdFor(Product::class);
             $table->foreignIdFor(Cart::class);
@@ -27,7 +27,7 @@ return new class() extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('carts_items');
     }
