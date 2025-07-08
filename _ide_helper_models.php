@@ -113,11 +113,11 @@ namespace App\Models{
  * @property string|null $weight
  * @property string|null $season
  * @property string|null $usage
- * @property string|null $all_quantity
- * @property string|null $quantity_szt_mihaly
- * @property string|null $quantity_kesmark
- * @property string|null $net_wholesale_price
- * @property string|null $net_retail_price
+ * @property int|null $all_quantity
+ * @property int|null $quantity_szt_mihaly
+ * @property int|null $quantity_kesmark
+ * @property int|null $net_wholesale_price
+ * @property int|null $net_retail_price
  * @property string|null $main_image
  * @property string|null $min_order_quantity
  * @property string|null $pattern_name
@@ -135,10 +135,13 @@ namespace App\Models{
  * @property string|null $tire_spec_data
  * @property string|null $tire_car_data
  * @property string|null $url
- * @property string|null $retail_price_eur
- * @property string|null $wholesale_price_eur
+ * @property int|null $retail_price_eur
+ * @property int|null $wholesale_price_eur
+ * @property int|null $is_featured
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product\Category> $categories
+ * @property-read int|null $categories_count
  * @property-read \App\Models\Manufacturer|null $manufacturer
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Stock> $stocks
  * @property-read int|null $stocks_count
@@ -158,6 +161,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereForWinter($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereGrip($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereIsFeatured($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereItemName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereItemTypeName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereLi($value)
