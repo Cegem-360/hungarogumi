@@ -19,7 +19,7 @@
                 <h2 class="text-2xl font-bold">Felnik</h2>
             </div>
 
-            <livewire:tyre-list>
+            <livewire:wheel-list>
         </div>
     </section>
     <x-featured-products />
