@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Services\CartService;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\EnsureCartExists;
 
 Route::view('/', 'index')->name('home');
 Route::view('/gumik', 'pages.tyres')->name('tyres');
@@ -28,3 +30,14 @@ Route::view('/et-kalkulator', 'pages.et-kalkulator')->name('et-kalkulator');
 Route::view('/szallitasi-informaciok', 'pages.szallitasi-informaciok')->name('szallitasi-informaciok');
 Route::view('/adatvedelmi-tajekoztato', 'pages.adatvedelmi-tajekoztato')->name('adatvedelmi-tajekoztato');
 Route::view('/kapcsolat', 'pages.kapcsolat')->name('kapcsolat');
+
+Route::middleware([EnsureCartExists::class])->group(function () {
+    // Add routes here that require the ensureCartExist middleware
+    Route::view('/kosar', 'cart.index')->name('cart.index');
+    // Cart add route using CartService
+    Route::post('/cart/add', function (Illuminate\Http\Request $request, CartService $cartService) {
+        $cartService->addItem($request->product_id, $request->quantity);
+
+        return redirect()->back();
+    })->name('cart.add');
+});

@@ -25,13 +25,13 @@ final class CartService
 
     public function addItem($productId, $quantity): void
     {
-        $cartItem = $this->cart->items()->where('product_id', $productId)->first();
+        $cartItem = $this->cart->cartItems()->where('product_id', $productId)->first();
 
         if ($cartItem) {
             $cartItem->quantity += $quantity;
             $cartItem->save();
         } else {
-            $this->cart->items()->create([
+            $this->cart->cartItems()->create([
                 'product_id' => $productId,
                 'quantity' => $quantity,
             ]);
@@ -50,22 +50,22 @@ final class CartService
 
     public function removeItem($productId): void
     {
-        $this->cart->items()->where('product_id', $productId)->delete();
+        $this->cart->cartItems()->where('product_id', $productId)->delete();
     }
 
     public function clearCart(): void
     {
-        $this->cart->items()->delete();
+        $this->cart->cartItems()->delete();
     }
 
     public function getCartItems()
     {
-        return $this->cart->items;
+        return $this->cart->cartItems;
     }
 
     public function getTotal()
     {
-        return $this->cart->items->sum(function ($item): int|float {
+        return $this->cart->cartItems->sum(function ($item): int|float {
             return $item->product->price * $item->quantity;
         });
     }

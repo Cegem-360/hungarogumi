@@ -4,26 +4,28 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use Illuminate\Http\Request;
 use App\Models\Cart;
 use Closure;
-use Illuminate\Support\Facades\Cookie;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 final class EnsureCartExists
 {
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        $cartCookie = $request->cookie('cart_id');
-
-        if (! $cartCookie || ! Cart::where('cookie_id', $cartCookie)->exists()) {
-            $cart = Cart::create(['cookie_id' => $cartCookie ?? uniqid()]);
-            Cookie::queue('cart_id', $cart->cookie_id, 60 * 24 * 30); // 30 napos lejárat
+        $userId = Auth::id();
+        if (Auth::check()) {
+            Cart::firstOrCreate(['user_id' => $userId]);
+        } else {
+            $sessionId = Session::getId();
+            Cart::firstOrCreate(['session_id' => $sessionId]);
         }
 
         return $next($request);

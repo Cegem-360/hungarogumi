@@ -160,14 +160,13 @@
                     <h3 class="text-lg font-semibold text-gray-900 mb-6">Hasonló termékek</h3>
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach (Product::limit(12)->get() ?? [] as $product)
-                            <x-partials.product-card :product="$product" />
+                            <livewire:product-add-to-cart :product_id="$product->id" wire:key="$product->id" />
                         @endforeach
                     </div>
                 </div>
             </div>
 
         </div>
-
 
         <!-- Energy Labels -->
         {{-- <div class="mt-8 bg-white rounded-lg shadow-sm p-6">

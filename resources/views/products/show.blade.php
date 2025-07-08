@@ -34,7 +34,8 @@
             <h2 class="text-2xl font-bold mb-6">Kapcsolódó termékek</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($relatedProducts as $relatedProduct)
-                    <x-partials.product-card :product="$relatedProduct" />
+                    <livewire:product-add-to-cart :product_id="$relatedProduct->id" wire:key="$relatedProduct->id"
+                        wire:key="$product->id" />
                 @endforeach
             </div>
         </div>
