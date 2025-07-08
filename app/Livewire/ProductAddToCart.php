@@ -21,29 +21,26 @@ final class ProductAddToCart extends Component
 
     }
 
-    public function addToCart($quantity): void
+    public function addToCart(int $quantity): void
     {
-        $this->validate([
-            'productId' => ['required', 'exists:products,id'],
-        ]);
 
         $product = Product::find($this->productId);
         if ($product) {
             // Assuming you have a CartService to handle adding items to the cart
             $cartService = new CartService();
             $cartService->addItem($this->productId, $quantity);
-            Notification::make()
-                ->title('Success')
-                ->body('Product added to cart successfully.')
-                ->success()
-                ->send();
-        } else {
-            Notification::make()
-                ->title('Fail')
-                ->body('Product can\'t be added to cart.')
-                ->danger()
-                ->send();
+            // the notification is very buggy so skip now
+            /*  Notification::make()
+                 ->title('Success')
+                 ->body('Product added to cart successfully.')
+                 ->success()
+                 ->send(); */
         }
+        /* Notification::make()
+            ->title('Fail')
+            ->body('Product can\'t be added to cart.')
+            ->danger()
+            ->send(); */
 
     }
 

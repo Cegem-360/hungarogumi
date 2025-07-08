@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Http\Middleware\EnsureCartExists;
 use App\Services\CartService;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\EnsureCartExists;
 
 Route::view('/', 'index')->name('home');
 Route::view('/gumik', 'pages.tyres')->name('tyres');
