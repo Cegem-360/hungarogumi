@@ -1,32 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\OrderItemResource\Pages\CreateOrderItem;
+use App\Filament\Resources\OrderItemResource\Pages\EditOrderItem;
+use App\Filament\Resources\OrderItemResource\Pages\ListOrderItems;
+use App\Filament\Resources\OrderItemResource\Pages\ViewOrderItem;
+use App\Models\OrderItem;
+use BackedEnum;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Actions\ViewAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use App\Filament\Resources\OrderItemResource\Pages\ListOrderItems;
-use App\Filament\Resources\OrderItemResource\Pages\CreateOrderItem;
-use App\Filament\Resources\OrderItemResource\Pages\ViewOrderItem;
-use App\Filament\Resources\OrderItemResource\Pages\EditOrderItem;
-use App\Filament\Resources\OrderItemResource\Pages;
-use App\Models\OrderItem;
-use BackedEnum;
-use Filament\Actions;
-use Filament\Forms;
-use Filament\Infolists;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class OrderItemResource extends Resource
+final class OrderItemResource extends Resource
 {
     protected static ?string $model = OrderItem::class;
 

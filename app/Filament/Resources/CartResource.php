@@ -1,32 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\CartResource\Pages\CreateCart;
+use App\Filament\Resources\CartResource\Pages\EditCart;
+use App\Filament\Resources\CartResource\Pages\ListCarts;
+use App\Filament\Resources\CartResource\Pages\ViewCart;
+use App\Models\Cart;
+use BackedEnum;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Actions\ViewAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use App\Filament\Resources\CartResource\Pages\ListCarts;
-use App\Filament\Resources\CartResource\Pages\CreateCart;
-use App\Filament\Resources\CartResource\Pages\ViewCart;
-use App\Filament\Resources\CartResource\Pages\EditCart;
-use App\Filament\Resources\CartResource\Pages;
-use App\Models\Cart;
-use BackedEnum;
-use Filament\Actions;
-use Filament\Forms;
-use Filament\Infolists;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class CartResource extends Resource
+final class CartResource extends Resource
 {
     protected static ?string $model = Cart::class;
 

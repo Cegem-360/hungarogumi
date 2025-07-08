@@ -1,33 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
-use Filament\Tables\Filters\TrashedFilter;
-use Filament\Actions\ViewAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\ForceDeleteBulkAction;
-use Filament\Actions\RestoreBulkAction;
-use App\Filament\Resources\BlogResource\Pages\ListBlogs;
 use App\Filament\Resources\BlogResource\Pages\CreateBlog;
-use App\Filament\Resources\BlogResource\Pages\ViewBlog;
 use App\Filament\Resources\BlogResource\Pages\EditBlog;
-use App\Filament\Resources\BlogResource\Pages;
+use App\Filament\Resources\BlogResource\Pages\ListBlogs;
+use App\Filament\Resources\BlogResource\Pages\ViewBlog;
 use App\Models\Blog;
 use BackedEnum;
-use Filament\Actions;
-use Filament\Forms;
-use Filament\Infolists;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Infolists\Components\IconEntry;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class BlogResource extends Resource
+final class BlogResource extends Resource
 {
     protected static ?string $model = Blog::class;
 
@@ -37,7 +37,31 @@ class BlogResource extends Resource
     {
         return $schema
             ->components([
-                //
+                TextInput::make('title'),
+                Textarea::make('content')
+                    ->columnSpanFull(),
+                TextInput::make('slug'),
+                TextInput::make('link'),
+                TextInput::make('featured_media'),
+                TextInput::make('author'),
+                TextInput::make('comment_status'),
+                TextInput::make('ping_status'),
+                Toggle::make('sticky'),
+                TextInput::make('format'),
+                TextInput::make('status'),
+                TextInput::make('type'),
+                DateTimePicker::make('date'),
+                DateTimePicker::make('date_gmt'),
+                DateTimePicker::make('modified'),
+                DateTimePicker::make('modified_gmt'),
+                TextInput::make('template'),
+                Textarea::make('excerpt')
+                    ->columnSpanFull(),
+                TextInput::make('guid'),
+                TextInput::make('meta'),
+                TextInput::make('categories'),
+                TextInput::make('tags'),
+                TextInput::make('yoast_head'),
             ]);
     }
 
@@ -45,7 +69,36 @@ class BlogResource extends Resource
     {
         return $schema
             ->components([
-                //
+                TextEntry::make('title'),
+                TextEntry::make('slug'),
+                TextEntry::make('link'),
+                TextEntry::make('featured_media'),
+                TextEntry::make('author'),
+                TextEntry::make('comment_status'),
+                TextEntry::make('ping_status'),
+                IconEntry::make('sticky')
+                    ->boolean(),
+                TextEntry::make('format'),
+                TextEntry::make('status'),
+                TextEntry::make('type'),
+                TextEntry::make('date')
+                    ->dateTime(),
+                TextEntry::make('date_gmt')
+                    ->dateTime(),
+                TextEntry::make('modified')
+                    ->dateTime(),
+                TextEntry::make('modified_gmt')
+                    ->dateTime(),
+                TextEntry::make('template'),
+                TextEntry::make('guid'),
+                TextEntry::make('meta'),
+                TextEntry::make('categories'),
+                TextEntry::make('tags'),
+                TextEntry::make('yoast_head'),
+                TextEntry::make('created_at')
+                    ->dateTime(),
+                TextEntry::make('updated_at')
+                    ->dateTime(),
             ]);
     }
 
@@ -53,10 +106,63 @@ class BlogResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('title')
+                    ->searchable(),
+                TextColumn::make('slug')
+                    ->searchable(),
+                TextColumn::make('link')
+                    ->searchable(),
+                TextColumn::make('featured_media')
+                    ->searchable(),
+                TextColumn::make('author')
+                    ->searchable(),
+                TextColumn::make('comment_status')
+                    ->searchable(),
+                TextColumn::make('ping_status')
+                    ->searchable(),
+                IconColumn::make('sticky')
+                    ->boolean(),
+                TextColumn::make('format')
+                    ->searchable(),
+                TextColumn::make('status')
+                    ->searchable(),
+                TextColumn::make('type')
+                    ->searchable(),
+                TextColumn::make('date')
+                    ->dateTime()
+                    ->sortable(),
+                TextColumn::make('date_gmt')
+                    ->dateTime()
+                    ->sortable(),
+                TextColumn::make('modified')
+                    ->dateTime()
+                    ->sortable(),
+                TextColumn::make('modified_gmt')
+                    ->dateTime()
+                    ->sortable(),
+                TextColumn::make('template')
+                    ->searchable(),
+                TextColumn::make('guid')
+                    ->searchable(),
+                TextColumn::make('meta')
+                    ->searchable(),
+                TextColumn::make('categories')
+                    ->searchable(),
+                TextColumn::make('tags')
+                    ->searchable(),
+                TextColumn::make('yoast_head')
+                    ->searchable(),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                TrashedFilter::make(),
+                //
             ])
             ->recordActions([
                 ViewAction::make(),
@@ -65,8 +171,6 @@ class BlogResource extends Resource
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
                 ]),
             ]);
     }
@@ -86,13 +190,5 @@ class BlogResource extends Resource
             'view' => ViewBlog::route('/{record}'),
             'edit' => EditBlog::route('/{record}/edit'),
         ];
-    }
-
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
     }
 }

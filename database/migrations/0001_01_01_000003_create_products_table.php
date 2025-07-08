@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('width')->nullable();
             $table->string('aspect_ratio')->nullable();
             $table->string('structure')->nullable();
-            $table->string('diameter')->nullable();
+            $table->float('diameter')->nullable();
             $table->string('li')->nullable();
             $table->string('si')->nullable();
             $table->string('bolt_count')->nullable();

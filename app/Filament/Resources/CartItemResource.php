@@ -1,32 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\CartItemResource\Pages\CreateCartItem;
+use App\Filament\Resources\CartItemResource\Pages\EditCartItem;
+use App\Filament\Resources\CartItemResource\Pages\ListCartItems;
+use App\Filament\Resources\CartItemResource\Pages\ViewCartItem;
+use App\Models\CartItem;
+use BackedEnum;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Actions\ViewAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use App\Filament\Resources\CartItemResource\Pages\ListCartItems;
-use App\Filament\Resources\CartItemResource\Pages\CreateCartItem;
-use App\Filament\Resources\CartItemResource\Pages\ViewCartItem;
-use App\Filament\Resources\CartItemResource\Pages\EditCartItem;
-use App\Filament\Resources\CartItemResource\Pages;
-use App\Models\CartItem;
-use BackedEnum;
-use Filament\Actions;
-use Filament\Forms;
-use Filament\Infolists;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class CartItemResource extends Resource
+final class CartItemResource extends Resource
 {
     protected static ?string $model = CartItem::class;
 
