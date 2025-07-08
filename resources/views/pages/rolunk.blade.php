@@ -36,74 +36,87 @@
     <section class="py-12 bg-white">
         <div class="container mx-auto px-4">
             <h2 class="text-2xl font-bold mb-8">Miért válassz minket?</h2>
-            <div class="grid md:grid-cols-4 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-gray-100 rounded-xl shadow p-6 flex flex-col border border-gray-200">
-                    <div class="mb-3 text-brand-blue text-4xl font-bold">01</div>
-                    <h3 class="text-lg font-semibold mb-2">Vevőorientált megközelítés</h3>
-                    <p class="text-gray-600">
-                        Budapesti irodánkban és telephelyeinken személyesen, telefonon vagy online is rendelkezésre
-                        állunk, ha támogatásra van szükséged. Segítünk eligazodni az abroncsok, keréktárcsák és
-                        tartozékok világában.
-                    </p>
+            <div class="grid md:grid-cols-7 gap-8">
+                <!-- Left column -->
+                <div class="md:col-span-2 flex flex-col">
+                    <h3 class="text-3xl font-semibold mb-8">Néhány további érv, ami mellettünk szól:</h3>
+                    <img src="{{ Storage::url('images/IMG_5177.webp') }}" alt="Felni kínálat"
+                        class="rounded-lg shadow mb-2 w-full object-cover aspect-square" />
                 </div>
-                <!-- Card 2 -->
-                <div class="bg-gray-100 rounded-xl shadow p-6 flex flex-col border border-gray-200">
-                    <div class="mb-3 text-brand-blue text-4xl font-bold">02</div>
-                    <h3 class="text-lg font-semibold mb-2">Szavatosság</h3>
-                    <p class="text-gray-600">
-                        Minden forgalmazott termékünkre szavatosságot biztosítunk, elérhetőek vagyunk és közreműködünk a
-                        problémamegoldásban.
-                    </p>
-                </div>
-                <!-- Card 3 -->
-                <div class="bg-gray-100 rounded-xl shadow p-6 flex flex-col border border-gray-200">
-                    <div class="mb-3 text-brand-blue text-4xl font-bold">03</div>
-                    <h3 class="text-lg font-semibold mb-2">Vezető brandek</h3>
-                    <p class="text-gray-600">
-                        Jelenleg 8 keréktárcsa márka magyarországi kizárólagos képviseletét látjuk el: OZ, MAK, MOMO,
-                        SPARCO, RONAL, MSW, MAM, KESKIN, valamint a BBS partnerdisztribúciójában is részt veszünk.
-                    </p>
-                </div>
-                <!-- Card 4 -->
-                <div class="bg-gray-100 rounded-xl shadow p-6 flex flex-col border border-gray-200">
-                    <div class="mb-3 text-brand-blue text-4xl font-bold">04</div>
-                    <h3 class="text-lg font-semibold mb-2">Gazdag kínálat</h3>
-                    <p class="text-gray-600">
-                        Fő márkáinkon túl számos további gyártóval is dolgozunk, hogy a lehető legszélesebb
-                        termékválasztékot és versenyképes árakat biztosíthassunk. Ez szezonalitástól függően akár 20.000
-                        darabos azonnali keréktárcsa-készletet is jelent.
-                    </p>
-                </div>
-                <!-- Card 5 -->
-                <div class="bg-gray-100 rounded-xl shadow p-6 flex flex-col border border-gray-200">
-                    <div class="mb-3 text-brand-blue text-4xl font-bold">05</div>
-                    <h3 class="text-lg font-semibold mb-2">Kedvezőtől a luxusig</h3>
-                    <p class="text-gray-600">
-                        Abroncsok terén hasonló filozófiát követünk: a gazdaságos kategóriától a prémiumig minden
-                        szegmensben jelen vagyunk, közel azonos azonnali raktárkészlettel. Kiemelt figyelmet fordítunk a
-                        MOMO abroncsokra (2023-tól exkluzív márkánk), valamint prémium kategóriában a Pirellire.
-                    </p>
-                </div>
-                <!-- Card 6 -->
-                <div class="bg-gray-100 rounded-xl shadow p-6 flex flex-col border border-gray-200">
-                    <div class="mb-3 text-brand-blue text-4xl font-bold">06</div>
-                    <h3 class="text-lg font-semibold mb-2">Nyomásellenőrző rendszerek szakértője</h3>
-                    <p class="text-gray-600">
-                        TPMS területen is kompetens tanácsadást nyújtunk, mivel 2014-ben az elsők között kezdtünk el
-                        foglalkozni ezzel a technológiával. Azóta szinte minden kihívással találkoztunk, így minden
-                        helyzetre van megoldásunk!
-                    </p>
-                </div>
-                <!-- Card 7 -->
-                <div class="bg-gray-100 rounded-xl shadow p-6 flex flex-col border border-gray-200">
-                    <div class="mb-3 text-brand-blue text-4xl font-bold">07</div>
-                    <h3 class="text-lg font-semibold mb-2">Többgenerációs szakértelem</h3>
-                    <p class="text-gray-600">
-                        Második generációs családi vállalkozásként számunkra a vásárlói elégedettség a legfontosabb
-                        érték, amit a piacon való 30 éves folyamatos jelenlétünk is alátámaszt (változatlan magyar
-                        adószámmal).
-                    </p>
+                <!-- Cards column -->
+                <div class="md:col-span-5 grid md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-gray-100 rounded-lg shadow p-6 flex flex-col border border-gray-200">
+                        <div class="mb-3 text-brand-blue text-4xl font-bold">01</div>
+                        <h3 class="text-lg font-semibold mb-2">Vevőorientált megközelítés</h3>
+                        <p class="text-gray-600">
+                            Budapesti irodánkban és telephelyeinken személyesen, telefonon vagy online is rendelkezésre
+                            állunk, ha támogatásra van szükséged. Segítünk eligazodni az abroncsok, keréktárcsák és
+                            tartozékok világában.
+                        </p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-gray-100 rounded-lg shadow p-6 flex flex-col border border-gray-200">
+                        <div class="mb-3 text-brand-blue text-4xl font-bold">02</div>
+                        <h3 class="text-lg font-semibold mb-2">Szavatosság</h3>
+                        <p class="text-gray-600">
+                            Minden forgalmazott termékünkre szavatosságot biztosítunk, elérhetőek vagyunk és
+                            közreműködünk a
+                            problémamegoldásban.
+                        </p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-gray-100 rounded-lg shadow p-6 flex flex-col border border-gray-200">
+                        <div class="mb-3 text-brand-blue text-4xl font-bold">03</div>
+                        <h3 class="text-lg font-semibold mb-2">Vezető brandek</h3>
+                        <p class="text-gray-600">
+                            Jelenleg 8 keréktárcsa márka magyarországi kizárólagos képviseletét látjuk el: OZ, MAK,
+                            MOMO,
+                            SPARCO, RONAL, MSW, MAM, KESKIN, valamint a BBS partnerdisztribúciójában is részt veszünk.
+                        </p>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="bg-gray-100 rounded-lg shadow p-6 flex flex-col border border-gray-200">
+                        <div class="mb-3 text-brand-blue text-4xl font-bold">04</div>
+                        <h3 class="text-lg font-semibold mb-2">Gazdag kínálat</h3>
+                        <p class="text-gray-600">
+                            Fő márkáinkon túl számos további gyártóval is dolgozunk, hogy a lehető legszélesebb
+                            termékválasztékot és versenyképes árakat biztosíthassunk. Ez szezonalitástól függően akár
+                            20.000
+                            darabos azonnali keréktárcsa-készletet is jelent.
+                        </p>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="bg-gray-100 rounded-lg shadow p-6 flex flex-col border border-gray-200">
+                        <div class="mb-3 text-brand-blue text-4xl font-bold">05</div>
+                        <h3 class="text-lg font-semibold mb-2">Kedvezőtől a luxusig</h3>
+                        <p class="text-gray-600">
+                            Abroncsok terén hasonló filozófiát követünk: a gazdaságos kategóriától a prémiumig minden
+                            szegmensben jelen vagyunk, közel azonos azonnali raktárkészlettel. Kiemelt figyelmet
+                            fordítunk a
+                            MOMO abroncsokra (2023-tól exkluzív márkánk), valamint prémium kategóriában a Pirellire.
+                        </p>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="bg-gray-100 rounded-lg shadow p-6 flex flex-col border border-gray-200">
+                        <div class="mb-3 text-brand-blue text-4xl font-bold">06</div>
+                        <h3 class="text-lg font-semibold mb-2">Nyomásellenőrző rendszerek szakértője</h3>
+                        <p class="text-gray-600">
+                            TPMS területen is kompetens tanácsadást nyújtunk, mivel 2014-ben az elsők között kezdtünk el
+                            foglalkozni ezzel a technológiával. Azóta szinte minden kihívással találkoztunk, így minden
+                            helyzetre van megoldásunk!
+                        </p>
+                    </div>
+                    <!-- Card 7 -->
+                    <div class="bg-gray-100 rounded-lg shadow p-6 flex flex-col border border-gray-200">
+                        <div class="mb-3 text-brand-blue text-4xl font-bold">07</div>
+                        <h3 class="text-lg font-semibold mb-2">Többgenerációs szakértelem</h3>
+                        <p class="text-gray-600">
+                            Második generációs családi vállalkozásként számunkra a vásárlói elégedettség a legfontosabb
+                            érték, amit a piacon való 30 éves folyamatos jelenlétünk is alátámaszt (változatlan magyar
+                            adószámmal).
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -115,7 +128,7 @@
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Card 1 -->
                 <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center text-center">
-                    <div class="mb-4 text-yellow-400 text-4xl">
+                    <div class="mb-4 text-brand-blue text-4xl">
                         <i class="fas fa-boxes"></i>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Megbízható készletkezelés</h3>
@@ -128,7 +141,7 @@
                 </div>
                 <!-- Card 2 -->
                 <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center text-center">
-                    <div class="mb-4 text-yellow-400 text-4xl">
+                    <div class="mb-4 text-brand-blue text-4xl">
                         <i class="fas fa-warehouse"></i>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Naprakész raktárinformációk</h3>
@@ -141,7 +154,7 @@
                 </div>
                 <!-- Card 3 -->
                 <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center text-center">
-                    <div class="mb-4 text-yellow-400 text-4xl">
+                    <div class="mb-4 text-brand-blue text-4xl">
                         <i class="fas fa-tools"></i>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Szakértő műszaki szolgáltatás</h3>
@@ -153,6 +166,7 @@
                 </div>
             </div>
         </div>
+        <div class="h-12"></div>
     </section>
 
 </x-layouts.app>
