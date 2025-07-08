@@ -15,6 +15,8 @@ final class TyreList extends Component
 {
     use WithPagination;
 
+    public $manufacturer; // Manufacturer:id
+
     public $width; // mm
 
     public $aspect_ratio; // %
@@ -27,13 +29,13 @@ final class TyreList extends Component
 
     public $si; // sebesség index
 
-    public $season; // Nyári / Téli / Négyévszakos (1,2,3),{summer(),winter(),allSeason()}
+    public $seasons = []; // Nyári / Téli / Négyévszakos (1,2,3),{summer(),winter(),allSeason()}
 
-    public $consumption; // A / B / C / D / E / F / G
+    public $consumptions = []; // A / B / C / D / E / F / G
 
     public $grip; // A / B / C / D / E / F
 
-    public $noise_level; // 1 / 2 / 3
+    public $noise_levels = []; // 1 / 2 / 3
 
     public $noise_value;
 
@@ -66,7 +68,13 @@ final class TyreList extends Component
     {
         $query = Product::query();
 
-        $query->when($this->width, function ($query) {
+        $query->when($this->manufacturer, function ($query) {
+            $query->where('manufacturer_id', $this->manufacturer);
+        })->when($this->price_min, function ($query) {
+            $query->where('net_retail_price', '>=', $this->price_min);
+        })->when($this->price_max, function ($query) {
+            $query->where('net_retail_price', '<=', $this->price_max);
+        })->when($this->width, function ($query) {
             $query->where('width', $this->width);
         })->when($this->aspect_ratio, function ($query) {
             $query->where('aspect_ratio', $this->aspect_ratio);
@@ -78,20 +86,14 @@ final class TyreList extends Component
             $query->where('li', $this->li);
         })->when($this->si, function ($query) {
             $query->where('si', $this->si);
-        })->when($this->season, function ($query) {
-            if ($this->season === 'summer') {
-                $query->summer();
-            } elseif ($this->season === 'winter') {
-                $query->winter();
-            } elseif ($this->season === 'allSeason') {
-                $query->allSeason();
-            }
-        })->when($this->consumption, function ($query) {
-            $query->where('consumption', $this->consumption);
+        })->when($this->seasons, function ($query) {
+            $query->whereIn('season', $this->seasons);
+        })->when($this->consumptions, function ($query) {
+            $query->whereIn('consumption', $this->consumptions);
         })->when($this->grip, function ($query) {
             $query->where('grip', $this->grip);
-        })->when($this->noise_level, function ($query) {
-            $query->where('noise_level', $this->noise_level);
+        })->when($this->noise_levels, function ($query) {
+            $query->whereIn('noise_level', $this->noise_levels);
         })->when($this->noise_value, function ($query) {
             $query->where('noise_value', $this->noise_value);
         })->when($this->rim_structure, function ($query) {
@@ -104,7 +106,7 @@ final class TyreList extends Component
             $query->where('pattern_name', 'like', '%'.$this->pattern_name.'%');
         })->when($this->runflat, function ($query) {
             $query->punctureResistant();
-        });
+        })->tyre();
 
         return $query->paginate(24);
     }

@@ -2,7 +2,7 @@
 
 <div class="group bg-white hover:bg-gray-100 hover:shadow-xl transition-all border border-gray-400 rounded-lg p-4">
     <div class="relative">
-        <img src="{{ $product->main_image ?? 'https://via.placeholder.com/200' }}"
+        <img src="{{ $product->main_image ?? 'https://placehold.co/200' }}"
             alt="{{ $product->item_name ?? 'Nincs termék név' }}" class="w-full h-40 object-contain mb-4">
         <span class="absolute top-2 left-2 bg-yellow-400 text-black px-2 py-1 rounded text-xs font-bold">AKCIÓ</span>
         <div class="absolute top-1 right-1 flex flex-col items-center justify-center gap-2">
