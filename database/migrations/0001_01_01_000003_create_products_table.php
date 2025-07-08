@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('sku')->nullable();
             $table->string('factory_code')->nullable();
             $table->string('item_name')->nullable();
-            $table->string('width')->nullable();
-            $table->string('aspect_ratio')->nullable();
+            $table->float('width')->nullable();
+            $table->float('aspect_ratio')->nullable();
             $table->string('structure')->nullable();
             $table->float('diameter')->nullable();
             $table->string('li')->nullable();

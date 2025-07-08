@@ -3,8 +3,54 @@
     style="background: url('{{ Storage::url('images/IMG_5177.webp') }}') no-repeat center center; background-size: cover;">
     <div class="container mx-auto p-12 bg-white/20 border border-white/15 backdrop-blur-2xl shadow-2xl rounded-xl">
         <div class="grid md:grid-cols-2 gap-8">
+            <!-- Wheel Search -->
+            <div name="wheel-search" class="h-[350px] bg-white rounded-lg p-6 text-brand-anthracite mb-4 md:mb-0">
+                <h2 class="text-xl font-bold mb-4">Keress autófelni méret alapján</h2>
+
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Szélesség</label>
+                        <select
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                            @foreach (Product::whereNotNull('width')->orderByDesc('width')->get()->pluck('width')->unique() as $productWidth)
+                                <option value="{{ $productWidth }}">{{ $productWidth }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Átmérő</label>
+                        <select
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                            @foreach (Product::whereNotNull('diameter')->orderByDesc('diameter')->get()->pluck('diameter')->unique() as $productDiameter)
+                                <option value="{{ $productDiameter }}">{{ $productDiameter }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">ET érték</label>
+                        <select
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                            @foreach (Product::whereNotNull('et')->orderByDesc('et')->get()->pluck('et')->unique() as $productEtValue)
+                                <option value="{{ $productEtValue }}">{{ $productEtValue }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Lyukosztás</label>
+                        <select
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                            @foreach (Product::whereNotNull('bolt_count')->orderByDesc('bolt_count')->get()->pluck('bolt_count')->unique() as $productBoltCount)
+                                <option value="{{ $productBoltCount }}">{{ $productBoltCount }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
             <!-- Tyre Search -->
-            <div class="h-[350px] bg-white rounded-lg p-6 text-brand-anthracite">
+            <div class="h-[350px] bg-white rounded-lg p-6 text-brand-anthracite" name="tyre-search">
                 <h2 class="text-xl font-bold mb-4">Keress autógumit méret alapján</h2>
 
                 <div class="grid grid-cols-2 gap-4 mb-4">
@@ -12,20 +58,19 @@
                         <label class="block text-sm font-medium mb-1">Szélesség</label>
                         <select
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                            <option>195</option>
-                            <option>205</option>
-                            <option>215</option>
-                            <option>225</option>
+                            @foreach (Product::whereNotNull('width')->orderByDesc('width')->get()->pluck('width')->unique() as $productWidth)
+                                <option value="{{ $productWidth }}">{{ $productWidth }}</option>
+                            @endforeach
+
                         </select>
                     </div>
                     <div>
                         <label class="block text-sm font-medium mb-1">Oldalfal magasság</label>
                         <select
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                            <option>55</option>
-                            <option>60</option>
-                            <option>65</option>
-                            <option>70</option>
+                            @foreach (Product::whereNotNull('aspect_ratio')->orderByDesc('aspect_ratio')->get()->pluck('aspect_ratio')->unique() as $productAspectRatio)
+                                <option value="{{ $productAspectRatio }}">{{ $productAspectRatio }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -35,13 +80,10 @@
                         <label class="block text-sm font-medium mb-1">Felni átmérő</label>
                         <select
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                            @foreach (Product::get()->pluck('diameter')->unique() as $productDiameter)
-                                <option>{{ $productDiameter }}</option>
+                            @foreach (Product::whereNotNull('diameter')->orderBy('diameter')->get()->pluck('diameter')->unique() as $productDiameter)
+                                <option value="{{ $productDiameter }}">{{ $productDiameter }}</option>
                             @endforeach
-                            <option>R15</option>
-                            <option>R16</option>
-                            <option>R17</option>
-                            <option>R18</option>
+
                         </select>
                     </div>
                     <div>
@@ -49,9 +91,9 @@
                         <select
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
                             <option>Összes</option>
-                            <option value="">Nyári</option>
-                            <option value="">Téli</option>
-                            <option value="">Négyévszakos</option>
+                            <option value="summer">Nyári</option>
+                            <option value="winter">Téli</option>
+                            <option value="allSeason">Négyévszakos</option>
                         </select>
                     </div>
                 </div>

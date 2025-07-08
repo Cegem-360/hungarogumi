@@ -15,6 +15,74 @@ namespace App\Models{
 /**
  * 
  *
+ * @property int $id
+ * @property string|null $title
+ * @property string|null $content
+ * @property string|null $slug
+ * @property string|null $link
+ * @property string|null $featured_media
+ * @property string|null $author
+ * @property string|null $comment_status
+ * @property string|null $ping_status
+ * @property int|null $sticky
+ * @property string|null $format
+ * @property string|null $status
+ * @property string|null $type
+ * @property string|null $date
+ * @property string|null $date_gmt
+ * @property string|null $modified
+ * @property string|null $modified_gmt
+ * @property string|null $template
+ * @property string|null $excerpt
+ * @property string|null $guid
+ * @property string|null $meta
+ * @property string|null $categories
+ * @property string|null $tags
+ * @property string|null $yoast_head
+ * @property \Carbon\CarbonImmutable|null $created_at
+ * @property \Carbon\CarbonImmutable|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereAuthor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereCategories($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereCommentStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereDateGmt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereExcerpt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereFeaturedMedia($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereFormat($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereGuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereMeta($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereModified($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereModifiedGmt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog wherePingStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereSticky($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereTags($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereTemplate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereYoastHead($value)
+ */
+	class Blog extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property int|null $user_id
+ * @property string|null $session_id
+ * @property \Carbon\CarbonImmutable|null $created_at
+ * @property \Carbon\CarbonImmutable|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CartItem> $cartItems
  * @property-read int|null $cart_items_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CartItem> $products
@@ -23,6 +91,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Cart newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Cart newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Cart query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cart whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cart whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cart whereSessionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cart whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cart whereUserId($value)
  */
 	final class Cart extends \Eloquent {}
 }
@@ -31,11 +104,23 @@ namespace App\Models{
 /**
  * 
  *
+ * @property int $id
+ * @property int $product_id
+ * @property int $cart_id
+ * @property int $quantity
+ * @property \Carbon\CarbonImmutable|null $created_at
+ * @property \Carbon\CarbonImmutable|null $updated_at
  * @property-read \App\Models\Cart|null $cart
  * @property-read \App\Models\Product|null $product
  * @method static \Illuminate\Database\Eloquent\Builder<static>|CartItem newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|CartItem newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|CartItem query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CartItem whereCartId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CartItem whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CartItem whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CartItem whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CartItem whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CartItem whereUpdatedAt($value)
  */
 	final class CartItem extends \Eloquent {}
 }
@@ -63,12 +148,84 @@ namespace App\Models{
 /**
  * 
  *
+ * @property int $id
+ * @property int|null $user_id
+ * @property string $payment_method
+ * @property string $payment_method_title
+ * @property bool $set_paid
+ * @property string|null $billing_first_name
+ * @property string|null $billing_last_name
+ * @property string|null $billing_address_1
+ * @property string|null $billing_address_2
+ * @property string|null $billing_city
+ * @property string|null $billing_state
+ * @property string|null $billing_postcode
+ * @property string|null $billing_country
+ * @property string|null $billing_email
+ * @property string|null $billing_phone
+ * @property string|null $billing_vat_number
+ * @property string|null $billing_company_name
+ * @property string|null $billing_company_office
+ * @property string|null $shipping_first_name
+ * @property string|null $shipping_last_name
+ * @property string|null $shipping_address_1
+ * @property string|null $shipping_address_2
+ * @property string|null $shipping_city
+ * @property string|null $shipping_state
+ * @property string|null $shipping_postcode
+ * @property string|null $shipping_country
+ * @property string $shipping_tracking_number
+ * @property string $shipping_lines_method_id
+ * @property string $shipping_lines_method_title
+ * @property string $shipping_lines_total
+ * @property string|null $order_key
+ * @property string $order_status
+ * @property string $order_currency
+ * @property int $shipping_cost
+ * @property \Carbon\CarbonImmutable|null $created_at
+ * @property \Carbon\CarbonImmutable|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OrderItem> $orderItems
  * @property-read int|null $order_items_count
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingAddress1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingAddress2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingCompanyName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingCompanyOffice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingCountry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingPhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingPostcode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingVatNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereOrderCurrency($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereOrderKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereOrderStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order wherePaymentMethod($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order wherePaymentMethodTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereSetPaid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingAddress1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingAddress2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingCost($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingCountry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingLinesMethodId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingLinesMethodTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingLinesTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingPostcode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingTrackingNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereUserId($value)
  */
 	final class Order extends \Eloquent {}
 }
@@ -77,11 +234,33 @@ namespace App\Models{
 /**
  * 
  *
+ * @property int $id
+ * @property int $order_id
+ * @property int $product_id
+ * @property string|null $tax_class
+ * @property string|null $subtotal
+ * @property string|null $subtotal_tax
+ * @property string|null $total
+ * @property string|null $total_tax
+ * @property int $quantity
+ * @property \Carbon\CarbonImmutable|null $created_at
+ * @property \Carbon\CarbonImmutable|null $updated_at
  * @property-read \App\Models\Order|null $order
  * @property-read \App\Models\Product|null $product
  * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem whereOrderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem whereSubtotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem whereSubtotalTax($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem whereTaxClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem whereTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem whereTotalTax($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem whereUpdatedAt($value)
  */
 	final class OrderItem extends \Eloquent {}
 }
@@ -96,10 +275,10 @@ namespace App\Models{
  * @property string|null $sku
  * @property string|null $factory_code
  * @property string|null $item_name
- * @property string|null $width
- * @property string|null $aspect_ratio
+ * @property float|null $width
+ * @property float|null $aspect_ratio
  * @property string|null $structure
- * @property string|null $diameter
+ * @property float|null $diameter
  * @property string|null $li
  * @property string|null $si
  * @property string|null $bolt_count

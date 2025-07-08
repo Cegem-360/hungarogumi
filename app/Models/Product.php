@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Product\Category;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -90,5 +92,23 @@ final class Product extends Model
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    #[Scope]
+    protected function summer(Builder $query): void
+    {
+        $query->where('season', 1);
+    }
+
+    #[Scope]
+    protected function winter(Builder $query): void
+    {
+        $query->where('season', 2);
+    }
+
+    #[Scope]
+    protected function allSeason(Builder $query): void
+    {
+        $query->where('season', 3);
     }
 }
