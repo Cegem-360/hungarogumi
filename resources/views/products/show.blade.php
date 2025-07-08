@@ -10,7 +10,13 @@
         <nav class="flex text-sm text-gray-500">
             <a href="{{ route('home') }}" class="hover:text-gray-700">hungarogumi.hu</a>
             <span class="mx-2">›</span>
-            <a href="#" class="hover:text-gray-700">Gumiabroncs</a>
+            @if ($product->type === 'tyre')
+                <a href="{{ route('tyres') }}" class="hover:text-gray-700">Gumiabroncs</a>
+            @elseif ($product->type === 'wheel')
+                <a href="{{ route('wheels') }}" class="hover:text-gray-700">Felni</a>
+            @else
+                <a href="{{ route('home') }}" class="hover:text-gray-700">Főoldal</a>
+            @endif
             <span class="mx-2">›</span>
             <a href="#" class="hover:text-gray-700">205/55 R16</a>
             <span class="mx-2">›</span>

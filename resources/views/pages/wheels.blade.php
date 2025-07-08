@@ -19,18 +19,7 @@
                 <h2 class="text-2xl font-bold">Felnik</h2>
             </div>
 
-            <div class="grid md:grid-cols-[1fr_3fr] gap-6 items-start">
-                <!-- Left Sidebar -->
-                <div class="filter">
-                    <x-partials.filter />
-                </div>
-                <!-- Main Content Area -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @foreach (Product::limit(12)->get() ?? [] as $product)
-                        <livewire:product-add-to-cart :product_id="$product->id" wire:key="$product->id" />
-                    @endforeach
-                </div>
-            </div>
+            <livewire:tyre-list>
         </div>
     </section>
     <x-featured-products />
