@@ -1,4 +1,3 @@
-@use('App\Models\Product')
 <x-layouts.app>
     <x-slot name="title">Gumiabroncsok</x-slot>
     <x-slot name="description">Fedezze fel a legjobb gumiabroncsokat széles választékunkból!</x-slot>
@@ -20,19 +19,9 @@
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-bold">Gumiabroncsok</h2>
             </div>
+            <!-- Left Sidebar -->
+            <livewire:tyre-list>
 
-            <div class="grid md:grid-cols-[1fr_3fr] gap-6 items-start">
-                <!-- Left Sidebar -->
-                <div class="filter">
-                    <x-partials.filter />
-                </div>
-                <!-- Main Content Area -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @foreach (Product::tyre()->limit(12)->get() ?? [] as $product)
-                        <x-partials.product-card :product="$product" />
-                    @endforeach
-                </div>
-            </div>
         </div>
     </section>
 </x-layouts.app>

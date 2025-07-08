@@ -281,7 +281,7 @@ namespace App\Models{
  * @property float|null $aspect_ratio
  * @property string|null $structure
  * @property float|null $diameter
- * @property string|null $li
+ * @property float|null $li
  * @property string|null $si
  * @property string|null $bolt_count
  * @property string|null $center_bore

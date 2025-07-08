@@ -15,8 +15,7 @@ final class SimpleProductAddForm extends Form
     public function store(): void
     {
         $this->validate([
-            'price' => 'required|numeric|min:1',
-            'quantity' => 'required|numeric|min:1',
+            'quantity' => ['required', 'numeric', 'min:1'],
         ]);
 
     }
