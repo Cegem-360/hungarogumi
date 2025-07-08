@@ -85,6 +85,8 @@ namespace App\Models{
  * @property \Carbon\CarbonImmutable|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CartItem> $cartItems
  * @property-read int|null $cart_items_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CartItem> $items
+ * @property-read int|null $items_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CartItem> $products
  * @property-read int|null $products_count
  * @property-read \App\Models\User|null $user

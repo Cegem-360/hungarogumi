@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 final class CartService
 {
-    private $cart;
+    private Cart $cart;
 
     public function __construct()
     {
@@ -61,6 +61,11 @@ final class CartService
     public function getCartItems()
     {
         return $this->cart->cartItems;
+    }
+
+    public function getCart()
+    {
+        return $this->cart;
     }
 
     public function getTotal()

@@ -35,7 +35,11 @@ Route::view('/kapcsolat', 'pages.kapcsolat')->name('kapcsolat');
 
 Route::middleware([EnsureCartExists::class])->group(function () {
     // Add routes here that require the ensureCartExist middleware
-    Route::view('/kosar', 'cart.index')->name('cart.index');
+    Route::get('/kosar', function () {
+        // You can pass the cart service to the view if needed
+        return view('pages.cart');
+    })->name('cart.index');
+
     // Cart add route using CartService
     Route::post('/cart/add', function (Illuminate\Http\Request $request, CartService $cartService) {
         $cartService->addItem($request->product_id, $request->quantity);
