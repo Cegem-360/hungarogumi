@@ -133,6 +133,8 @@ namespace App\Models{
  * @property string $name
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
+ * @property-read int|null $products_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Manufacturer newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Manufacturer newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Manufacturer query()
@@ -283,7 +285,7 @@ namespace App\Models{
  * @property string|null $si
  * @property string|null $bolt_count
  * @property string|null $center_bore
- * @property string|null $pcd
+ * @property float|null $pcd
  * @property string|null $et
  * @property string|null $consumption
  * @property string|null $grip

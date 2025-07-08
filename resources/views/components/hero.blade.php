@@ -1,4 +1,5 @@
 @use('App\Models\Product')
+@use('App\Models\Manufacturer')
 <section class="hero-bg py-16 text-white"
     style="background: url('{{ Storage::url('images/IMG_5177.webp') }}') no-repeat center center; background-size: cover;">
     <div class="container mx-auto p-12 bg-white/20 border border-white/15 backdrop-blur-2xl shadow-2xl rounded-xl">
@@ -71,20 +72,18 @@
                                         <label class="block text-sm font-medium mb-1">Márka</label>
                                         <select
                                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                                            <option>Összes...</option>
-                                            <option>Alcar</option>
-                                            <option>Enkei</option>
+                                            <option value="all">Összes...</option>
+                                            @foreach (Manufacturer::whereHas('products', function ($query) {
+        $query->alloyWheel();
+    })->orWhereHas('products', function ($query) {
+            $query->steelWheel();
+        })->orderBy('name')->distinct('name')->get() as $manufacturer)
+                                                <option value="{{ $manufacturer->id }}">{{ $manufacturer->name }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
-                                    <div>
-                                        <label class="block text-sm font-medium mb-1">Jármű típus</label>
-                                        <select
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                                            <option>Összes...</option>
-                                            <option>Személyautó</option>
-                                            <option>Teherautó</option>
-                                        </select>
-                                    </div>
+
                                 </div>
                                 <div class="grid grid-cols-2 gap-8 mt-6">
                                     <div>

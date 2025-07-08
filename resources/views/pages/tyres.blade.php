@@ -28,7 +28,7 @@
                 </div>
                 <!-- Main Content Area -->
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @foreach (Product::limit(12)->get() ?? [] as $product)
+                    @foreach (Product::tyre()->limit(12)->get() ?? [] as $product)
                         <x-partials.product-card :product="$product" />
                     @endforeach
                 </div>

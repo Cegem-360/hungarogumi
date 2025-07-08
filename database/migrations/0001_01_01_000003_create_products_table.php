@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('si')->nullable();
             $table->string('bolt_count')->nullable();
             $table->string('center_bore')->nullable();
-            $table->string('pcd')->nullable();
+            $table->float('pcd')->nullable();
             $table->string('et')->nullable();
             $table->string('consumption')->nullable();
             $table->string('grip')->nullable();

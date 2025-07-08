@@ -111,4 +111,22 @@ final class Product extends Model
     {
         $query->where('season', 3);
     }
+
+    #[Scope]
+    protected function alloyWheel(Builder $query): void
+    {
+        $query->where('item_type_name', 'alufelni');
+    }
+
+    #[Scope]
+    protected function steelWheel(Builder $query): void
+    {
+        $query->where('item_type_name', 'lemezfelni');
+    }
+
+    #[Scope]
+    protected function tyre(Builder $query): void
+    {
+        $query->where('item_type_name', 'gumiabroncs');
+    }
 }
