@@ -51,7 +51,7 @@
             <div class="h-[350px] bg-white rounded-lg p-6 text-brand-anthracite" name="tyre-search">
                 <h2 class="text-xl font-bold mb-4">Keress autógumit méret alapján</h2>
 
-                <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="grid grid-cols-4 gap-4 mb-4">
                     <div>
                         <label class="block text-sm font-medium mb-1">Szélesség</label>
                         <select
@@ -71,9 +71,6 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4 mb-4">
                     <div>
                         <label class="block text-sm font-medium mb-1">Felni átmérő</label>
                         <select
