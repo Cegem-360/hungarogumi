@@ -78,6 +78,13 @@
                                         @endif
                                     </select>
                                 </div>
+                                <div class="col-span-3 mt-4">
+                                    <label class="text-sm font-semibold mb-2 block">Szélesség (hüvelyk)</label>
+                                    <input type="text" class="wheel-width-slider" name="wheel_width_range"
+                                        value="6.5;9.0" />
+                                    <input type="hidden" id="widthMin" name="width_min" value="6.5" />
+                                    <input type="hidden" id="widthMax" name="width_max" value="9.0" />
+                                </div>
                             </div>
                         </div>
 
@@ -175,7 +182,8 @@
                         <div class="mb-6">
                             <h3 class="font-semibold text-gray-900 mb-3">Árszűrő</h3>
                             <div class="flex items-center gap-2">
-                                <input type="number" name="min_price" id="min_price" min="0" placeholder="min"
+                                <input type="number" name="min_price" id="min_price" min="0"
+                                    placeholder="min"
                                     class="w-1/2 bg-gray-100 border border-gray-300 rounded px-2 py-1 text-sm text-center" />
                                 <span class="text-gray-500">-</span>
                                 <input type="number" name="max_price" id="max_price" min="0"
@@ -431,4 +439,50 @@
 
     </div>
     {{ $products->links() }}
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the ion-range-slider
+            function initializeSlider() {
+                const slider = $('.wheel-width-slider');
+                if (slider.length && typeof slider.ionRangeSlider === 'function') {
+                    slider.ionRangeSlider({
+                        type: "double",
+                        min: 6.5,
+                        max: 9.0,
+                        from: 6.5,
+                        to: 9.0,
+                        step: 0.5,
+                        grid: true,
+                        skin: "round",
+                        postfix: "\"",
+                        onFinish: function(data) {
+                            document.getElementById('widthMin').value = data.from;
+                            document.getElementById('widthMax').value = data.to;
+                            // Trigger Livewire event if needed
+                            if (typeof Livewire !== 'undefined') {
+                                Livewire.dispatch('widthRangeChanged', {
+                                    min: data.from,
+                                    max: data.to
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+
+            // Initialize slider on page load
+            initializeSlider();
+
+            // Reinitialize slider when Livewire updates
+            if (typeof Livewire !== 'undefined') {
+                Livewire.on('filterUpdated', () => {
+                    setTimeout(() => {
+                        initializeSlider();
+                    }, 100);
+                });
+            }
+        });
+    </script>
 </div>
