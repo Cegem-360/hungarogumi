@@ -11,6 +11,13 @@ final class Cart extends Component
 {
     public function mount() {}
 
+    public function checkout()
+    {
+
+        $this->redirect(route('checkout.index'), true);
+
+    }
+
     public function render()
     {
         $cartService = app(CartService::class);
