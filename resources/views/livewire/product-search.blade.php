@@ -41,7 +41,7 @@
 
                 <!-- Rendezés iránya -->
                 <div class="flex-shrink-0">
-                    <button wire:click="sortBy('{{ $sortBy }}')"
+                    <button wire:click="toggleSortDirection"
                         class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-blue">
                         @if ($sortDirection === 'asc')
                             <i class="fas fa-sort-up"></i>
