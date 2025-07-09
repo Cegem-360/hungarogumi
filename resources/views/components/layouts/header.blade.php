@@ -67,13 +67,13 @@
                     </a>
                 </li>
                 <li>
-                    <a wire:navigate href="{{ route('szolgáltatásaink') }}"
+                    <a wire:navigate href="{{ route('services') }}"
                         class="nav-item px-3 py-2 rounded hover:text-brand-blue">
                         SZOLGÁLTATÁSAINK
                     </a>
                 </li>
                 <li>
-                    <a wire:navigate href="{{ route('hírek') }}"
+                    <a wire:navigate href="{{ route('news') }}"
                         class="nav-item px-3 py-2 rounded hover:text-brand-blue">
                         HÍREK
                     </a>
@@ -84,23 +84,14 @@
                         VÁLTÓMÉRET KALKULÁTOR
                     </a>
                 </li>
+
+                {{-- <li>
+                    <a wire:navigate href="{{ route('news') }}"
+                        class="nav-item px-3 py-2 rounded hover:text-brand-blue">BLOG</a>
+                </li> --}}
                 <li>
-                    <a wire:navigate href="{{ route('szallitasi-informaciok') }}"
-                        class="nav-item px-3 py-2 rounded hover:text-brand-blue">
-                        SZÁLLÍTÁSI INFORMÁCIÓK
-                    </a>
-                </li>
-                <li>
-                    <a wire:navigate href="{{ route('adatvedelmi-tajekoztato') }}"
-                        class="nav-item px-3 py-2 rounded hover:text-brand-blue">
-                        ADATVÉDELMI TÁJÉKOZTATÓ
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-item px-3 py-2 rounded hover:text-brand-blue">BLOG</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-item px-3 py-2 rounded hover:text-brand-blue">KAPCSOLAT</a>
+                    <a wire:navigate href="{{ route('kapcsolat') }}"
+                        class="nav-item px-3 py-2 rounded hover:text-brand-blue">KAPCSOLAT</a>
                 </li>
             </ul>
         </nav>

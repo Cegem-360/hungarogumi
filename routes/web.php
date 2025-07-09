@@ -28,8 +28,8 @@ Route::prefix('termekek')->as('products.')->group(
 );
 
 Route::view('/rolunk', 'pages.rolunk')->name('rolunk');
-Route::view('/szolgaltatasaink', 'pages.szolgaltatasaink')->name('szolgáltatásaink');
-Route::view('/hirek', 'pages.hirek')->name('hírek');
+Route::view('/szolgaltatasaink', 'pages.szolgaltatasaink')->name('services');
+Route::view('/hirek', 'pages.hirek')->name('news');
 Route::view('/valtomeret-kalkulator', 'pages.valtomeret-kalkulator')->name('valtomeret-kalkulator');
 Route::view('/et-kalkulator', 'pages.et-kalkulator')->name('et-kalkulator');
 Route::view('/szallitasi-informaciok', 'pages.szallitasi-informaciok')->name('szallitasi-informaciok');

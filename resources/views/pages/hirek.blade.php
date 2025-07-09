@@ -1,28 +1,6 @@
 <x-layouts.app>
     <x-slot name="title">Hírek</x-slot>
-    <x-slot name="description">Friss hírek a gumiabroncs és alufelni világábó <!-- News Article 3 -->
-        <article class="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div class="md:flex">
-                <div class="md:w-1/3">
-                    <img src="{{ Storage::url('/images/IMG_5180.webp') }}" alt="Hungarogumi hírek"
-                        class="w-full h-48 md:h-full object-cover">
-                </div>
-                <div class="md:w-2/3 p-6"> <!-- News Article 2 -->
-                    <article class="bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div class="md:flex">
-                            <div class="md:w-1/3">
-                                <img src="{{ Storage::url('/images/IMG_5180.webp') }}" alt="Hungarogumi hírek"
-                                    class="w-full h-48 md:h-full object-cover">
-                            </div>
-                            <div class="md:w-2/3 p-6"> <!-- News Article 1 -->
-                                <article class="bg-white rounded-lg shadow-lg overflow-hidden">
-                                    <div class="md:flex">
-                                        <div class="md:w-1/3">
-                                            <img src="{{ Storage::url('/images/IMG_5180.webp') }}"
-                                                alt="Hungarogumi hírek" class="w-full h-48 md:h-full object-cover">
-                                        </div>
-                                        <div class="md:w-2/3 p-6">Szakmai cikkek, újdonságok és hasznos
-                                            információk.
+    <x-slot name="description">Friss hírek a gumiabroncs és alufelni világából
     </x-slot>
     <x-slot name="keywords">hírek, gumiabroncsok, alufelnik, autós hírek, szakmai cikkek, újdonságok</x-slot>
 
