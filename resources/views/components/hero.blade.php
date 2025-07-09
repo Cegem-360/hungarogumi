@@ -3,16 +3,21 @@
 <section class="hero-bg py-16 text-white"
     style="background: url('{{ Storage::url('images/IMG_5177.webp') }}') no-repeat center center; background-size: cover;">
     <div class="container mx-auto p-12 bg-white/20 border border-white/15 backdrop-blur-2xl shadow-2xl rounded-xl">
-        <div class="flex justify-end mb-4">
-            <button id="toggle-button"
-                class="bg-brand-blue text-white py-2 px-4 rounded-md font-semibold hover:bg-brand-blue/80">
-                <span id="toggle-text">Mutasd a gumi keresőt</span>
+        <div class="flex justify-start gap-1">
+            <button id="toggle-tyre-button"
+                class="bg-brand-blue text-white py-2 px-4 rounded-t-md font-semibold cursor-pointer">
+                <span>Gumi kereső</span>
+            </button>
+            <button id="toggle-wheel-button"
+                class="bg-white text-brand-blue py-2 px-4 rounded-t-md font-semibold cursor-pointer">
+                <span>Felni kereső</span>
             </button>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8">
             <!-- Wheel Search -->
-            <div id="wheel-search" class="h-[350px] bg-white rounded-lg p-6 text-brand-anthracite mb-4 md:mb-0">
+            <div id="wheel-search"
+                class="h-[350px] bg-white rounded-lg rounded-tl-none p-6 text-brand-anthracite mb-4 md:mb-0 hidden">
                 <div class="w-full  max-h-max">
                     <h2 class="text-xl font-bold mb-4">Keress autófelni méret alapján</h2>
                     <div class="grid grid-cols-1">
@@ -141,7 +146,7 @@
             </div>
             <!-- Tyre Search -->
             <form method="GET" action="{{ route('tyres') }}" class="contents">
-                <div id="tyre-search" class="h-[350px] bg-white rounded-lg p-6 text-brand-anthracite hidden">
+                <div id="tyre-search" class="h-[350px] bg-white rounded-lg rounded-tl-none p-6 text-brand-anthracite">
                     <h2 class="text-xl font-bold mb-4">Keress autógumit méret alapján</h2>
 
                     <div class="grid grid-cols-4 gap-4 mb-4">
@@ -240,19 +245,47 @@
 </section>
 
 <script>
-    document.getElementById('toggle-button').addEventListener('click', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         const wheelSearch = document.getElementById('wheel-search');
         const tyreSearch = document.getElementById('tyre-search');
-        const toggleText = document.getElementById('toggle-text');
+        const toggleWheelBtn = document.getElementById('toggle-wheel-button');
+        const toggleTyreBtn = document.getElementById('toggle-tyre-button');
 
-        if (wheelSearch.classList.contains('hidden')) {
+        // Function to switch to wheel search
+        function showWheelSearch() {
+            // Show/hide search forms
             wheelSearch.classList.remove('hidden');
             tyreSearch.classList.add('hidden');
-            toggleText.textContent = 'Mutasd a gumi keresőt';
-        } else {
-            wheelSearch.classList.add('hidden');
-            tyreSearch.classList.remove('hidden');
-            toggleText.textContent = 'Mutasd a felni keresőt';
+
+            // Update button styles - wheel button active
+            toggleWheelBtn.classList.remove('bg-brand-blue', 'text-white');
+            toggleWheelBtn.classList.add('bg-white', 'text-brand-blue');
+
+            // Update button styles - tyre button inactive
+            toggleTyreBtn.classList.remove('bg-white', 'text-brand-blue');
+            toggleTyreBtn.classList.add('bg-brand-blue', 'text-white');
         }
+
+        // Function to switch to tyre search
+        function showTyreSearch() {
+            // Show/hide search forms
+            tyreSearch.classList.remove('hidden');
+            wheelSearch.classList.add('hidden');
+
+            // Update button styles - tyre button active
+            toggleTyreBtn.classList.remove('bg-brand-blue', 'text-white');
+            toggleTyreBtn.classList.add('bg-white', 'text-brand-blue');
+
+            // Update button styles - wheel button inactive
+            toggleWheelBtn.classList.remove('bg-white', 'text-brand-blue');
+            toggleWheelBtn.classList.add('bg-brand-blue', 'text-white');
+        }
+
+        // Add event listeners
+        toggleWheelBtn.addEventListener('click', showWheelSearch);
+        toggleTyreBtn.addEventListener('click', showTyreSearch);
+
+        // Initialize - show tyre search by default (since tyre button is active)
+        showTyreSearch();
     });
 </script>
