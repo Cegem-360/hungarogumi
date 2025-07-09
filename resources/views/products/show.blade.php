@@ -41,7 +41,7 @@
                             class="green-badge text-white px-3 py-1 rounded-full text-xs font-medium absolute top-4 right-4">
                             KÉSZLETEN
                         </div>
-                        <img src="{{ $product->main_image ?? 'https://via.placeholder.com/200' }}"
+                        <img src="{{ $product->main_image ?? 'https://placehold.co/200' }}"
                             alt="{{ $product->item_name ?? 'Nincs termék név' }}"
                             class="w-full h-auto object-contain aspect-square">
                     </div>
