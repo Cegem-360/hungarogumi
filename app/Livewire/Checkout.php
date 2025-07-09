@@ -73,9 +73,8 @@ final class Checkout extends Component
             'billingAddress' => ['required', 'string', 'max:255'],
             'billingZip' => ['required', 'string', 'min:4', 'max:6'],
             'billingCity' => ['required', 'string', 'max:100'],
-            'customerType' => ['required', 'string', 'in:private,company'],
-            'termsAccepted' => ['accepted'],
-            'privacyAccepted' => ['accepted'],
+            /* 'termsAccepted' => ['accepted'],
+            'privacyAccepted' => ['accepted'], */
             'shippingMethod' => ['required', 'exists:shipping_methods,id'],
             'paymentMethod' => ['required', 'string'], // Example payment methods
         ]);
