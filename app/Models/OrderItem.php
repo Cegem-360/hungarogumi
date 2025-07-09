@@ -24,7 +24,6 @@ final class OrderItem extends Model
     protected $fillable = [
         'order_id',
         'product_id',
-        'product_variation_id',
         'tax_class',
         'subtotal',
         'subtotal_tax',

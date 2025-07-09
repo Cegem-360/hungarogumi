@@ -129,7 +129,6 @@ final class Checkout extends Component
             OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $item->product->id,
-                'product_variation_id' => null,
                 'tax_class' => 27,
                 'subtotal' => $item->product->net_retail_price * $item->quantity,
                 'subtotal_tax' => $item->product->net_retail_price * $item->quantity * 0.27, // Example tax calculation
