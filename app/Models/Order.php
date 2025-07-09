@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\OrderStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,8 +17,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 final class Order extends Model
 {
     use HasFactory;
-
-    protected $table = 'orders';
 
     protected $dateFormat = 'Y-m-d';
 
@@ -29,6 +28,7 @@ final class Order extends Model
     protected $fillable = [
         'id',
         'user_id',
+        'shipping_method_id',
         'payment_method',
         'payment_method_title',
         'set_paid',
@@ -54,15 +54,16 @@ final class Order extends Model
         'shipping_postcode',
         'shipping_country',
         'shipping_tracking_number',
-        'shipping_lines_method_id',
-        'shipping_lines_method_title',
-        'shipping_lines_total',
-        'order_id',
         'order_key',
         'order_status',
         'order_currency',
         'shipping_cost',
     ];
+
+    public function shippingMethod(): BelongsTo
+    {
+        return $this->belongsTo(ShippingMethod::class);
+    }
 
     public function orderItems(): HasMany
     {
@@ -82,5 +83,12 @@ final class Order extends Model
         }
 
         return $total;
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'order_status' => OrderStatus::class,
+        ];
     }
 }

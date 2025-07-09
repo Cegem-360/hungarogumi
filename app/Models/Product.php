@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Number;
 
 final class Product extends Model
 {
@@ -124,6 +125,31 @@ final class Product extends Model
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function getPrice(): int|float
+    {
+        return $this->net_retail_price ?? 0;
+    }
+
+    public function getPriceWithCurrency(): string
+    {
+        return Number::currency(($this->net_retail_price ?? 0), 'HUF', 'hu', 0);
+    }
+
+    public function isTire(): bool
+    {
+        return $this->item_type_name === 'gumiabroncs';
+    }
+
+    public function isSteelWheel(): bool
+    {
+        return $this->item_type_name === 'lemezfelni';
+    }
+
+    public function isAlloyWheel(): bool
+    {
+        return $this->item_type_name === 'alufelni';
     }
 
     /*  public function loadIndexes(): Collection

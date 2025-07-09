@@ -68,43 +68,43 @@ final class WheelList extends Component
     {
         $query = Product::query();
 
-        $query->when($this->manufacturer, function ($query) {
+        $query->when($this->manufacturer, function ($query): void {
             $query->where('manufacturer_id', $this->manufacturer);
-        })->when($this->price_min, function ($query) {
+        })->when($this->price_min, function ($query): void {
             $query->where('net_retail_price', '>=', $this->price_min);
-        })->when($this->price_max, function ($query) {
+        })->when($this->price_max, function ($query): void {
             $query->where('net_retail_price', '<=', $this->price_max);
-        })->when($this->width, function ($query) {
+        })->when($this->width, function ($query): void {
             $query->where('width', $this->width);
-        })->when($this->aspect_ratio, function ($query) {
+        })->when($this->aspect_ratio, function ($query): void {
             $query->where('aspect_ratio', $this->aspect_ratio);
-        })->when($this->structure, function ($query) {
+        })->when($this->structure, function ($query): void {
             $query->where('structure', $this->structure);
-        })->when($this->diameter, function ($query) {
+        })->when($this->diameter, function ($query): void {
             $query->where('diameter', $this->diameter);
-        })->when($this->li, function ($query) {
+        })->when($this->li, function ($query): void {
             $query->where('li', $this->li);
-        })->when($this->si, function ($query) {
+        })->when($this->si, function ($query): void {
             $query->where('si', $this->si);
-        })->when($this->seasons, function ($query) {
+        })->when($this->seasons, function ($query): void {
             $query->whereIn('season', $this->seasons);
-        })->when($this->consumptions, function ($query) {
+        })->when($this->consumptions, function ($query): void {
             $query->whereIn('consumption', $this->consumptions);
-        })->when($this->grips, function ($query) {
+        })->when($this->grips, function ($query): void {
             $query->wherIn('grip', $this->grips);
-        })->when($this->noise_levels, function ($query) {
+        })->when($this->noise_levels, function ($query): void {
             $query->whereIn('noise_level', $this->noise_levels);
-        })->when($this->noise_value, function ($query) {
+        })->when($this->noise_value, function ($query): void {
             $query->where('noise_value', $this->noise_value);
-        })->when($this->rim_structure, function ($query) {
+        })->when($this->rim_structure, function ($query): void {
             $query->where('rim_structure', $this->rim_structure);
-        })->when($this->rim_dedicated, function ($query) {
+        })->when($this->rim_dedicated, function ($query): void {
             $query->where('rim_dedicated', $this->rim_dedicated);
-        })->when($this->reinforced, function ($query) {
+        })->when($this->reinforced, function ($query): void {
             $query->reinforced();
-        })->when($this->pattern_name, function ($query) {
+        })->when($this->pattern_name, function ($query): void {
             $query->where('pattern_name', 'like', '%'.$this->pattern_name.'%');
-        })->when($this->runflat, function ($query) {
+        })->when($this->runflat, function ($query): void {
             $query->punctureResistant();
         })->tyre();
 

@@ -21,7 +21,7 @@
                                 <label class="block text-sm font-medium mb-1">Lyukosztás</label>
                                 <select
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                                    @foreach (Product::whereNotNull('bolt_count')->orderByDesc('bolt_count')->get()->pluck('bolt_count')->unique() as $productBoltCount)
+                                    @foreach (Product::whereNotNull('bolt_count')->orderByDesc('bolt_count')->pluck('bolt_count')->unique() as $productBoltCount)
                                         <option value="{{ $productBoltCount }}">{{ $productBoltCount }}</option>
                                     @endforeach
                                 </select>
@@ -30,7 +30,7 @@
                                 <label class="block text-sm font-medium mb-1">Osztókör*</label>
                                 <select
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                                    @foreach (Product::whereNotNull('pcd')->orderByDesc('pcd')->get()->pluck('pcd')->unique() as $productPCD)
+                                    @foreach (Product::whereNotNull('pcd')->orderByDesc('pcd')->pluck('pcd')->unique() as $productPCD)
                                         <option value="{{ $productPCD }}">{{ $productPCD }}</option>
                                     @endforeach
                                 </select>
@@ -39,7 +39,7 @@
                                 <label class="block text-sm font-medium mb-1">Coll*</label>
                                 <select
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                                    @foreach (Product::whereNotNull('diameter')->orderByDesc('diameter')->get()->pluck('diameter')->unique() as $productDiameter)
+                                    @foreach (Product::whereNotNull('diameter')->orderByDesc('diameter')->pluck('diameter')->unique() as $productDiameter)
                                         <option value="{{ $productDiameter }}">{{ $productDiameter }}</option>
                                     @endforeach
                                 </select>
@@ -48,7 +48,7 @@
                                 <label class="block text-sm font-medium mb-1">Idény</label>
                                 <select
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                                    @foreach (Product::whereNotNull('for_winter')->orderByDesc('for_winter')->get()->pluck('for_winter')->unique() as $productForWinter)
+                                    @foreach (Product::whereNotNull('for_winter')->orderByDesc('for_winter')->pluck('for_winter')->unique() as $productForWinter)
                                         <option value="{{ $productForWinter }}">{{ $productForWinter }}</option>
                                     @endforeach
                                 </select>
@@ -74,11 +74,9 @@
                                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
                                             <option value="all">Összes...</option>
                                             @foreach (Manufacturer::whereHas('products', function ($query) {
-        $query->alloyWheel();
-    })->orWhereHas('products', function ($query) {
-            $query->steelWheel();
-        })->orderBy('name')->distinct('name')->get() as $manufacturer)
-                                                <option value="{{ $manufacturer->id }}">{{ $manufacturer->name }}
+        $query->whereIn('item_type_name', ['lemezfelni', 'alufelni']);
+    })->distinct('name')->orderBy('name')->pluck('name', 'id') as $id => $manufacturer)
+                                                <option value="{{ $id }}">{{ $manufacturer }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -138,7 +136,7 @@
                         <label class="block text-sm font-medium mb-1">Szélesség</label>
                         <select
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                            @foreach (Product::whereNotNull('width')->orderByDesc('width')->get()->pluck('width')->unique() as $productWidth)
+                            @foreach (Product::whereNotNull('width')->orderByDesc('width')->pluck('width')->unique() as $productWidth)
                                 <option value="{{ $productWidth }}">{{ $productWidth }}</option>
                             @endforeach
 
@@ -148,7 +146,7 @@
                         <label class="block text-sm font-medium mb-1">Oldalfal magasság</label>
                         <select
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                            @foreach (Product::whereNotNull('aspect_ratio')->orderByDesc('aspect_ratio')->get()->pluck('aspect_ratio')->unique() as $productAspectRatio)
+                            @foreach (Product::whereNotNull('aspect_ratio')->orderByDesc('aspect_ratio')->pluck('aspect_ratio')->unique() as $productAspectRatio)
                                 <option value="{{ $productAspectRatio }}">{{ $productAspectRatio }}</option>
                             @endforeach
                         </select>
@@ -157,7 +155,7 @@
                         <label class="block text-sm font-medium mb-1">Felni átmérő</label>
                         <select
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                            @foreach (Product::whereNotNull('diameter')->orderBy('diameter')->get()->pluck('diameter')->unique() as $productDiameter)
+                            @foreach (Product::whereNotNull('diameter')->orderBy('diameter')->pluck('diameter')->unique() as $productDiameter)
                                 <option value="{{ $productDiameter }}">{{ $productDiameter }}</option>
                             @endforeach
 

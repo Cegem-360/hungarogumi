@@ -154,11 +154,11 @@ namespace App\Models{
  *
  * @property int $id
  * @property int|null $user_id
+ * @property int $shipping_method_id
  * @property string $payment_method
  * @property string $payment_method_title
  * @property bool $set_paid
- * @property string|null $billing_first_name
- * @property string|null $billing_last_name
+ * @property string|null $billing_name
  * @property string|null $billing_address_1
  * @property string|null $billing_address_2
  * @property string|null $billing_city
@@ -170,8 +170,7 @@ namespace App\Models{
  * @property string|null $billing_vat_number
  * @property string|null $billing_company_name
  * @property string|null $billing_company_office
- * @property string|null $shipping_first_name
- * @property string|null $shipping_last_name
+ * @property string|null $shipping_name
  * @property string|null $shipping_address_1
  * @property string|null $shipping_address_2
  * @property string|null $shipping_city
@@ -179,17 +178,15 @@ namespace App\Models{
  * @property string|null $shipping_postcode
  * @property string|null $shipping_country
  * @property string $shipping_tracking_number
- * @property string $shipping_lines_method_id
- * @property string $shipping_lines_method_title
- * @property string $shipping_lines_total
  * @property string|null $order_key
- * @property string $order_status
+ * @property \App\Enums\OrderStatus $order_status
  * @property string $order_currency
  * @property int $shipping_cost
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OrderItem> $orderItems
  * @property-read int|null $order_items_count
+ * @property-read \App\Models\ShippingMethod $shippingMethod
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order newQuery()
@@ -201,8 +198,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingCompanyOffice($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingCountry($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingFirstName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingPhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingPostcode($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereBillingState($value)
@@ -220,11 +216,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingCost($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingCountry($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingFirstName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingLastName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingLinesMethodId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingLinesMethodTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingLinesTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingMethodId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingPostcode($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingState($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereShippingTrackingNumber($value)
@@ -283,7 +276,7 @@ namespace App\Models{
  * @property float|null $aspect_ratio
  * @property string|null $structure
  * @property float|null $diameter
- * @property float|null $li
+ * @property string|null $li
  * @property string|null $si
  * @property string|null $bolt_count
  * @property string|null $center_bore
@@ -320,10 +313,11 @@ namespace App\Models{
  * @property string|null $url
  * @property int|null $retail_price_eur
  * @property int|null $wholesale_price_eur
- * @property int|null $is_featured
+ * @property \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product\Category> $categories
+ * @property int|null $price
+ * @property int $is_featured
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product\Category> $categories
  * @property-read int|null $categories_count
  * @property-read \App\Models\Manufacturer|null $manufacturer
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Stock> $stocks
@@ -334,6 +328,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereAllQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereAspectRatio($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereBoltCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereCategories($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereCenterBore($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereConsumption($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereCreatedAt($value)
@@ -357,6 +352,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereNoiseValue($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product wherePatternName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product wherePcd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Product wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereQuantityKesmark($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereQuantityNt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereQuantitySztMihaly($value)
@@ -402,9 +398,25 @@ namespace App\Models{
 /**
  * 
  *
+ * @property int $id
+ * @property string $name
+ * @property string $title
+ * @property string $slug
+ * @property string|null $description
+ * @property int $cost
+ * @property \Carbon\CarbonImmutable|null $created_at
+ * @property \Carbon\CarbonImmutable|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ShippingMethod newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ShippingMethod newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ShippingMethod query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ShippingMethod whereCost($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ShippingMethod whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ShippingMethod whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ShippingMethod whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ShippingMethod whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ShippingMethod whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ShippingMethod whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ShippingMethod whereUpdatedAt($value)
  */
 	final class ShippingMethod extends \Eloquent {}
 }

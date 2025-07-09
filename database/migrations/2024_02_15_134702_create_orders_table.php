@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Enums\OrderStatus;
+use App\Models\ShippingMethod;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,12 +19,13 @@ return new class() extends Migration
         Schema::create('orders', function (Blueprint $table): void {
             $table->id();
             $table->foreignIdFor(User::class)->nullable();
+            $table->foreignIdFor(ShippingMethod::class)->nullable(false)->constrained('shipping_methods')->cascadeOnUpdate();
+
             $table->string('payment_method')->default('bacs');
             $table->string('payment_method_title')->default('Bank Transfer');
             $table->boolean('set_paid')->default(false);
 
-            $table->string('billing_first_name')->nullable();
-            $table->string('billing_last_name')->nullable();
+            $table->string('billing_name')->nullable();
             $table->string('billing_address_1')->nullable();
             $table->string('billing_address_2')->nullable();
             $table->string('billing_city')->nullable();
@@ -36,8 +38,7 @@ return new class() extends Migration
             $table->string('billing_company_name')->nullable();
             $table->string('billing_company_office')->nullable();
 
-            $table->string('shipping_first_name')->nullable();
-            $table->string('shipping_last_name')->nullable();
+            $table->string('shipping_name')->nullable();
             $table->string('shipping_address_1')->nullable();
             $table->string('shipping_address_2')->nullable();
             $table->string('shipping_city')->nullable();
@@ -47,12 +48,9 @@ return new class() extends Migration
 
             $table->string('shipping_tracking_number')->default('null');
 
-            $table->string('shipping_lines_method_id')->default('flat_rate');
-            $table->string('shipping_lines_method_title')->default('Flat Rate');
-            $table->string('shipping_lines_total')->default('0');
             $table->string('order_key')->nullable();
-            $table->string('order_status')->default(OrderStatus::PENDING);
-            $table->string('order_currency')->default(config('webshop.default_currency'));
+            $table->enum('order_status', OrderStatus::toArray())->default(OrderStatus::PENDING);
+            $table->string('order_currency')->default('HUF');
 
             $table->integer('shipping_cost')->default(0);
             $table->timestamps();

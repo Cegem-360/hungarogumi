@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use App\Enums\OrderStatus;
 use App\Filament\Resources\OrderResource\Pages\CreateOrder;
 use App\Filament\Resources\OrderResource\Pages\EditOrder;
 use App\Filament\Resources\OrderResource\Pages\ListOrders;
 use App\Filament\Resources\OrderResource\Pages\ViewOrder;
 use App\Models\Order;
+use App\Models\ShippingMethod;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -46,8 +48,7 @@ final class OrderResource extends Resource
                     ->default('Bank Transfer'),
                 Toggle::make('set_paid')
                     ->required(),
-                TextInput::make('billing_first_name'),
-                TextInput::make('billing_last_name'),
+                TextInput::make('billing_name'),
                 TextInput::make('billing_address_1'),
                 TextInput::make('billing_address_2'),
                 TextInput::make('billing_city'),
@@ -61,28 +62,19 @@ final class OrderResource extends Resource
                 TextInput::make('billing_vat_number'),
                 TextInput::make('billing_company_name'),
                 TextInput::make('billing_company_office'),
-                TextInput::make('shipping_first_name'),
-                TextInput::make('shipping_last_name'),
+                TextInput::make('shipping_name'),
                 TextInput::make('shipping_address_1'),
                 TextInput::make('shipping_address_2'),
                 TextInput::make('shipping_city'),
                 TextInput::make('shipping_state'),
                 TextInput::make('shipping_postcode'),
                 TextInput::make('shipping_country'),
-                TextInput::make('shipping_tracking_number')
-                    ->required()
-                    ->default('null'),
-                TextInput::make('shipping_lines_method_id')
-                    ->required()
-                    ->default('flat_rate'),
-                TextInput::make('shipping_lines_method_title')
-                    ->required()
-                    ->default('Flat Rate'),
-                TextInput::make('shipping_lines_total')
-                    ->required()
-                    ->default('0'),
+                Select::make('shipping_method_id')->options(
+                    ShippingMethod::query()->pluck('title', 'id')->toArray()
+                )->required(),
                 TextInput::make('order_key'),
-                TextInput::make('order_status')
+                Select::make('order_status')
+                    ->enum(OrderStatus::class)
                     ->required()
                     ->default('pending'),
                 TextInput::make('order_currency')

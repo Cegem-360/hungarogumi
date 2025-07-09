@@ -14,11 +14,12 @@ final class ShippingMethod extends Model
     protected $fillable = [
         'name',
         'title',
+        'slug',
         'description',
         'cost',
     ];
 
-    protected function casts()
+    protected function casts(): array
     {
         return [
             'cost' => 'int',

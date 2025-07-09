@@ -63,7 +63,7 @@ final class CartService
         return $this->cart->cartItems;
     }
 
-    public function getCart()
+    public function getCart(): Cart
     {
         return $this->cart;
     }
@@ -71,7 +71,7 @@ final class CartService
     public function getTotal()
     {
         return $this->cart->cartItems->sum(function ($item): int|float {
-            return $item->product->price * $item->quantity;
+            return $item->product->net_retail_price * $item->quantity;
         });
     }
 }

@@ -36,6 +36,7 @@ final class ProductAddToCart extends Component
                  ->success()
                  ->send(); */
         }
+
         /* Notification::make()
             ->title('Fail')
             ->body('Product can\'t be added to cart.')
