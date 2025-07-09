@@ -2,11 +2,13 @@
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between py-6">
             <!-- Logo -->
-            <div class="flex items-center justify-center gap-1">
-                <img src="{{ Vite::asset('resources/images/somigumi-logo-2.webp') }}" alt="SomiGumi" class="h-16">
-                <h1 class="sr-only">SomiGumi</h1>
-                <x-svg.logo-title class="text-brand-anthracite" />
-            </div>
+            <a href="{{ route('home') }}" wire:navigate>
+                <div class="flex items-center justify-center gap-1">
+                    <img src="{{ Vite::asset('resources/images/somigumi-logo-2.webp') }}" alt="SomiGumi" class="h-16">
+                    <h1 class="sr-only">SomiGumi</h1>
+                    <x-svg.logo-title class="text-brand-anthracite" />
+                </div>
+            </a>
 
             <!-- Search Bar -->
             <div class="hidden md:flex flex-1 max-w-md mx-8">
@@ -24,10 +26,10 @@
                     <i class="fas fa-user text-gray-600"></i>
                     <span>Belép</span>
                 </div>
-                <div class="flex items-center space-x-1">
+                {{-- <div class="flex items-center space-x-1">
                     <i class="fas fa-heart text-gray-600"></i>
                     <span class="hidden md:inline">Kedvencek</span>
-                </div>
+                </div> --}}
 
                 <a href="{{ route('cart.index') }}" wire:navigate>
                     <div class="flex items-center space-x-1">

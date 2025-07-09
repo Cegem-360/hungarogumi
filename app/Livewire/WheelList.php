@@ -20,11 +20,13 @@ final class WheelList extends Component
 
     public $pcd = ''; // Osztókor (PCD)
 
-    public $bolt_count = ''; // Csavarlyukak száma
+    public $bolt_count; // Csavarlyukak száma
 
-    public $width_min = 6.5; // Szélesség minimum (hüvelyk)
+    public $diameter;
 
-    public $width_max = 9.0; // Szélesség maximum (hüvelyk)
+    public $width_min; // Szélesség minimum (hüvelyk)
+
+    public $width_max; // Szélesség maximum (hüvelyk)
 
     public $season = ''; // Időjárás (nyári/téli/négyévszakos)
 
@@ -48,7 +50,7 @@ final class WheelList extends Component
 
     public $color = ''; // Szín
 
-    public $dedication = ''; // Dedikáltság
+    public $rim_color = ''; // Dedikáltság
 
     public $et_min = 0.0; // ET minimum
 
@@ -69,56 +71,58 @@ final class WheelList extends Component
             $query->whereHas('manufacturer', function ($q) {
                 $q->where('name', $this->manufacturer);
             });
-        })->when($this->price_min, function ($query): void {
-            $query->where('net_retail_price', '>=', $this->price_min);
-        })->when($this->price_max, function ($query): void {
-            $query->where('net_retail_price', '<=', $this->price_max);
-        })->when($this->width, function ($query): void {
-            $query->where('width', $this->width);
-        })->when($this->pcd, function ($query): void {
-            $query->where('pcd', $this->pcd);
-        })->when($this->bolt_count, function ($query): void {
-            $query->where('bolt_count', $this->bolt_count);
-        })->when($this->width_min, function ($query): void {
-            $query->where('width', '>=', $this->width_min);
-        })->when($this->width_max, function ($query): void {
-            $query->where('width', '<=', $this->width_max);
-        })->when($this->season, function ($query): void {
-            $query->where('season', $this->season);
-        })->when($this->vehicle_type, function ($query): void {
-            $query->where('vehicle_type', $this->vehicle_type);
-        })->when($this->wheel_type, function ($query): void {
-            $query->whereIn('item_type_name', $this->wheel_type);
-        })->when($this->stock_min, function ($query): void {
-            $query->whereHas('stocks', function ($q) {
-                $q->where('quantity', '>=', 4);
-            });
-        })->when($this->price_category, function ($query): void {
-            // Itt kellene definiálni az árkategória logikát a tényleges árak alapján
-            if (in_array('budget', $this->price_category)) {
-                $query->orWhere('net_retail_price', '<', 50000);
-            }
-            if (in_array('közepes', $this->price_category)) {
-                $query->orWhere(function ($q) {
-                    $q->whereBetween('net_retail_price', [50000, 150000]);
-                });
-            }
-            if (in_array('prémium', $this->price_category)) {
-                $query->orWhere('net_retail_price', '>', 150000);
-            }
-        })->when($this->wheel_model, function ($query): void {
-            $query->where('item_name', 'like', '%'.$this->wheel_model.'%');
-        })->when($this->color, function ($query): void {
-            $query->where('color', $this->color);
-        })->when($this->dedication, function ($query): void {
-            $query->where('dedication', $this->dedication);
-        })->when($this->et_min, function ($query): void {
-            $query->where('et', '>=', $this->et_min);
-        })->when($this->et_max, function ($query): void {
-            $query->where('et', '<=', $this->et_max);
-        })->when($this->outlet, function ($query): void {
-            $query->where('outlet', true);
-        })->wheel();
+        })
+            ->when($this->diameter, function ($query): void {
+                $query->where('diameter', $this->diameter);
+            })
+            ->when($this->price_min, function ($query): void {
+                $query->where('net_retail_price', '>=', $this->price_min);
+            })->when($this->price_max, function ($query): void {
+                $query->where('net_retail_price', '<=', $this->price_max);
+            })->when($this->width, function ($query): void {
+                $query->where('width', $this->width);
+            })->when($this->pcd, function ($query): void {
+                $query->where('pcd', $this->pcd);
+            })->when($this->bolt_count, function ($query): void {
+                $query->where('bolt_count', $this->bolt_count);
+            })->when($this->width_min, function ($query): void {
+                $query->where('width', '>=', $this->width_min);
+            })->when($this->width_max, function ($query): void {
+                $query->where('width', '<=', $this->width_max);
+            })->when($this->season, function ($query): void {
+                $query->where('season', $this->season);
+            })->when($this->vehicle_type, function ($query): void {
+                $query->where('vehicle_type', $this->vehicle_type);
+            })->when($this->wheel_type, function ($query): void {
+                $query->whereIn('item_type_name', $this->wheel_type);
+            })->when($this->stock_min, function ($query): void {
+                $query->where('all_quantity', '>=', 4);
+            })->when($this->price_category, function ($query): void {
+                // Itt kellene definiálni az árkategória logikát a tényleges árak alapján
+                if (in_array('budget', $this->price_category)) {
+                    $query->orWhere('net_retail_price', '<', 50000);
+                }
+                if (in_array('közepes', $this->price_category)) {
+                    $query->orWhere(function ($q) {
+                        $q->whereBetween('net_retail_price', [50000, 150000]);
+                    });
+                }
+                if (in_array('prémium', $this->price_category)) {
+                    $query->orWhere('net_retail_price', '>', 150000);
+                }
+            })->when($this->wheel_model, function ($query): void {
+                $query->where('item_name', 'like', '%'.$this->wheel_model.'%');
+            })->when($this->color, function ($query): void {
+                $query->where('color', $this->color);
+            })->when($this->rim_color, function ($query): void {
+                $query->where('rim_color', $this->rim_color);
+            })->when($this->et_min, function ($query): void {
+                $query->where('et', '>=', $this->et_min);
+            })->when($this->et_max, function ($query): void {
+                $query->where('et', '<=', $this->et_max);
+            })->when($this->outlet, function ($query): void {
+                $query->where('outlet', true);
+            })->wheel();
 
         return $query->paginate(24);
     }

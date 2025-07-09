@@ -9,11 +9,11 @@
                 <span
                     class="absolute top-2 left-2 bg-yellow-400 text-black px-2 py-1 rounded text-xs font-bold">AKCIÓ</span>
                 <div class="absolute top-1 right-1 flex flex-col items-center justify-center gap-2">
-                    <button
+                    {{--  <button
                         class="w-8 h-8 flex items-center justify-center hover:bg-gray-50 border border-gray-300 rounded-md"
                         title="Kedvencekhez adom">
                         <i class="far fa-heart text-gray-400"></i>
-                    </button>
+                    </button> --}}
                     @if ($product->season == 1)
                         <div class="w-8 h-8 flex items-center justify-center bg-yellow-500 text-white p-1 rounded-md text-2xl"
                             title="Nyári">

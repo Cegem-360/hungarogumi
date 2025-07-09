@@ -33,19 +33,19 @@
                             <h3 class="font-semibold text-gray-900 mb-3">Méret</h3>
                             <div class="grid grid-cols-3 gap-2 items-start">
                                 <div>
-                                    <label for="width"
-                                        class="block text-sm font-medium text-gray-700 mb-1">Átmérő*</label>
-                                    <select id="width" name="width" wire:model.live="width"
+                                    <label for="bolt_count"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Lyukszám*</label>
+                                    <select id="bolt_count" wire:model.live="bolt_count"
                                         class="w-full bg-gray-100 border border-gray-300 rounded px-2 py-1 text-center">
                                         <option value="">--</option>
-                                        @foreach (Product::wheel()->distinct('width')->orderBy('width')->pluck('width') as $wheelWidth)
-                                            <option value="{{ $wheelWidth }}">{{ $wheelWidth }}</option>
+                                        @foreach (Product::wheel()->distinct('bolt_count')->orderBy('bolt_count')->pluck('bolt_count') as $wheelColt)
+                                            <option value="{{ $wheelColt }}">{{ $wheelColt }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div>
                                     <label for="pcd"
-                                        class="block text-sm font-medium text-gray-700 mb-1">Osztókor*</label>
+                                        class="block text-sm font-medium text-gray-700 mb-1">Átmérő*</label>
                                     <select id="pcd" name="pcd" wire:model.live="pcd"
                                         class="w-full bg-gray-100 border border-gray-300 rounded px-2 py-1 text-center">
                                         <option value="">--</option>
@@ -55,26 +55,25 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label for="bolt_count"
-                                        class="block text-sm font-medium text-gray-700 mb-1">Coll*</label>
-                                    <select id="bolt_count" wire:model.live="bolt_count"
+                                    <label for="diameter"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Osztókor*</label>
+                                    <select id="diameter" name="diameter" wire:model.live="diameter"
                                         class="w-full bg-gray-100 border border-gray-300 rounded px-2 py-1 text-center">
                                         <option value="">--</option>
-                                        @foreach (Product::alloyWheel()->orWhere(function ($q) {
-            $q->steelWheel();
-        })->distinct('bolt_count')->orderBy('bolt_count')->pluck('bolt_count') as $wheelColt)
-                                            <option value="{{ $wheelColt }}">{{ $wheelColt }}</option>
+                                        @foreach (Product::wheel()->distinct('diameter')->orderBy('diameter')->pluck('diameter') as $wheelDiameter)
+                                            <option value="{{ $wheelDiameter }}">{{ $wheelDiameter }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+
                                 <div class="col-span-3 mt-4" wire:ignore>
-                                    <label class="text-sm font-semibold mb-2 block">Szélesség (hüvelyk)</label>
+                                    <label class="text-sm font-semibold mb-2 block">Szélesség</label>
                                     <input type="text" id="wheel-width-slider" class="wheel-width-slider"
-                                        name="wheel_width_range" value="6.5;9.0" />
-                                    <input type="hidden" id="widthMin" name="width_min" value="6.5"
-                                        wire:model="width_min" />
-                                    <input type="hidden" id="widthMax" name="width_max" value="9.0"
-                                        wire:model="width_max" />
+                                        name="wheel_width_range" value="" />
+                                    <input type="hidden" id="widthMin" name="width_min"
+                                        value="{{ Product::wheel()->min('width') }}" wire:model.live="width_min" />
+                                    <input type="hidden" id="widthMax" name="width_max"
+                                        value="{{ Product::wheel()->max('width') }}" wire:model.live="width_max" />
                                 </div>
                             </div>
                         </div>
@@ -103,24 +102,10 @@
                                 class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-sm">
                                 <option value="">Összes...</option>
                                 @foreach (Manufacturer::whereHas('products', function ($q) {
-        $q->alloyWheel()->orWhere(function ($query) {
-            $query->steelWheel();
-        });
+        $q->wheel();
     })->distinct('name')->orderBy('name')->get() as $manufacturer)
                                     <option value="{{ $manufacturer->name }}">{{ $manufacturer->name }}</option>
                                 @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Vehicle Type -->
-                        <div class="mb-6">
-                            <h3 class="font-semibold text-gray-900 mb-3">Jármű típus</h3>
-                            <select id="vehicle_type" wire:model.live="vehicle_type"
-                                class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-sm">
-                                <option value="">Összes...</option>
-                                <option value="szemelygepjarmu">Személygépjármű</option>
-                                <option value="suv">SUV</option>
-                                <option value="kistehergepjarmu">Kistehergépjármű</option>
                             </select>
                         </div>
 
@@ -131,28 +116,14 @@
                                 class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-sm">
                         </div>
 
-                        <!-- Color -->
-                        {{-- <div class="mb-6">
-                            <h3 class="font-semibold text-gray-900 mb-3">Szín</h3>
-                            <select id="color" wire:model.live="color"
-                                class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-sm">
-                                <option value="">Összes...</option>
-                                @foreach (Product::alloyWheel()->orWhere(function ($q) {
-            $q->steelWheel();
-        })->whereNotNull('color')->distinct('color')->orderBy('color')->pluck('color') as $wheelColor)
-                                    <option value="{{ $wheelColor }}">{{ $wheelColor }}</option>
-                                @endforeach
-                            </select>
-                        </div> --}}
-
                         <!-- Outlet -->
-                        <div class="mb-6">
+                        {{-- <div class="mb-6">
                             <label class="flex items-center bg-gray-100 p-2 rounded cursor-pointer">
                                 <input type="checkbox" wire:model.live="outlet"
                                     class="w-4 h-4 rounded focus:ring-brand-blue focus:ring-2 mr-3">
                                 <span class="text-sm">Outlet termékek</span>
                             </label>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="mb-8 p-4 bg-gray-200 border border-gray-100 rounded-lg">
@@ -218,18 +189,16 @@
                         </div>
 
                         <!-- Dedication -->
-                        {{-- <div class="mb-6">
-                            <h3 class="font-semibold text-gray-900 mb-3">Dedikáltság</h3>
+                        <div class="mb-6">
+                            <h3 class="font-semibold text-gray-900 mb-3">Szín</h3>
                             <select wire:model.live="dedication"
                                 class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-sm">
                                 <option value="">Összes...</option>
-                                @foreach (Product::alloyWheel()->orWhere(function ($q) {
-            $q->steelWheel();
-        })->whereNotNull('dedication')->distinct('dedication')->pluck('dedication') as $dedication)
-                                    <option value="{{ $dedication }}">{{ $dedication }}</option>
+                                @foreach (Product::wheel()->whereNotNull('rim_color')->distinct('rim_color')->pluck('rim_color') as $rim_color)
+                                    <option value="{{ $rim_color }}">{{ $rim_color }}</option>
                                 @endforeach
                             </select>
-                        </div> --}}
+                        </div>
                     </div>
 
                     <!-- Contact -->
@@ -281,17 +250,17 @@
             if (slider.length && typeof slider.ionRangeSlider === 'function') {
                 slider.ionRangeSlider({
                     type: "double",
-                    min: 6.5,
-                    max: 9.0,
-                    from: 6.5,
-                    to: 9.0,
+                    min: {{ Product::wheel()->min('width') }},
+                    max: {{ Product::wheel()->max('width') }},
+                    from: {{ Product::wheel()->min('width') }},
+                    to: {{ Product::wheel()->max('width') }},
                     step: 0.5,
                     grid: true,
                     skin: "round",
                     postfix: "\"",
                     onFinish: function(data) {
-                        document.getElementById('widthMin').value = data.from;
-                        document.getElementById('widthMax').value = data.to;
+                        document.getElementById('widthMin').value = data.min;
+                        document.getElementById('widthMax').value = data.max;
                     }
                 });
                 sliderInitialized = true;
