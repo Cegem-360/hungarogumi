@@ -1,6 +1,6 @@
-@use('App\Models\Product')
-@use('App\Models\Manufacturer')
 <div>
+    @use('App\Models\Product')
+    @use('App\Models\Manufacturer')
     <div class="grid md:grid-cols-[1fr_3fr] gap-6 items-start">
         <div class="filter">
             <div class="sticky-sidebar">
@@ -69,7 +69,6 @@
                                         <option value="">--</option>
                                         @if (!empty($this->aspect_ratio))
                                             @foreach (Product::tyre()->where('width', $this->width)->where('aspect_ratio', $this->aspect_ratio)->distinct('diameter')->orderBy('diameter')->get(['diameter', 'structure']) ?? [] as $productDiameter)
-                                                @dump($productDiameter)
                                                 <option value="{{ $productDiameter->diameter }}">
                                                     {{ $productDiameter->diameter }} <span
                                                         class="text-xs text-gray-500">({{ $productDiameter->structure }})</span>
@@ -111,8 +110,8 @@
                                 <option value="" data-select2-id="984">Összes...</option>
                                 @foreach (Manufacturer::whereHas('products', function ($q) {
         $q->tyre();
-    })->distinct('name')->orderBy('name')->get() as $manufacturer)
-                                    <option value="{{ $manufacturer->name }}">{{ $manufacturer->name }}</option>
+    })->distinct('name')->orderBy('name')->pluck('name') as $manufacturer)
+                                    <option value="{{ $manufacturer }}">{{ $manufacturer }}</option>
                                 @endforeach
 
                             </select>
@@ -424,8 +423,8 @@
         </div>
         <!-- Main Content Area -->
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach ($products ?? [] as $product)
-                <livewire:product-add-to-cart :product_id="$product->id" wire:key="$product->id" />
+            @foreach ($this->products ?? [] as $product)
+                <livewire:product-add-to-cart :productId="$product->id" :key="$product->id" />
             @endforeach
         </div>
 

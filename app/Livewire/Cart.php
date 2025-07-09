@@ -19,6 +19,16 @@ final class Cart extends Component
 
     }
 
+    public function updateQuantity($cartItemId, $quantity): void
+    {
+        $product = Product::find($cartItemId);
+        if ($product && is_numeric($quantity) && $quantity > 0) {
+            $cartService = new CartService();
+            $cartService->updateItem($cartItemId, (int) $quantity);
+            // Optionally, handle notifications here
+        }
+    }
+
     public function removeFromCart($cartItemId): void
     {
         $product = Product::find($cartItemId);

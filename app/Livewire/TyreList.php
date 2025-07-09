@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -57,9 +58,10 @@ final class TyreList extends Component
 
     public $price_max;
 
-    public function updated()
+    #[Computed]
+    public function products()
     {
-        $this->buildQuery();
+        return $this->buildQuery();
     }
 
     public function render(): View|Factory
@@ -74,13 +76,15 @@ final class TyreList extends Component
         $query = Product::query();
 
         $query->when($this->manufacturer, function ($query): void {
-            $query->where('manufacturer_id', $this->manufacturer);
+            $query->whereHas('manufacturer', function ($q) {
+                $q->where('name', $this->manufacturer);
+            });
         })->when($this->price_min, function ($query): void {
             $query->where('net_retail_price', '>=', $this->price_min);
         })->when($this->price_max, function ($query): void {
             $query->where('net_retail_price', '<=', $this->price_max);
         })->when($this->width, function ($query): void {
-            $query->where('width', (int) $this->width);
+            $query->where('width', $this->width);
         })->when($this->aspect_ratio, function ($query): void {
             $query->where('aspect_ratio', $this->aspect_ratio);
         })->when($this->structure, function ($query): void {
@@ -112,7 +116,6 @@ final class TyreList extends Component
         })->when($this->runflat, function ($query): void {
             $query->punctureResistant();
         })->tyre();
-        dump($query->toRawSql());
 
         return $query->paginate(24);
     }
