@@ -7,6 +7,7 @@ namespace App\Livewire;
 use App\Mail\OrderConfirmationCustomer;
 use App\Mail\OrderNotificationAdmin;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\ShippingMethod;
 use App\Services\CartService;
 use Exception;
@@ -116,12 +117,26 @@ final class Checkout extends Component
             'shipping_country' => null, // Adjust if you have country fields
             'shipping_method_id' => ShippingMethod::find($this->shippingMethod)->id,
         ];
-
+        $order = null;
         // Example: Save order to database (assuming Order model exists)
         try {
             $order = Order::create($orderData);
         } catch (Throwable $th) {
             throw $th;
+        }
+
+        foreach ($cart->items as $item) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $item->product->id,
+                'product_variation_id' => null,
+                'tax_class' => 27,
+                'subtotal' => $item->product->net_retail_price * $item->quantity,
+                'subtotal_tax' => $item->product->net_retail_price * $item->quantity * 0.27, // Example tax calculation
+                'total' => $item->product->net_retail_price * $item->quantity * 1.27, // Example total with tax
+                'total_tax' => $item->product->net_retail_price * $item->quantity * 0.27, // Example tax calculation
+                'quantity' => $item->quantity,
+            ]);
         }
 
         // Send emails after successful order creation
