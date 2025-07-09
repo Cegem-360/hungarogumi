@@ -66,11 +66,11 @@ final class TyreList extends Component
 
     public function mount(): void
     {
-        $tmpSeasons[] = request('season', '');
+        /* $tmpSeasons[] = request('season', '');
         $this->seasons = $tmpSeasons;
         $this->width = request('width', '');
         $this->aspect_ratio = request('aspect_ratio', '');
-        $this->diameter = request('diameter', '');
+        $this->diameter = request('diameter', ''); */
     }
 
     public function render(): View|Factory

@@ -51,9 +51,9 @@ final class WheelList extends Component
 
     public function mount()
     {
-        $this->bolt_count = request()->input('bolt_count');
-        $this->pcd = request()->input('pcd');
-        $this->diameter = request()->input('diameter');
+        /*  $this->bolt_count = request()->input('bolt_count');
+         $this->pcd = request()->input('pcd');
+         $this->diameter = request()->input('diameter'); */
         // Példa: ha van for_winter paraméter, azt is beállíthatod, ha szükséges
         // $this->for_winter = request()->boolean('for_winter');
     }
