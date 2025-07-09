@@ -1,5 +1,5 @@
 import '../css/app.css';
-
+import.meta.glob(["../images/**", "../fonts/**"]);
 import './bootstrap';
 
 // Import jQuery and ion-rangeslider

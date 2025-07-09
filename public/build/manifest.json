@@ -4,6 +4,34 @@
     "src": "resources/css/app.css",
     "isEntry": true
   },
+  "resources/images/IMG_5177.webp": {
+    "file": "assets/IMG_5177-DKqeXh31.webp",
+    "src": "resources/images/IMG_5177.webp"
+  },
+  "resources/images/IMG_5180.webp": {
+    "file": "assets/IMG_5180-DS6ME8aY.webp",
+    "src": "resources/images/IMG_5180.webp"
+  },
+  "resources/images/mak_banner_rim.svg": {
+    "file": "assets/mak_banner_rim-DbIWfGIc.svg",
+    "src": "resources/images/mak_banner_rim.svg"
+  },
+  "resources/images/oz_banner_rim.svg": {
+    "file": "assets/oz_banner_rim-DFpqANzx.svg",
+    "src": "resources/images/oz_banner_rim.svg"
+  },
+  "resources/images/somigumi-logo-2.webp": {
+    "file": "assets/somigumi-logo-2-UznmvKY8.webp",
+    "src": "resources/images/somigumi-logo-2.webp"
+  },
+  "resources/images/somigumi-logo.webp": {
+    "file": "assets/somigumi-logo-Dvz4E2TA.webp",
+    "src": "resources/images/somigumi-logo.webp"
+  },
+  "resources/images/tyre.webp": {
+    "file": "assets/tyre-DP6d8FrH.webp",
+    "src": "resources/images/tyre.webp"
+  },
   "resources/js/app.js": {
     "file": "assets/app-Bo1kxKED.js",
     "name": "app",
