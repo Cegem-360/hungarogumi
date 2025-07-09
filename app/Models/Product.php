@@ -188,6 +188,15 @@ final class Product extends Model
     }
 
     #[Scope]
+    protected function wheel(Builder $query): void
+    {
+        $query->alloyWheel()
+            ->orWhere(function (Builder $q) {
+                $q->steelWheel();
+            });
+    }
+
+    #[Scope]
     protected function tyre(Builder $query): void
     {
         $query->where('item_type_name', 'gumiabroncs');

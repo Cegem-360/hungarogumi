@@ -13,6 +13,7 @@ use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
+use Throwable;
 
 final class Checkout extends Component
 {
@@ -72,7 +73,7 @@ final class Checkout extends Component
             'billingAddress' => ['required', 'string', 'max:255'],
             'billingZip' => ['required', 'string', 'min:4', 'max:6'],
             'billingCity' => ['required', 'string', 'max:100'],
-            'customerType' => ['required', 'string', 'in:individual,company'],
+            'customerType' => ['required', 'string', 'in:private,company'],
             'termsAccepted' => ['accepted'],
             'privacyAccepted' => ['accepted'],
             'shippingMethod' => ['required', 'exists:shipping_methods,id'],
@@ -92,7 +93,6 @@ final class Checkout extends Component
         $cart = $cartService->getCart();
 
         $orderData = [
-            'customer_type' => $this->customerType,
             'payment_method' => $this->paymentMethod,
             'payment_method_title' => 'Bank Transfer', // Example, can be dynamic
             'set_paid' => false, // Assuming payment is not done at checkout
@@ -115,11 +115,15 @@ final class Checkout extends Component
             'shipping_state' => null, // Adjust if you have state fields
             'shipping_postcode' => $this->shippingSameAsBilling ? $this->billingZip : $this->shippingZip,
             'shipping_country' => null, // Adjust if you have country fields
-            'shipping_method_id' => ShippingMethod::where('name', $this->shippingMethod)->get()->id,
+            'shipping_method_id' => ShippingMethod::find($this->shippingMethod)->id,
         ];
 
         // Example: Save order to database (assuming Order model exists)
-        $order = Order::create($orderData);
+        try {
+            $order = Order::create($orderData);
+        } catch (Throwable $th) {
+            throw $th;
+        }
 
         // Send emails after successful order creation
         try {
@@ -133,6 +137,7 @@ final class Checkout extends Component
         } catch (Exception $e) {
             // Log email sending error but don't fail the checkout
             Log::error('Failed to send order emails: '.$e->getMessage());
+            session()->flash('error', $e->getMessage());
         }
 
         // Optionally, clear the cart

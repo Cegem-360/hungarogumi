@@ -15,47 +15,44 @@ final class WheelList extends Component
 {
     use WithPagination;
 
-    public $manufacturer; // Manufacturer:id
+    // Felni specifikus szűrők
+    public $width; // Átmérő (hüvelyk) - többválasztós
 
-    public $width; // mm
+    public $pcd = ''; // Osztókor (PCD)
 
-    public $aspect_ratio; // %
+    public $bolt_count = ''; // Csavarlyukak száma
 
-    public $structure; // R / L
+    public $width_min = 6.5; // Szélesség minimum (hüvelyk)
 
-    public $diameter;
+    public $width_max = 9.0; // Szélesség maximum (hüvelyk)
 
-    public $li; // suly index
+    public $season = ''; // Időjárás (nyári/téli/négyévszakos)
 
-    public $si; // sebesség index
+    public $manufacturer = ''; // Márka
 
-    public $seasons = []; // Nyári / Téli / Négyévszakos (1,2,3),{summer(),winter(),allSeason()}
+    public $vehicle_type = ''; // Jármű típus
 
-    public $consumptions = []; // A / B / C / D / E / F / G
+    public $outlet = false; // Outlet termékek
 
-    public $grips; // A / B / C / D / E / F
+    public $wheel_type = []; // Típus (alufelni/lemezfelni)
 
-    public $noise_levels = []; // 1 / 2 / 3
+    public $stock_min = false; // min. 4 db azonnal
 
-    public $noise_value;
+    public $price_category = []; // Árkategória (budget/közepes/prémium)
 
-    public $rim_structure; // 	Kúpos Csavarral / Talpas csavarral/ Használt
+    public $price_min; // Árszűrő minimum
 
-    public $rim_dedicated; // Homológizáció
+    public $price_max; // Árszűrő maximum
 
-    public $reinforced; // igen / nem
+    public $wheel_model = ''; // Modell
 
-    public $pattern_name; // Mintázat
+    public $color = ''; // Szín
 
-    public $runflat; // igen / nem
+    public $dedication = ''; // Dedikáltság
 
-    public $tire_spec_data; // Gumiabroncs specifikációs adatok
+    public $et_min = 0.0; // ET minimum
 
-    public $tire_car_data; // Gumiabroncs autó adatok
-
-    public $price_min;
-
-    public $price_max;
+    public $et_max = 111.0; // ET maximum
 
     public function render(): View|Factory
     {
@@ -69,44 +66,59 @@ final class WheelList extends Component
         $query = Product::query();
 
         $query->when($this->manufacturer, function ($query): void {
-            $query->where('manufacturer_id', $this->manufacturer);
+            $query->whereHas('manufacturer', function ($q) {
+                $q->where('name', $this->manufacturer);
+            });
         })->when($this->price_min, function ($query): void {
             $query->where('net_retail_price', '>=', $this->price_min);
         })->when($this->price_max, function ($query): void {
             $query->where('net_retail_price', '<=', $this->price_max);
         })->when($this->width, function ($query): void {
             $query->where('width', $this->width);
-        })->when($this->aspect_ratio, function ($query): void {
-            $query->where('aspect_ratio', $this->aspect_ratio);
-        })->when($this->structure, function ($query): void {
-            $query->where('structure', $this->structure);
-        })->when($this->diameter, function ($query): void {
-            $query->where('diameter', $this->diameter);
-        })->when($this->li, function ($query): void {
-            $query->where('li', $this->li);
-        })->when($this->si, function ($query): void {
-            $query->where('si', $this->si);
-        })->when($this->seasons, function ($query): void {
-            $query->whereIn('season', $this->seasons);
-        })->when($this->consumptions, function ($query): void {
-            $query->whereIn('consumption', $this->consumptions);
-        })->when($this->grips, function ($query): void {
-            $query->whereIn('grip', $this->grips);
-        })->when($this->noise_levels, function ($query): void {
-            $query->whereIn('noise_level', $this->noise_levels);
-        })->when($this->noise_value, function ($query): void {
-            $query->where('noise_value', $this->noise_value);
-        })->when($this->rim_structure, function ($query): void {
-            $query->where('rim_structure', $this->rim_structure);
-        })->when($this->rim_dedicated, function ($query): void {
-            $query->where('rim_dedicated', $this->rim_dedicated);
-        })->when($this->reinforced, function ($query): void {
-            $query->reinforced();
-        })->when($this->pattern_name, function ($query): void {
-            $query->where('pattern_name', 'like', '%'.$this->pattern_name.'%');
-        })->when($this->runflat, function ($query): void {
-            $query->punctureResistant();
-        })->tyre();
+        })->when($this->pcd, function ($query): void {
+            $query->where('pcd', $this->pcd);
+        })->when($this->bolt_count, function ($query): void {
+            $query->where('bolt_count', $this->bolt_count);
+        })->when($this->width_min, function ($query): void {
+            $query->where('width', '>=', $this->width_min);
+        })->when($this->width_max, function ($query): void {
+            $query->where('width', '<=', $this->width_max);
+        })->when($this->season, function ($query): void {
+            $query->where('season', $this->season);
+        })->when($this->vehicle_type, function ($query): void {
+            $query->where('vehicle_type', $this->vehicle_type);
+        })->when($this->wheel_type, function ($query): void {
+            $query->whereIn('item_type_name', $this->wheel_type);
+        })->when($this->stock_min, function ($query): void {
+            $query->whereHas('stocks', function ($q) {
+                $q->where('quantity', '>=', 4);
+            });
+        })->when($this->price_category, function ($query): void {
+            // Itt kellene definiálni az árkategória logikát a tényleges árak alapján
+            if (in_array('budget', $this->price_category)) {
+                $query->orWhere('net_retail_price', '<', 50000);
+            }
+            if (in_array('közepes', $this->price_category)) {
+                $query->orWhere(function ($q) {
+                    $q->whereBetween('net_retail_price', [50000, 150000]);
+                });
+            }
+            if (in_array('prémium', $this->price_category)) {
+                $query->orWhere('net_retail_price', '>', 150000);
+            }
+        })->when($this->wheel_model, function ($query): void {
+            $query->where('item_name', 'like', '%'.$this->wheel_model.'%');
+        })->when($this->color, function ($query): void {
+            $query->where('color', $this->color);
+        })->when($this->dedication, function ($query): void {
+            $query->where('dedication', $this->dedication);
+        })->when($this->et_min, function ($query): void {
+            $query->where('et', '>=', $this->et_min);
+        })->when($this->et_max, function ($query): void {
+            $query->where('et', '<=', $this->et_max);
+        })->when($this->outlet, function ($query): void {
+            $query->where('outlet', true);
+        })->wheel();
 
         return $query->paginate(24);
     }
