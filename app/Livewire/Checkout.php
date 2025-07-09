@@ -145,7 +145,7 @@ final class Checkout extends Component
             Mail::to($this->billingEmail)->send(new OrderConfirmationCustomer($order));
 
             // Send notification email to admin
-            $adminEmail = config('mail.admin_email', 'admin@hungarogumi.hu');
+            $adminEmail = config('mail.admin_email', 'admin@hungarogumi.cegem360.hu');
             Mail::to($adminEmail)->send(new OrderNotificationAdmin($order));
 
         } catch (Exception $e) {
