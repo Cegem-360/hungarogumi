@@ -33,7 +33,7 @@ final class TyreList extends Component
 
     public $consumptions = []; // A / B / C / D / E / F / G
 
-    public $grip; // A / B / C / D / E / F
+    public $grips; // A / B / C / D / E / F
 
     public $noise_levels = []; // 1 / 2 / 3
 
@@ -90,8 +90,8 @@ final class TyreList extends Component
             $query->whereIn('season', $this->seasons);
         })->when($this->consumptions, function ($query) {
             $query->whereIn('consumption', $this->consumptions);
-        })->when($this->grip, function ($query) {
-            $query->where('grip', $this->grip);
+        })->when($this->grips, function ($query) {
+            $query->wherIn('grip', $this->grips);
         })->when($this->noise_levels, function ($query) {
             $query->whereIn('noise_level', $this->noise_levels);
         })->when($this->noise_value, function ($query) {

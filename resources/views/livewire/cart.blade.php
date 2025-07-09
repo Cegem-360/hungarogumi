@@ -10,7 +10,7 @@
                                 <tr class="border-b last:border-b-0">
                                     <td class="py-4 px-4 w-32 align-middle">
                                         @if ($item->product->main_image)
-                                            <img src="{{ asset('storage/' . $item->product->main_image) }}"
+                                            <img src="{{ $item->product->main_image ?? 'https://placehold.co/200' }}"
                                                 alt="{{ $item->product->item_name }}"
                                                 class="w-20 h-20 object-contain rounded">
                                         @else
