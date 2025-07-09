@@ -4,7 +4,7 @@
             <span>Nyitvatartás: H-P 8:00-17:00, Sz 8:00-13:00</span>
         </div>
         <div class="flex space-x-4">
-            <span>Segítség</span>
+            {{--  <span>Segítség</span> --}}
             {{-- <span>Bejelentkezés</span> --}}
         </div>
     </div>

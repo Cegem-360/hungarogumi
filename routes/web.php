@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use Illuminate\Http\Request;
 use App\Http\Middleware\EnsureCartExists;
 use App\Http\Middleware\EnsureCartNotEmpty;
 use App\Models\Product;
 use App\Services\CartService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'index')->name('home');
@@ -27,7 +27,7 @@ Route::prefix('termekek')->as('products.')->group(
 );
 
 Route::view('/rolunk', 'pages.rolunk')->name('rolunk');
-Route::view('/szolgaltatasaink', 'pages.szolgaltatasaink')->name('szolháltatásaink');
+Route::view('/szolgaltatasaink', 'pages.szolgaltatasaink')->name('szolgáltatásaink');
 Route::view('/hirek', 'pages.hirek')->name('hírek');
 Route::view('/valtomeret-kalkulator', 'pages.valtomeret-kalkulator')->name('valtomeret-kalkulator');
 Route::view('/et-kalkulator', 'pages.et-kalkulator')->name('et-kalkulator');
