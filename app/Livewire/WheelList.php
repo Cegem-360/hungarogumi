@@ -91,7 +91,7 @@ final class WheelList extends Component
         })->when($this->consumptions, function ($query): void {
             $query->whereIn('consumption', $this->consumptions);
         })->when($this->grips, function ($query): void {
-            $query->wherIn('grip', $this->grips);
+            $query->whereIn('grip', $this->grips);
         })->when($this->noise_levels, function ($query): void {
             $query->whereIn('noise_level', $this->noise_levels);
         })->when($this->noise_value, function ($query): void {

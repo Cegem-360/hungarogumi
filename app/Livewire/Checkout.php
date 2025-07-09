@@ -38,10 +38,6 @@ final class Checkout extends Component
 
     public string $shippingName = '';
 
-    public string $shippingEmail = '';
-
-    public string $shippingPhone = '';
-
     public string $shippingAddress = '';
 
     public string $shippingZip = '';
@@ -49,10 +45,6 @@ final class Checkout extends Component
     public string $shippingCity = '';
 
     public string $shippingFloor = '';
-
-    public string $shippingCompany = '';
-
-    public string $shippingTaxNumber = '';
 
     public string $shippingComment = '';
 
@@ -90,8 +82,6 @@ final class Checkout extends Component
         if (! $this->shippingSameAsBilling) {
             $this->validate([
                 'shippingName' => ['required', 'string', 'max:255'],
-                'shippingEmail' => ['required', 'email', 'max:255'],
-                'shippingPhone' => ['required', 'string', 'max:30'],
                 'shippingAddress' => ['required', 'string', 'max:255'],
                 'shippingZip' => ['required', 'string', 'max:20'],
                 'shippingCity' => ['required', 'string', 'max:100'],

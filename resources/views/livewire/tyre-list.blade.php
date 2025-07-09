@@ -309,43 +309,43 @@
                             <div class="space-y-2">
                                 <label
                                     class="rating-item rating-a flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="consumption" value="A"
+                                    <input type="checkbox" wire:model.live="consumptions" value="A"
                                         class="w-4 h-4 text-green-500 rounded focus:ring-brand-blue focus:ring-2 mr-3">
                                     <span class="font-medium">A</span>
                                 </label>
                                 <label
                                     class="rating-item rating-b flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="consumption" value="B"
+                                    <input type="checkbox" wire:model.live="consumptions" value="B"
                                         class="w-4 h-4 text-lime-500 rounded focus:ring-brand-blue focus:ring-2 mr-3">
                                     <span class="font-medium">B</span>
                                 </label>
                                 <label
                                     class="rating-item rating-c flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="consumption" value="C"
+                                    <input type="checkbox" wire:model.live="consumptions" value="C"
                                         class="w-4 h-4 text-yellow-500 rounded focus:ring-brand-blue focus:ring-2 mr-3">
                                     <span class="font-medium">C</span>
                                 </label>
                                 <label
                                     class="rating-item rating-d flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="consumption" value="D"
+                                    <input type="checkbox" wire:model.live="consumptions" value="D"
                                         class="w-4 h-4 text-amber-500 rounded focus:ring-brand-blue focus:ring-2 mr-3">
                                     <span class="font-medium">D</span>
                                 </label>
                                 <label
                                     class="rating-item rating-e flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="consumption" value="E"
+                                    <input type="checkbox" wire:model.live="consumptions" value="E"
                                         class="w-4 h-4 text-orange-500 rounded focus:ring-brand-blue focus:ring-2 mr-3">
                                     <span class="font-medium">E</span>
                                 </label>
                                 <label
                                     class="rating-item rating-f flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="consumption" value="F"
+                                    <input type="checkbox" wire:model.live="consumptions" value="F"
                                         class="w-4 h-4 text-red-500 rounded focus:ring-brand-blue focus:ring-2 mr-3">
                                     <span class="font-medium">F</span>
                                 </label>
                                 <label
                                     class="rating-item rating-g flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="consumption" value="G"
+                                    <input type="checkbox" wire:model.live="consumptions" value="G"
                                         class="w-4 h-4 text-red-600 rounded focus:ring-brand-blue focus:ring-2 mr-3 cursor-not-allowed">
                                     <span class="font-medium">G</span>
                                 </label>

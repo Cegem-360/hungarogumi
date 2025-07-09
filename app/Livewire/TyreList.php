@@ -29,13 +29,13 @@ final class TyreList extends Component
 
     public $si; // sebesség index
 
-    public $seasons = []; // Nyári / Téli / Négyévszakos (1,2,3),{summer(),winter(),allSeason()}
+    public $seasons; // Nyári / Téli / Négyévszakos (1,2,3),{summer(),winter(),allSeason()}
 
     public $consumptions = []; // A / B / C / D / E / F / G
 
-    public $grips; // A / B / C / D / E / F
+    public $grips = []; // A / B / C / D / E / F
 
-    public $noise_levels = []; // 1 / 2 / 3
+    public $noise_levels; // 1 / 2 / 3
 
     public $noise_value;
 
@@ -57,6 +57,11 @@ final class TyreList extends Component
 
     public $price_max;
 
+    public function updated()
+    {
+        $this->buildQuery();
+    }
+
     public function render(): View|Factory
     {
         $products = $this->buildQuery();
@@ -75,7 +80,7 @@ final class TyreList extends Component
         })->when($this->price_max, function ($query): void {
             $query->where('net_retail_price', '<=', $this->price_max);
         })->when($this->width, function ($query): void {
-            $query->where('width', $this->width);
+            $query->where('width', (int) $this->width);
         })->when($this->aspect_ratio, function ($query): void {
             $query->where('aspect_ratio', $this->aspect_ratio);
         })->when($this->structure, function ($query): void {
@@ -91,7 +96,7 @@ final class TyreList extends Component
         })->when($this->consumptions, function ($query): void {
             $query->whereIn('consumption', $this->consumptions);
         })->when($this->grips, function ($query): void {
-            $query->wherIn('grip', $this->grips);
+            $query->whereIn('grip', $this->grips);
         })->when($this->noise_levels, function ($query): void {
             $query->whereIn('noise_level', $this->noise_levels);
         })->when($this->noise_value, function ($query): void {
@@ -107,6 +112,7 @@ final class TyreList extends Component
         })->when($this->runflat, function ($query): void {
             $query->punctureResistant();
         })->tyre();
+        dump($query->toRawSql());
 
         return $query->paginate(24);
     }
