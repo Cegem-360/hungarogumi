@@ -60,7 +60,7 @@
                                     <select id="diameter" name="diameter" wire:model.live="diameter"
                                         class="w-full bg-gray-100 border border-gray-300 rounded px-2 py-1 text-center">
                                         <option value="">--</option>
-                                        @foreach (Product::wheel()->distinct('diameter')->orderBy('diameter')->pluck('diameter') as $wheelDiameter)
+                                        @foreach (Product::wheel()->orderBy('diameter')->pluck('diameter')->unique() as $wheelDiameter)
                                             <option value="{{ $wheelDiameter }}">{{ $wheelDiameter }}</option>
                                         @endforeach
                                     </select>
@@ -110,11 +110,11 @@
                         </div>
 
                         <!-- Model -->
-                        <div class="mb-6">
+                        {{--  <div class="mb-6">
                             <h3 class="font-semibold text-gray-900 mb-3">Modell</h3>
                             <input type="text" wire:model.live="wheel_model" placeholder="Keresés modell szerint..."
                                 class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-sm">
-                        </div>
+                        </div> --}}
 
                         <!-- Outlet -->
                         {{-- <div class="mb-6">

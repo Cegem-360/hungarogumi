@@ -16,7 +16,6 @@ final class WheelList extends Component
     use WithPagination;
 
     // Felni specifikus szűrők
-    public $width; // Átmérő (hüvelyk) - többválasztós
 
     public $pcd = ''; // Osztókor (PCD)
 
@@ -28,11 +27,7 @@ final class WheelList extends Component
 
     public $width_max; // Szélesség maximum (hüvelyk)
 
-    public $season = ''; // Időjárás (nyári/téli/négyévszakos)
-
     public $manufacturer = ''; // Márka
-
-    public $vehicle_type = ''; // Jármű típus
 
     public $outlet = false; // Outlet termékek
 
@@ -48,13 +43,20 @@ final class WheelList extends Component
 
     public $wheel_model = ''; // Modell
 
-    public $color = ''; // Szín
-
     public $rim_color = ''; // Dedikáltság
 
     public $et_min = 0.0; // ET minimum
 
     public $et_max = 111.0; // ET maximum
+
+    public function mount()
+    {
+        $this->bolt_count = request()->input('bolt_count');
+        $this->pcd = request()->input('pcd');
+        $this->diameter = request()->input('diameter');
+        // Példa: ha van for_winter paraméter, azt is beállíthatod, ha szükséges
+        // $this->for_winter = request()->boolean('for_winter');
+    }
 
     public function render(): View|Factory
     {
@@ -79,8 +81,6 @@ final class WheelList extends Component
                 $query->where('net_retail_price', '>=', $this->price_min);
             })->when($this->price_max, function ($query): void {
                 $query->where('net_retail_price', '<=', $this->price_max);
-            })->when($this->width, function ($query): void {
-                $query->where('width', $this->width);
             })->when($this->pcd, function ($query): void {
                 $query->where('pcd', $this->pcd);
             })->when($this->bolt_count, function ($query): void {
@@ -89,10 +89,6 @@ final class WheelList extends Component
                 $query->where('width', '>=', $this->width_min);
             })->when($this->width_max, function ($query): void {
                 $query->where('width', '<=', $this->width_max);
-            })->when($this->season, function ($query): void {
-                $query->where('season', $this->season);
-            })->when($this->vehicle_type, function ($query): void {
-                $query->where('vehicle_type', $this->vehicle_type);
             })->when($this->wheel_type, function ($query): void {
                 $query->whereIn('item_type_name', $this->wheel_type);
             })->when($this->stock_min, function ($query): void {
@@ -112,8 +108,6 @@ final class WheelList extends Component
                 }
             })->when($this->wheel_model, function ($query): void {
                 $query->where('item_name', 'like', '%'.$this->wheel_model.'%');
-            })->when($this->color, function ($query): void {
-                $query->where('color', $this->color);
             })->when($this->rim_color, function ($query): void {
                 $query->where('rim_color', $this->rim_color);
             })->when($this->et_min, function ($query): void {

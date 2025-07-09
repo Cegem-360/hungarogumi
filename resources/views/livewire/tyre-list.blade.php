@@ -39,7 +39,9 @@
                                         class="w-full bg-gray-100 border border-gray-300 rounded px-2 py-1 text-center">
                                         <option value="">--</option>
                                         @foreach (Product::tyre()->distinct('width')->orderBy('width')->pluck('width') as $productTyreWidth)
-                                            <option value="{{ $productTyreWidth }}">{{ $productTyreWidth }}</option>
+                                            <option value="{{ $productTyreWidth }}"
+                                                {{ old('width', request('width')) == $productTyreWidth ? 'selected' : '' }}>
+                                                {{ $productTyreWidth }}</option>
                                         @endforeach
 
                                     </select>
@@ -54,8 +56,9 @@
                                         <option value="">--</option>
                                         @if (!empty($this->width))
                                             @foreach (Product::tyre()->where('width', $this->width)->distinct('aspect_ratio')->orderBy('aspect_ratio')->pluck('aspect_ratio') as $productAspectRatio)
-                                                <option value="{{ $productAspectRatio }}">{{ $productAspectRatio }}
-                                                </option>
+                                                <option value="{{ $productAspectRatio }}"
+                                                    {{ old('aspect_ratio', request('aspect_ratio')) == $productAspectRatio ? 'selected' : '' }}>
+                                                    {{ $productAspectRatio }}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -69,7 +72,8 @@
                                         <option value="">--</option>
                                         @if (!empty($this->aspect_ratio))
                                             @foreach (Product::tyre()->where('width', $this->width)->where('aspect_ratio', $this->aspect_ratio)->distinct('diameter')->orderBy('diameter')->get(['diameter', 'structure']) ?? [] as $productDiameter)
-                                                <option value="{{ $productDiameter->diameter }}">
+                                                <option value="{{ $productDiameter->diameter }}"
+                                                    {{ old('diameter', request('diameter')) == $productDiameter->diameter ? 'selected' : '' }}>
                                                     {{ $productDiameter->diameter }} <span
                                                         class="text-xs text-gray-500">({{ $productDiameter->structure }})</span>
                                                 </option>

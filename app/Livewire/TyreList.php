@@ -30,7 +30,7 @@ final class TyreList extends Component
 
     public $si; // sebesség index
 
-    public $seasons; // Nyári / Téli / Négyévszakos (1,2,3),{summer(),winter(),allSeason()}
+    public $seasons = []; // Nyári / Téli / Négyévszakos (1,2,3),{summer(),winter(),allSeason()}
 
     public $consumptions = []; // A / B / C / D / E / F / G
 
@@ -62,6 +62,15 @@ final class TyreList extends Component
     public function products()
     {
         return $this->buildQuery();
+    }
+
+    public function mount(): void
+    {
+        $tmpSeasons[] = request('season', '');
+        $this->seasons = $tmpSeasons;
+        $this->width = request('width', '');
+        $this->aspect_ratio = request('aspect_ratio', '');
+        $this->diameter = request('diameter', '');
     }
 
     public function render(): View|Factory
