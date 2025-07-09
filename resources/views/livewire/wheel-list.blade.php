@@ -189,7 +189,7 @@
                         </div>
 
                         <!-- Dedication -->
-                        <div class="mb-6">
+                        {{-- <div class="mb-6">
                             <h3 class="font-semibold text-gray-900 mb-3">Szín</h3>
                             <select wire:model.live="dedication"
                                 class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-sm">
@@ -198,7 +198,7 @@
                                     <option value="{{ $rim_color }}">{{ $rim_color }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <!-- Contact -->
