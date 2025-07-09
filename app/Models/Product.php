@@ -134,7 +134,7 @@ final class Product extends Model
 
     public function getPriceWithCurrency(): string
     {
-        return Number::currency(($this->net_retail_price ?? 0), 'HUF', 'hu', 0);
+        return Number::currency(((int) $this->net_retail_price ?? 0), 'HUF', 'hu', 0);
     }
 
     public function isTire(): bool
