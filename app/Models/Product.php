@@ -129,7 +129,7 @@ final class Product extends Model
 
     public function getPrice(): int|float
     {
-        return $this->net_retail_price ?? 0;
+        return (int) $this->net_retail_price ?? 0;
     }
 
     public function getPriceWithCurrency(): string
