@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EnsureCartExists;
 use App\Http\Middleware\EnsureCartNotEmpty;
 use App\Models\Product;
@@ -35,6 +37,22 @@ Route::view('/et-kalkulator', 'pages.et-kalkulator')->name('et-kalkulator');
 Route::view('/szallitasi-informaciok', 'pages.szallitasi-informaciok')->name('szallitasi-informaciok');
 Route::view('/adatvedelmi-tajekoztato', 'pages.adatvedelmi-tajekoztato')->name('adatvedelmi-tajekoztato');
 Route::view('/kapcsolat', 'pages.kapcsolat')->name('kapcsolat');
+
+// Auth routes
+Route::middleware('guest')->group(function () {
+    Route::get('/belepes', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/belepes', [AuthController::class, 'login']);
+    Route::get('/regisztracio', [AuthController::class, 'showRegister'])->name('register');
+    Route::post('/regisztracio', [AuthController::class, 'register']);
+});
+
+Route::post('/kilepes', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+// Profile routes
+Route::middleware('auth')->prefix('profil')->as('profile.')->group(function () {
+    Route::get('/rendelesek', [ProfileController::class, 'orders'])->name('orders');
+    Route::get('/adatok', [ProfileController::class, 'profile'])->name('profile');
+});
 
 Route::middleware([EnsureCartExists::class])->group(function (): void {
     // Add routes here that require the ensureCartExist middleware

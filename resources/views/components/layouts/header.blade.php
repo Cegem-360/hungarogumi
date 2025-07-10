@@ -15,10 +15,46 @@
 
             <!-- User Menu -->
             <div class="flex items-center space-x-4 text-sm">
-                <div class="hidden md:flex items-center space-x-1">
-                    <i class="fas fa-user text-gray-600"></i>
-                    <span>Belépés / Regisztráció</span>
-                </div>
+                @auth
+                    <div class="relative group">
+                        <div class="flex items-center space-x-1 cursor-pointer">
+                            <i class="fas fa-user text-gray-600"></i>
+                            <span class="hidden md:inline">{{ Auth::user()->name }}</span>
+                            <i class="fas fa-chevron-down text-gray-600 ml-1"></i>
+                        </div>
+
+                        <!-- Dropdown Menu -->
+                        <div
+                            class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <a href="{{ route('profile.orders') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" wire:navigate>
+                                <i class="fas fa-shopping-bag mr-2"></i>
+                                Rendeléseim
+                            </a>
+                            <a href="{{ route('profile.profile') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" wire:navigate>
+                                <i class="fas fa-user mr-2"></i>
+                                Adataim
+                            </a>
+                            <hr class="my-1">
+                            <form method="POST" action="{{ route('logout') }}" class="inline">
+                                @csrf
+                                <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    <i class="fas fa-sign-out-alt mr-2"></i>
+                                    Kijelentkezés
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}" wire:navigate>
+                        <div class="hidden md:flex items-center space-x-1 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-user text-gray-600"></i>
+                            <span>Belépés / Regisztráció</span>
+                        </div>
+                    </a>
+                @endauth
                 {{-- <div class="flex items-center space-x-1">
                     <i class="fas fa-heart text-gray-600"></i>
                     <span class="hidden md:inline">Kedvencek</span>

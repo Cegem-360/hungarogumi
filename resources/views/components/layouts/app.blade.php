@@ -34,6 +34,9 @@
 
         {{ $slot }}
 
+        <!-- Notifications -->
+        <x-notifications />
+
         <!-- Notifikációs container -->
         <x-notification-container />
 

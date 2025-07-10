@@ -93,7 +93,7 @@ function setupLivewireListeners() {
             notifications.show(type, title, message, duration);
         });
         
-        console.log('Livewire notify listener registered');
+      
     }
 }
 
