@@ -11,6 +11,7 @@ use App\Models\OrderItem;
 use App\Models\ShippingMethod;
 use App\Services\CartService;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -91,7 +92,9 @@ final class Checkout extends Component
 
         $cartService = app(CartService::class);
         $cart = $cartService->getCart();
-
+        if (Auth::check()) {
+            $orderData['user_id'] = Auth::id();
+        }
         $orderData = [
             'payment_method' => $this->paymentMethod,
             'payment_method_title' => 'Bank Transfer', // Example, can be dynamic
