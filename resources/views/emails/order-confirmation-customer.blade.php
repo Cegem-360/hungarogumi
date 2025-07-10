@@ -140,7 +140,7 @@
         <div class="footer">
             <p>Köszönjük, hogy a Somigumi-t választotta!</p>
             <p><strong>Somigumi Kft.</strong><br>
-                E-mail: info@somigumiwebaruhaz.hu<br>
+                E-mail: info@somiautomotive.hu<br>
                 Telefon: +36 30 700 9668</p>
         </div>
     </body>

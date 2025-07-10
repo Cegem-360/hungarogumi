@@ -15,17 +15,17 @@
                     <li>
                         <a wire:navigate href="{{ route('kapcsolat') }}" class="hover:text-white">Elérhetőségek</a>
                     </li>
-                    <li>
+                    {{--  <li>
                         <a wire:navigate href="#" class="hover:text-white">Vásárlói panaszkezelés</a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a wire:navigate href="{{ route('adatvedelmi-tajekoztato') }}" class="hover:text-white">
                             Adatkezelési tájékoztató
                         </a>
                     </li>
-                    <li>
+                    {{--  <li>
                         <a href="#" class="hover:text-white">Jótállás és garancia</a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a wire:navigate href="{{ route('szallitasi-informaciok') }}" class="hover:text-white">
                             Szállítási információk
@@ -34,39 +34,66 @@
                     <li>
                         <a href="#" class="hover:text-white">ÁSZF</a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="#" class="hover:text-white">Fizetési módok</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Services -->
-            <div>
-                <h3 class="text-lg font-bold mb-4">TANÁCSOK ÉS ÚTMUTATÓK</h3>
-                <ul class="space-y-2 text-sm text-gray-300">
-                    <li><a href="#" class="hover:text-white">Hogyan válassz gumiabroncsot?</a></li>
-                    <li><a href="#" class="hover:text-white">Abroncs jelölések magyarázata</a></li>
-                    <li><a href="#" class="hover:text-white">Felni kereső</a></li>
-                    <li><a href="#" class="hover:text-white">Futásteljesítmény kalkulátor</a></li>
-                    <li><a href="#" class="hover:text-white">Gumiméret kiszámítása</a></li>
-                    <li><a href="#" class="hover:text-white">Sebességindex</a></li>
-                    <li><a href="#" class="hover:text-white">Terhelési index</a></li>
-                    <li><a href="#" class="hover:text-white">Energiahatékonysági címke</a></li>
+                    </li> --}}
                 </ul>
             </div>
 
             <!-- Categories -->
             <div>
-                <h3 class="text-lg font-bold mb-4">TERMÉKEINK</h3>
+                <h3 class="text-lg font-bold mb-4">OLDALAINK</h3>
                 <ul class="space-y-2 text-sm text-gray-300">
-                    <li><a href="#" class="hover:text-white">Személyautó gumik</a></li>
-                    <li><a href="#" class="hover:text-white">Kisteher gumik</a></li>
-                    <li><a href="#" class="hover:text-white">Teherautó abroncsok</a></li>
-                    <li><a href="#" class="hover:text-white">Motor gumik</a></li>
-                    <li><a href="#" class="hover:text-white">Alufelnik</a></li>
-                    <li><a href="#" class="hover:text-white">Acélfelnik</a></li>
-                    <li><a href="#" class="hover:text-white">Autó akkumulátorok</a></li>
-                    <li><a href="#" class="hover:text-white">Motorolajok és kenőanyagok</a></li>
+                    <li>
+                        <a wire:navigate href="{{ route('tyres') }}" class="hover:text-white">
+                            Gumik
+                        </a>
+                    </li>
+                    <li>
+                        <a wire:navigate href="{{ route('wheels') }}" class="hover:text-white">
+                            Felnik
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('accessories') }}" class="hover:text-white">Kiegészítők</a>
+                    </li>
+                    {{--  <li>
+                    <a href="#" class="hover:text-white">motorolaj</a>
+                </li> --}}
+
+                    <li>
+                        <a wire:navigate href="{{ route('rolunk') }}" class="hover:text-white">
+                            Rólunk
+                        </a>
+                    </li>
+                    <li>
+                        <a wire:navigate href="{{ route('services') }}" class="hover:text-white">
+                            Szolgáltatásaink
+                        </a>
+                    </li>
+                    <li>
+                        <a wire:navigate href="{{ route('news') }}" class="hover:text-white">
+                            Hírek
+                        </a>
+                    </li>
+                    <li>
+                        <a wire:navigate href="{{ route('et-kalkulator') }}" class="hover:text-white">
+                            Et-kalkulátor
+                        </a>
+                    </li>
+                    <li>
+                        <a wire:navigate href="{{ route('valtomeret-kalkulator') }}" class="hover:text-white">
+                            Váltóméret kalkulátor
+                        </a>
+                    </li>
+
+                    {{-- <li>
+                    <a wire:navigate href="{{ route('news') }}"
+                        class="hover:text-white">blog</a>
+                </li> --}}
+                    <li>
+                        <a wire:navigate href="{{ route('kapcsolat') }}" class="hover:text-white">Kapcsolat</a>
+                    </li>
                 </ul>
             </div>
 
@@ -80,7 +107,7 @@
                     </div>
                     <div>
                         <strong>Email:</strong><br>
-                        <a href="mailto:info@somigumiwebaruhaz.hu" class="hover:text-white">info@somigumiwebaruhaz.hu
+                        <a href="mailto:info@somiautomotive.hu" class="hover:text-white">info@somiautomotive.hu
                         </a>
                     </div>
                     <div>

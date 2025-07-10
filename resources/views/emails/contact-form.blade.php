@@ -123,8 +123,8 @@
                     Budapest, Nagysándor József u. 65, 1204<br>
                     <a href="tel:06307009668" style="color:#2563eb;text-decoration:none;">06 30 700 9668</a>
                     &nbsp;|&nbsp;
-                    <a href="mailto:info@somigumiwebaruhaz.hu"
-                        style="color:#2563eb;text-decoration:none;">info@somigumiwebaruhaz.hu</a><br>
+                    <a href="mailto:info@somiautomotive.hu"
+                        style="color:#2563eb;text-decoration:none;">info@somiautomotive.hu</a><br>
                     <span style="font-size:0.97em;">Nyitvatartás: H-P 9:00–17:00, Sz-V: Zárva</span>
                 </div>
                 <div style="margin-bottom:8px;">

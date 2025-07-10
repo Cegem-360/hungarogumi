@@ -204,23 +204,22 @@
 
                         <div class="grid md:grid-cols-2 gap-6">
                             <div class="bg-gray-200 p-4 rounded-lg">
-                                <h4 class="font-semibold text-brand-anthracite mb-3">Szentmihályi úti telephely</h4>
-                                <p class="text-gray-700 mb-2">H-1154 Budapest, Szentmihályi u. 100.</p>
+                                <h4 class="font-semibold text-brand-anthracite mb-3">XX. Kerületi telephely
+                                </h4>
+                                <p class="text-gray-700 mb-2">Cím: Budapest, Nagysándor József u. 65, 1204</p>
                                 <div class="text-sm text-gray-600">
-                                    <p><strong>Hétfőtől-péntekig:</strong> 8:00 - 18:00</p>
-                                    <p><strong>Szombat:</strong> 8:00 - 13:00</p>
-                                    <p><strong>Vasárnap:</strong> ZÁRVA</p>
+                                    <ul class="text-gray-700 space-y-1">
+                                        <li>hétfő 9:00–17:00</li>
+                                        <li>kedd 9:00–17:00</li>
+                                        <li>szerda 9:00–17:00</li>
+                                        <li>csütörtök 9:00–17:00</li>
+                                        <li>péntek 9:00–17:00</li>
+                                        <li>szombat Zárva</li>
+                                        <li>vasárnap Zárva</li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="bg-gray-200 p-4 rounded-lg">
-                                <h4 class="font-semibold text-brand-anthracite mb-3">Késmárk utcai telephely</h4>
-                                <p class="text-gray-700 mb-2">H-1158 Budapest, Késmárk u. 9. II. kapu</p>
-                                <div class="text-sm text-gray-600">
-                                    <p><strong>Hétfőtől-péntekig:</strong> 8:00 - 18:00</p>
-                                    <p><strong>Szombat:</strong> 8:00 - 13:00</p>
-                                    <p><strong>Vasárnap:</strong> ZÁRVA</p>
-                                </div>
-                            </div>
+
                         </div>
 
                         <div class="bg-gray-200 border-l-4 border-brand-blue p-4 rounded">
@@ -310,8 +309,8 @@
                             <div class="bg-gray-200 p-4 rounded-lg">
                                 <h4 class="font-semibold text-brand-blue mb-2">Házhozszállított termékek</h4>
                                 <p class="text-gray-700 text-sm">
-                                    Postai úton is intézhető. A hibásnak vélt terméket minden esetben a Szentmihályi úti
-                                    telephelyünkre lehet visszaküldeni (H-1154 Budapest, Szentmihályi u. 100.)
+                                    Postai úton is intézhető. A hibásnak vélt terméket minden esetben a XX. Kerületi
+                                    telephelyünkre lehet visszaküldeni ( Budapest, Nagysándor József u. 65, 1204)
                                 </p>
                             </div>
                             <div class="bg-gray-200 p-4 rounded-lg">
@@ -326,7 +325,7 @@
                             <p class="text-brand-anthracite">
                                 <strong>Visszaküldéshez szükséges:</strong> számla és pontos hibaleírás. Előzetes
                                 írásbeli
-                                jelzést a info@somigumiwebaruhaz.hu e-mail címre kérjük küldeni. A bevizsgált, hibátlan
+                                jelzést a info@somiautomotive.hu e-mail címre kérjük küldeni. A bevizsgált, hibátlan
                                 termékek
                                 visszajuttatásának költsége a vásárlót terheli.
                             </p>
@@ -340,7 +339,7 @@
                         <h2 class="text-2xl font-bold mb-4">További kérdései vannak?</h2>
                         <p class="mb-6">Munkatársaink készséggel állnak rendelkezésére!</p>
                         <div class="flex flex-col md:flex-row justify-center items-center gap-4">
-                            <a href="tel:+36141522075"
+                            <a href="tel:+36307009668"
                                 class="flex items-center bg-white text-brand-blue px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -349,14 +348,14 @@
                                 </svg>
                                 +36 30 700 9668
                             </a>
-                            <a href="mailto:info@somigumiwebaruhaz.hu"
+                            <a href="mailto:info@somiautomotive.hu"
                                 class="flex items-center bg-white text-brand-blue px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
                                     </path>
                                 </svg>
-                                info@somigumiwebaruhaz.hu
+                                info@somiautomotive.hu
                             </a>
                         </div>
                     </div>

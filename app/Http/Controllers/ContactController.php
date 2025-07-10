@@ -46,7 +46,7 @@ final class ContactController extends Controller
                 'subject' => $request->input('subject'),
             ]);
 
-            Mail::to(config('mail.contact.admin_email', 'info@somigumiwebaruhaz.hu'))
+            Mail::to(config('mail.contact.admin_email', 'info@somiautomotive.hu'))
                 ->send(new ContactFormSubmission($request->all()));
 
             Log::info('Contact form email sent successfully');

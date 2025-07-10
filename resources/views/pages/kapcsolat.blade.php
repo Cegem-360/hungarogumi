@@ -70,8 +70,8 @@
                                 </svg>
                                 <div>
                                     <p class="font-semibold text-gray-900">Email:</p>
-                                    <a href="mailto:info@somigumiwebaruhaz.hu"
-                                        class="text-brand-blue hover:text-brand-blue-dark">info@somigumiwebaruhaz.hu</a>
+                                    <a href="mailto:info@somiautomotive.hu"
+                                        class="text-brand-blue hover:text-brand-blue-dark">info@somiautomotive.hu</a>
                                 </div>
                             </div>
 
