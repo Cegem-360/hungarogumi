@@ -53,6 +53,19 @@
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         </div>
 
+                        <div class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
+                            <div class="flex">
+                                <i class="fas fa-info-circle text-blue-500 mt-0.5 mr-3"></i>
+                                <div>
+                                    <h4 class="text-sm font-medium text-blue-900">Email megerősítés szükséges</h4>
+                                    <p class="text-sm text-blue-700 mt-1">
+                                        Regisztráció után egy megerősítő emailt küldünk a megadott címre.
+                                        A fiók aktiválásához kattintson a benne található linkre.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
                         <button type="submit"
                             class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200">
                             Regisztráció

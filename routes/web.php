@@ -46,10 +46,24 @@ Route::middleware('guest')->group(function () {
     Route::post('/regisztracio', [AuthController::class, 'register']);
 });
 
+// Email verification routes
+Route::middleware('auth')->group(function () {
+    Route::get('/email/verify', [AuthController::class, 'verificationNotice'])
+        ->name('verification.notice');
+
+    Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verificationVerify'])
+        ->middleware(['signed', 'throttle:6,1'])
+        ->name('verification.verify');
+
+    Route::post('/email/verification-notification', [AuthController::class, 'verificationResend'])
+        ->middleware('throttle:6,1')
+        ->name('verification.send');
+});
+
 Route::post('/kilepes', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Profile routes
-Route::middleware('auth')->prefix('profil')->as('profile.')->group(function () {
+Route::middleware(['auth', 'verified'])->prefix('profil')->as('profile.')->group(function () {
     Route::get('/rendelesek', [ProfileController::class, 'orders'])->name('orders');
     Route::get('/adatok', [ProfileController::class, 'profile'])->name('profile');
 });

@@ -23,7 +23,9 @@ describe('Authentication', function () {
     });
 
     test('users can authenticate using the login screen', function () {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'email_verified_at' => now(),
+        ]);
 
         $response = $this->post('/belepes', [
             'email' => $user->email,
@@ -53,12 +55,12 @@ describe('Authentication', function () {
             'password_confirmation' => 'password123',
         ]);
 
-        $this->assertAuthenticated();
-        $response->assertRedirect(route('profile.orders'));
+        $response->assertRedirect(route('verification.notice'));
 
         $this->assertDatabaseHas('users', [
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'email_verified_at' => null,
         ]);
     });
 
@@ -103,5 +105,55 @@ describe('Authentication', function () {
         $response = $this->get('/regisztracio');
 
         $response->assertRedirect(route('home'));
+    });
+
+    test('unverified users are redirected to verification notice', function () {
+        $user = User::factory()->create([
+            'email_verified_at' => null,
+        ]);
+
+        $response = $this->post('/belepes', [
+            'email' => $user->email,
+            'password' => 'password',
+        ]);
+
+        $this->assertAuthenticated();
+        $response->assertRedirect(route('verification.notice'));
+    });
+
+    test('verified users can access profile after login', function () {
+        $user = User::factory()->create([
+            'email_verified_at' => now(),
+        ]);
+
+        $response = $this->post('/belepes', [
+            'email' => $user->email,
+            'password' => 'password',
+        ]);
+
+        $this->assertAuthenticated();
+        $response->assertRedirect(route('profile.orders'));
+    });
+
+    test('unverified users cannot access profile pages', function () {
+        $user = User::factory()->create([
+            'email_verified_at' => null,
+        ]);
+
+        $this->actingAs($user);
+
+        $response = $this->get('/profil/rendelesek');
+        $response->assertRedirect(route('verification.notice'));
+    });
+
+    test('verification notice page can be rendered', function () {
+        $user = User::factory()->create();
+
+        $this->actingAs($user);
+
+        $response = $this->get('/email/verify');
+
+        $response->assertStatus(200);
+        $response->assertViewIs('auth.verify-email');
     });
 });

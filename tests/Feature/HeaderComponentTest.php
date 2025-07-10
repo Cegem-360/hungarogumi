@@ -14,9 +14,11 @@ describe('Header Component', function () {
         $response->assertSee('Belépés / Regisztráció');
         $response->assertDontSee('Kijelentkezés');
     });
-
     test('header shows user menu for authenticated users', function () {
-        $user = User::factory()->create(['name' => 'John Doe']);
+        $user = User::factory()->create([
+            'name' => 'John Doe',
+            'email_verified_at' => now(),
+        ]);
 
         $this->actingAs($user);
 
@@ -35,9 +37,10 @@ describe('Header Component', function () {
         $response->assertStatus(200);
         $response->assertViewIs('auth.login');
     });
-
     test('profile links work for authenticated users', function () {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'email_verified_at' => now(),
+        ]);
 
         $this->actingAs($user);
 

@@ -18,9 +18,10 @@ describe('Profile', function () {
         $response = $this->get('/profil/adatok');
         $response->assertRedirect('/belepes');
     });
-
     test('authenticated users can view orders page', function () {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'email_verified_at' => now(),
+        ]);
 
         $this->actingAs($user);
 
@@ -30,9 +31,10 @@ describe('Profile', function () {
         $response->assertViewIs('profile.orders');
         $response->assertSee('Rendeléseim');
     });
-
     test('authenticated users can view profile page', function () {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'email_verified_at' => now(),
+        ]);
 
         $this->actingAs($user);
 
@@ -45,7 +47,9 @@ describe('Profile', function () {
     });
 
     test('orders page displays user orders', function () {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'email_verified_at' => now(),
+        ]);
         $product = Product::factory()->create([
             'item_name' => 'Test Gumiabroncs',
         ]);
@@ -69,9 +73,10 @@ describe('Profile', function () {
         $response->assertSee('2 db');
         $response->assertSee('25 000 Ft');
     });
-
     test('orders page shows empty state when no orders', function () {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'email_verified_at' => now(),
+        ]);
 
         $this->actingAs($user);
 
@@ -80,9 +85,10 @@ describe('Profile', function () {
         $response->assertSee('Még nincs rendelése');
         $response->assertSee('Termékek böngészése');
     });
-
     test('user can logout from profile page', function () {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'email_verified_at' => now(),
+        ]);
 
         $this->actingAs($user);
 

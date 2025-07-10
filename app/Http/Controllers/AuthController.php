@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -32,6 +33,12 @@ final class AuthController extends Controller
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
+            $user = Auth::user();
+
+            if (! $user->hasVerifiedEmail()) {
+                return redirect()->route('verification.notice');
+            }
+
             return redirect()->intended(route('profile.orders'))
                 ->with('success', 'Sikeresen bejelentkezett!');
         }
@@ -55,10 +62,10 @@ final class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        Auth::login($user);
+        $user->sendEmailVerificationNotification();
 
-        return redirect()->route('profile.orders')
-            ->with('success', 'Sikeres regisztráció! Üdvözöljük!');
+        return redirect()->route('verification.notice')
+            ->with('success', 'Sikeres regisztráció! Elküldtük a megerősítő emailt a megadott címre.');
     }
 
     public function logout(Request $request)
@@ -70,5 +77,25 @@ final class AuthController extends Controller
 
         return redirect()->route('home')
             ->with('success', 'Sikeresen kijelentkeztünk!');
+    }
+
+    public function verificationNotice()
+    {
+        return view('auth.verify-email');
+    }
+
+    public function verificationVerify(EmailVerificationRequest $request)
+    {
+        $request->fulfill();
+
+        return redirect()->route('profile.orders')
+            ->with('success', 'Email cím sikeresen megerősítve!');
+    }
+
+    public function verificationResend(Request $request)
+    {
+        $request->user()->sendEmailVerificationNotification();
+
+        return back()->with('success', 'Megerősítő email újra elküldve!');
     }
 }
