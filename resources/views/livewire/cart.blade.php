@@ -37,7 +37,7 @@
                                         /db
                                     </td>
                                     <td class="py-4 px-2 align-middle">
-                                        @if ($item->product->type === 'tyre' || $item->product->type === 'wheel')
+                                        @if ($item->product->isTyre() || $item->product->isSteelWheel() || $item->product->isAlloyWheel())
                                             <select
                                                 wire:change="updateQuantity({{ $item['product']->id }}, $event.target.value)"
                                                 class="border rounded px-2 py-1">
@@ -48,7 +48,9 @@
                                                 @endfor
                                             </select>
                                         @else
-                                            <span class="text-gray-700">{{ $item->quantity }} db</span>
+                                            <input type="number" min="1"
+                                                wire:change="updateQuantity({{ $item['product']->id }}, $event.target.value)"
+                                                value="{{ $item->quantity }}" class="border rounded px-2 py-1 w-20" />
                                         @endif
                                     </td>
                                     <td
