@@ -22,28 +22,42 @@ final class ProductAddToCart extends Component
 
     public function addToCart(int $quantity): void
     {
-        $product = Product::find($this->productId);
-        if ($product) {
-            // Assuming you have a CartService to handle adding items to the cart
-            $cartService = new CartService();
+        $cartService = new CartService();
+        $cartItem = $cartService->getItem($this->productId);
+        if ($cartItem === null) {
             $cartService->addItem($this->productId, $quantity);
-
-            // Dispatch event for frontend notification
             $this->dispatch('notify', [
                 'type' => 'success',
                 'title' => 'Sikeres hozzáadás',
                 'message' => 'A termék sikeresen hozzáadva a kosárhoz.',
                 'duration' => 3000,
             ]);
-        } else {
+
+            return;
+        }
+
+        if ($cartItem && $cartItem->quantity + $quantity > $cartItem->product->all_quantity) {
             // Dispatch event for frontend notification
             $this->dispatch('notify', [
                 'type' => 'error',
                 'title' => 'Hiba',
-                'message' => 'A terméket nem sikerült hozzáadni a kosárhoz.',
+                'message' => 'A kosárban lévő mennyiség meghaladja a készletet.',
                 'duration' => 5000,
             ]);
+
+            return;
         }
+
+        $cartService->addItem($this->productId, $quantity);
+
+        // Dispatch event for frontend notification
+        $this->dispatch('notify', [
+            'type' => 'success',
+            'title' => 'Sikeres hozzáadás',
+            'message' => 'A termék sikeresen hozzáadva a kosárhoz.',
+            'duration' => 3000,
+        ]);
+
     }
 
     public function render()

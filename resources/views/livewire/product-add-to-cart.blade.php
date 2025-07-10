@@ -41,11 +41,16 @@
         <div class="text-xs text-gray-500 mb-3">
             {{ $product->consumption ? 'Energiacímke: ' . $product->consumption : 'Nincs energiacímke' }} |
             {{ $product->grip ? 'Tapadás nedves úton: ' . $product->grip : 'Nincs tapadás' }}</div>
-
-        <button type="submit" wire:click="addToCart({{ $product->min_order_quantity }})"
-            class="w-full bg-brand-blue text-white py-2 rounded hover:bg-brand-blue/80 flex items-center justify-center gap-1">
-            Kosárba tesz <i class="fas fa-cart-plus"></i>
-        </button>
+        @if ($product->all_quantity > 0 && $product->min_order_quantity <= $product->all_quantity)
+            <button type="submit" wire:click="addToCart({{ $product->min_order_quantity }})"
+                class="w-full bg-brand-blue text-white py-2 rounded hover:bg-brand-blue/80 flex items-center justify-center gap-1">
+                Kosárba tesz <i class="fas fa-cart-plus"></i>
+            </button>
+        @else
+            <p>
+                Figyelem csak Rendelhető
+            </p>
+        @endif
 
     </div>
 

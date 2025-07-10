@@ -30,10 +30,7 @@ final class CartService
         $cartItem = $this->cart->cartItems()->where('product_id', $productId)->first();
 
         if ($cartItem) {
-            if ($cartItem->quantity + $quantity <= $cartItem->product->all_quantity) {
-                $cartItem->quantity += $quantity;
-            }
-            $cartItem->save();
+            $this->updateItem($productId, $cartItem->quantity + $quantity);
         } else {
             $this->cart->cartItems()->create([
                 'product_id' => $productId,
