@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EnsureCartExists;
 use App\Http\Middleware\EnsureCartNotEmpty;
@@ -38,6 +39,7 @@ Route::view('/et-kalkulator', 'pages.et-kalkulator')->name('et-kalkulator');
 Route::view('/szallitasi-informaciok', 'pages.szallitasi-informaciok')->name('szallitasi-informaciok');
 Route::view('/adatvedelmi-tajekoztato', 'pages.adatvedelmi-tajekoztato')->name('adatvedelmi-tajekoztato');
 Route::view('/kapcsolat', 'pages.kapcsolat')->name('kapcsolat');
+Route::post('/kapcsolat', [ContactController::class, 'store'])->name('contact.store');
 
 // Auth routes
 Route::middleware('guest')->group(function () {

@@ -135,4 +135,17 @@ return [
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Contact Form Configuration
+    |--------------------------------------------------------------------------
+    |
+    | This configuration is used for the contact form functionality.
+    |
+    */
+
+    'contact' => [
+        'admin_email' => env('CONTACT_ADMIN_EMAIL', 'info@somigumiwebaruhaz.hu'),
+    ],
+
 ];

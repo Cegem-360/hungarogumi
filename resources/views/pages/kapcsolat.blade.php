@@ -103,56 +103,87 @@
                 <div class="bg-white rounded-lg shadow-lg p-6">
                     <h2 class="text-2xl font-bold text-gray-900 mb-6">Kapcsolati űrlap</h2>
 
-                    <form action="#" method="POST" class="space-y-6">
+                    @if (session('success'))
+                        <div class="mb-6 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-md">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if (session('error'))
+                        <div class="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
+                    <form action="{{ route('contact.store') }}" method="POST" class="space-y-6">
                         @csrf
 
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Név
                                     *</label>
-                                <input type="text" id="name" name="name" required
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue focus:border-brand-blue">
+                                <input type="text" id="name" name="name" required value="{{ old('name') }}"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue focus:border-brand-blue {{ $errors->has('name') ? 'border-red-500' : '' }}">
+                                @error('name')
+                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email cím
                                     *</label>
-                                <input type="email" id="email" name="email" required
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue focus:border-brand-blue">
+                                <input type="email" id="email" name="email" required value="{{ old('email') }}"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue focus:border-brand-blue {{ $errors->has('email') ? 'border-red-500' : '' }}">
+                                @error('email')
+                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
 
                         <div>
                             <label for="phone"
                                 class="block text-sm font-medium text-gray-700 mb-2">Telefonszám</label>
-                            <input type="tel" id="phone" name="phone"
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue focus:border-brand-blue">
+                            <input type="tel" id="phone" name="phone" value="{{ old('phone') }}"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue focus:border-brand-blue {{ $errors->has('phone') ? 'border-red-500' : '' }}">
+                            @error('phone')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div>
                             <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Tárgy *</label>
-                            <input type="text" id="subject" name="subject" required
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue focus:border-brand-blue">
+                            <input type="text" id="subject" name="subject" required value="{{ old('subject') }}"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue focus:border-brand-blue {{ $errors->has('subject') ? 'border-red-500' : '' }}">
+                            @error('subject')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div>
                             <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Üzenet
                                 *</label>
                             <textarea id="message" name="message" rows="6" required
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue focus:border-brand-blue"></textarea>
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue focus:border-brand-blue {{ $errors->has('message') ? 'border-red-500' : '' }}">{{ old('message') }}</textarea>
+                            @error('message')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="flex items-start">
                             <div class="flex items-center h-5">
-                                <input id="privacy" name="privacy" type="checkbox" required
+                                <input id="privacy" name="privacy" type="checkbox" required value="1"
+                                    {{ old('privacy') ? 'checked' : '' }}
                                     class="focus:ring-brand-blue h-4 w-4 text-brand-blue border-gray-300 rounded">
                             </div>
                             <div class="ml-3 text-sm">
                                 <label for="privacy" class="text-gray-700">
-                                    Elfogadom az <a href="#"
+                                    Elfogadom az <a href="{{ route('adatvedelmi-tajekoztato') }}"
                                         class="text-brand-blue hover:text-brand-blue-dark">adatvédelmi tájékoztatót</a>
                                     *
                                 </label>
+                                @error('privacy')
+                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
 
