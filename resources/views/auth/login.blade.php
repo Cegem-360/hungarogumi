@@ -5,9 +5,13 @@
                 <div class="px-6 py-8">
                     <h2 class="text-2xl font-bold text-center text-gray-900 mb-8">Bejelentkezés</h2>
 
-                    @if ($errors->any())
+                    @if ($errors->any() || request('must_login_for_verification'))
                         <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
                             <ul class="list-disc list-inside">
+                                @if (request('must_login_for_verification'))
+                                    <li><strong>Kérjük, először jelentkezz be, hogy megerősíthesd az email
+                                            címedet!</strong></li>
+                                @endif
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
