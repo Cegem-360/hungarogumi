@@ -272,7 +272,7 @@
                         </div>
 
                         <!-- Homologization -->
-                        <div class="mb-6">
+                        {{-- <div class="mb-6">
                             <h3 class="font-semibold text-gray-900 mb-3">Homológizáció</h3>
                             <select id="homologizacio" wire:model.live="rim_dedicated"
                                 class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-sm">
@@ -282,7 +282,7 @@
                                 @endforeach
 
                             </select>
-                        </div>
+                        </div> --}}
 
                         <!-- Pattern -->
                         <div class="mb-6">

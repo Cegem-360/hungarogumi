@@ -76,17 +76,22 @@
                 <div class="space-y-3 text-sm text-gray-300">
                     <div>
                         <strong>Telefonos ügyfélszolgálat:</strong><br>
-                        <a href="tel:+36-1-431-8270" class="hover:text-white">+36-1-431-8270</a>
+                        <a href="tel:+36 30 700 9668" class="hover:text-white">+36 30 700 9668</a>
                     </div>
                     <div>
                         <strong>Email:</strong><br>
-                        <a href="mailto:info@somigumi.hu" class="hover:text-white">info@somigumi.hu</a>
+                        <a href="mailto:info@somigumiwebaruhaz.hu" class="hover:text-white">info@somigumiwebaruhaz.hu
+                        </a>
                     </div>
                     <div>
                         <strong>Nyitvatartás:</strong><br>
-                        Hétfő–Péntek: 8:00–17:00<br>
-                        Szombat: 8:00–13:00<br>
-                        Vasárnap: zárva
+                        Hétfő: 9:00–17:00<br>
+                        Kedd: 9:00–17:00<br>
+                        Szerda: 9:00–17:00<br>
+                        Csütörtök: 9:00–17:00<br>
+                        Péntek: 9:00–17:00<br>
+                        Szombat: Zárva<br>
+                        Vasárnap: Zárva
                     </div>
                 </div>
 

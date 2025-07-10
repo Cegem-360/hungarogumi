@@ -54,6 +54,7 @@ final class AuthController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password_confirmation' => ['required', 'string', 'min:8'],
         ]);
 
         $user = User::create([
@@ -86,6 +87,12 @@ final class AuthController extends Controller
 
     public function verificationVerify(EmailVerificationRequest $request)
     {
+        // Ellenőrizzük, hogy a felhasználó már megerősítette-e az email címét
+        if (Auth::user()->hasVerifiedEmail()) {
+            return redirect()->route('profile.orders')
+                ->with('info', 'Email cím már megerősítve!');
+        }
+
         $request->fulfill();
 
         return redirect()->route('profile.orders')
