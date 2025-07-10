@@ -91,15 +91,15 @@
                     class="w-full bg-green-600 hover:bg-green-700 text-white text-lg font-semibold rounded py-3 transition mb-2">Megrendelés
                     folytatása</button>
             </div>
-            <div class="bg-white rounded-lg shadow-sm p-4">
+            {{-- <div class="bg-white rounded-lg shadow-sm p-4">
                 <button
                     class="w-full flex justify-between items-center text-lg font-semibold text-gray-800 focus:outline-none"
                     type="button">
                     Kupon kód hozzáadása
                     <i class="fas fa-chevron-down"></i>
                 </button>
-                <!-- Ide jöhet a kupon mező, ha szükséges -->
-            </div>
+               
+            </div> --}}
         </div>
     </div>
 </div>

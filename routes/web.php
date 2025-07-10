@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EnsureCartExists;
 use App\Http\Middleware\EnsureCartNotEmpty;
@@ -65,6 +66,7 @@ Route::post('/kilepes', [AuthController::class, 'logout'])->name('logout')->midd
 // Profile routes
 Route::middleware(['auth', 'verified'])->prefix('profil')->as('profile.')->group(function () {
     Route::get('/rendelesek', [ProfileController::class, 'orders'])->name('orders');
+    Route::get('/rendelesek/{id}', [ProfileController::class, 'orderShow'])->name('orders.show');
     Route::get('/adatok', [ProfileController::class, 'profile'])->name('profile');
 });
 
@@ -86,9 +88,7 @@ Route::middleware([EnsureCartExists::class])->group(function (): void {
 Route::middleware([EnsureCartExists::class])->group(function (): void {
 
     // Success and cancel pages do not require cart not empty
-    Route::get('/checkout/success', function () {
-        return view('pages.checkout-success');
-    })->name('checkout.success');
+    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 
     Route::get('/checkout/cancel', function () {
         return view('pages.checkout-cancel');

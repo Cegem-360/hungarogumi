@@ -18,6 +18,14 @@ final class ProfileController extends Controller
         return view('profile.orders', compact('orders'));
     }
 
+    public function orderShow($id)
+    {
+        $user = Auth::user();
+        $order = $user->orders()->with(['orderItems.product', 'shippingMethod'])->findOrFail($id);
+
+        return view('profile.order-show', compact('order'));
+    }
+
     public function profile()
     {
         return view('profile.profile');

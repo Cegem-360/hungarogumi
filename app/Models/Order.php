@@ -77,7 +77,7 @@ final class Order extends Model
     {
         $total = 0;
         foreach ($this->orderItems as $orderItem) {
-            $total += $orderItem->total;
+            $total += $orderItem->total * $orderItem->quantity;
         }
 
         return $total;
