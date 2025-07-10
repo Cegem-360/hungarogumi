@@ -91,11 +91,10 @@ Route::middleware([EnsureCartExists::class])->group(function (): void {
         return redirect()->back();
     })->name('cart.add');
 });
-
+Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 Route::middleware([EnsureCartExists::class])->group(function (): void {
 
     // Success and cancel pages do not require cart not empty
-    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 
     Route::get('/checkout/cancel', function () {
         return view('pages.checkout-cancel');
