@@ -1,4 +1,4 @@
-<form wire:submit.prevent="performSearch" class="hidden md:flex flex-1 max-w-md mx-8">
+<form wire:submit.prevent="performSearch" class="flex sm:min-w-sm">
     <input type="text" wire:model="search" placeholder="Milyen terméket keresel?"
         class="flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
     <button type="submit"

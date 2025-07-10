@@ -91,7 +91,7 @@
         </div>
 
         <!-- Mobile Search Bar -->
-        <div class="lg:hidden px-4 pb-4">
+        <div class="lg:hidden pb-4">
             <livewire:header-search />
         </div>
 
