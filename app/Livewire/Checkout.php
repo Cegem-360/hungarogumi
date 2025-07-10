@@ -65,6 +65,14 @@ final class Checkout extends Component
 
     public string $customerType = 'individual';
 
+    public function mount()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $this->billingEmail = $user->email ?? '';
+        }
+    }
+
     public function checkout()
     {
 
