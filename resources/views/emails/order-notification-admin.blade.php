@@ -104,19 +104,20 @@
             <div class="order-details">
                 <h3>Megrendelt termékek</h3>
 
-                @if ($order->items)
-                    @foreach ($order->items as $item)
+                @if ($order->orderItems)
+                    @foreach ($order->orderItems as $item)
                         <div class="order-item">
                             <strong>{{ $item->product->item_name ?? 'Termék' }}</strong><br>
                             <small>SKU: {{ $item->product->sku ?? 'N/A' }}</small><br>
                             Mennyiség: {{ $item->quantity }} db<br>
-                            Egységár: {{ number_format($item->price, 0, ',', ' ') }} Ft<br>
-                            Összesen: {{ number_format($item->price * $item->quantity, 0, ',', ' ') }} Ft
+                            Egységár: {{ Number::currency((int) $item->total, 'HUF', 'hu', 0) }}<br>
+                            Összesen:
+                            {{ Number::currency((int) $item->total * (int) $item->quantity, 'HUF', 'hu', 0) }}
                         </div>
                     @endforeach
 
                     <div class="total">
-                        Megrendelés végösszege: {{ number_format($order->total, 0, ',', ' ') }} Ft
+                        Megrendelés végösszege: {{ Number::currency((int) $order->total, 'HUF', 'hu', 0) }} Ft
                     </div>
                 @endif
             </div>

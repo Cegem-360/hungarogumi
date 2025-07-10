@@ -40,7 +40,7 @@ Route::view('/szallitasi-informaciok', 'pages.szallitasi-informaciok')->name('sz
 Route::view('/adatvedelmi-tajekoztato', 'pages.adatvedelmi-tajekoztato')->name('adatvedelmi-tajekoztato');
 Route::view('/kapcsolat', 'pages.kapcsolat')->name('kapcsolat');
 Route::post('/kapcsolat', [ContactController::class, 'store'])->name('contact.store');
-
+Route::view('/aszf', 'pages.aszf')->name('aszf');
 // Auth routes
 Route::middleware('guest')->group(function () {
     Route::get('/belepes', [AuthController::class, 'showLogin'])->name('login');

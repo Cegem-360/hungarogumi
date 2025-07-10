@@ -32,7 +32,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="hover:text-white">ÁSZF</a>
+                        <a href="{{ route('aszf') }}" class="hover:text-white">ÁSZF</a>
                     </li>
                     {{-- <li>
                         <a href="#" class="hover:text-white">Fizetési módok</a>
