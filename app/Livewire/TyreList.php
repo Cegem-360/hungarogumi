@@ -131,7 +131,6 @@ final class TyreList extends Component
         })->when($this->runflat, function ($query): void {
             $query->punctureResistant();
         })->tyre();
-        dump($query->toRawSql());
 
         return $query->paginate(24);
     }
