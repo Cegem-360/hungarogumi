@@ -137,7 +137,7 @@ final class Product extends Model
         return Number::currency(((int) $this->net_retail_price ?? 0), 'HUF', 'hu', 0);
     }
 
-    public function isTire(): bool
+    public function isTyre(): bool
     {
         return $this->item_type_name === 'gumiabroncs';
     }

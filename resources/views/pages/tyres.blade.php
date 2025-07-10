@@ -4,15 +4,7 @@
     <x-slot name="keywords">gumiabroncsok, autógumik, nyári gumik, téli gumik, 205/55 R16</x-slot>
 
     <!-- Breadcrumb -->
-    <div class="container mx-auto px-4 py-3">
-        <nav class="flex text-sm text-gray-500">
-            <a href="#" class="hover:text-gray-700">somigumi.hu</a>
-            <span class="mx-2">></span>
-            <a href="#" class="hover:text-gray-700">Gumiabroncsok</a>
-            <span class="mx-2">></span>
-            <span class="text-gray-700">205/55 R16</span>
-        </nav>
-    </div>
+    <x-breadcrumb />
 
     <section class="py-8 bg-white">
         <div class="container mx-auto px-4">

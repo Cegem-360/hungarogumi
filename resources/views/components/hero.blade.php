@@ -245,7 +245,7 @@
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('livewire:navigated', function() {
         const wheelSearch = document.getElementById('wheel-search');
         const tyreSearch = document.getElementById('tyre-search');
         const toggleWheelBtn = document.getElementById('toggle-wheel-button');

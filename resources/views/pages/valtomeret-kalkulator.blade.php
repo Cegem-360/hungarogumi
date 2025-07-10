@@ -6,13 +6,7 @@
         calculator</x-slot>
 
     <!-- Breadcrumb -->
-    <div class="container mx-auto px-4 py-3">
-        <nav class="flex text-sm text-gray-500">
-            <a href="/" class="hover:text-gray-700">Kezdőlap</a>
-            <span class="mx-2">></span>
-            <a href="#" class="hover:text-gray-700">Váltóméret kalkulátor</a>
-        </nav>
-    </div>
+    <x-breadcrumb />
 
     <!-- Header Section -->
     <section class="bg-white py-8">

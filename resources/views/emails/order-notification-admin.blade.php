@@ -165,7 +165,7 @@
         </div>
 
         <div class="footer">
-            <p>Ez egy automatikusan generált értesítő e-mail a Hungarogumi webshopból.</p>
+            <p>Ez egy automatikusan generált értesítő e-mail a Somigumi webshopból.</p>
             <p>Megrendelés időpontja: {{ $order->created_at->format('Y. m. d. H:i:s') }}</p>
         </div>
     </body>

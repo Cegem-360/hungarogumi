@@ -9,19 +9,7 @@
     @endphp
 
     <!-- Breadcrumb -->
-    <div class="container mx-auto px-4 py-3">
-        <nav class="flex text-sm text-gray-500">
-            <a href="#" class="hover:text-gray-700">hungarogumi.hu</a>
-            <span class="mx-2">›</span>
-            <a href="#" class="hover:text-gray-700">Gumiabroncs</a>
-            <span class="mx-2">›</span>
-            <a href="#" class="hover:text-gray-700">205/55 R16</a>
-            <span class="mx-2">›</span>
-            <a href="#" class="hover:text-gray-700">Téli gumi</a>
-            <span class="mx-2">›</span>
-            <span class="text-gray-700">Kelly 205/55 R16 91H DOT22 FR HP</span>
-        </nav>
-    </div>
+    <x-breadcrumb />
 
     <!-- Main Content -->
     @dump($currentProduct)

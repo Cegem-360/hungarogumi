@@ -6,13 +6,7 @@
         privacy</x-slot>
 
     <!-- Breadcrumb -->
-    <div class="container mx-auto px-4 py-3">
-        <nav class="flex text-sm text-gray-500">
-            <a href="/" class="hover:text-gray-700">Kezdőlap</a>
-            <span class="mx-2">></span>
-            <a href="#" class="hover:text-gray-700">Adatvédelmi tájékoztató</a>
-        </nav>
-    </div>
+    <x-breadcrumb />
 
     <div class="min-h-screen bg-gray-50">
         <!-- Header Section -->

@@ -5,13 +5,7 @@
     <x-slot name="keywords">hírek, gumiabroncsok, alufelnik, autós hírek, szakmai cikkek, újdonságok</x-slot>
 
     <!-- Breadcrumb -->
-    <div class="container mx-auto px-4 py-3">
-        <nav class="flex text-sm text-gray-500">
-            <a href="/" class="hover:text-gray-700">Kezdőlap</a>
-            <span class="mx-2">></span>
-            <a href="#" class="hover:text-gray-700">Hírek</a>
-        </nav>
-    </div>
+    <x-breadcrumb />
 
     <!-- Header Section -->
     <section class="bg-white py-8">
@@ -30,7 +24,7 @@
                 <article class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <div class="md:flex">
                         <div class="md:w-1/3">
-                            <img src="{{ Storage::url('/images/IMG_5180.webp') }}" alt="Hungarogumi hírek"
+                            <img src="{{ Storage::url('/images/IMG_5180.webp') }}" alt="Somigumi hírek"
                                 class="w-full h-48 md:h-full object-cover">
                         </div>
                         <div class="md:w-2/3 p-6">
@@ -67,7 +61,7 @@
                 <article class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <div class="md:flex">
                         <div class="md:w-1/3">
-                            <img src="{{ Storage::url('/images/IMG_5180.webp') }}" alt="Hungarogumi hírek"
+                            <img src="{{ Storage::url('/images/IMG_5180.webp') }}" alt="Somigumi hírek"
                                 class="w-full h-48 md:h-full object-cover">
                         </div>
                         <div class="md:w-2/3 p-6">
@@ -105,7 +99,7 @@
                 <article class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <div class="md:flex">
                         <div class="md:w-1/3">
-                            <img src="{{ Storage::url('/images/IMG_5180.webp') }}" alt="Hungarogumi hírek"
+                            <img src="{{ Storage::url('/images/IMG_5180.webp') }}" alt="Somigumi hírek"
                                 class="w-full h-48 md:h-full object-cover">
                         </div>
                         <div class="md:w-2/3 p-6">
@@ -143,7 +137,7 @@
                 <article class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <div class="md:flex">
                         <div class="md:w-1/3">
-                            <img src="{{ Storage::url('/images/IMG_5180.webp') }}" alt="Hungarogumi hírek"
+                            <img src="{{ Storage::url('/images/IMG_5180.webp') }}" alt="Somigumi hírek"
                                 class="w-full h-48 md:h-full object-cover">
                         </div>
                         <div class="md:w-2/3 p-6">
@@ -179,7 +173,7 @@
                 <article class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <div class="md:flex">
                         <div class="md:w-1/3">
-                            <img src="{{ Storage::url('/images/IMG_5180.webp') }}" alt="Hungarogumi hírek"
+                            <img src="{{ Storage::url('/images/IMG_5180.webp') }}" alt="Somigumi hírek"
                                 class="w-full h-48 md:h-full object-cover">
                         </div>
                         <div class="md:w-2/3 p-6">
@@ -215,7 +209,7 @@
                 <article class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <div class="md:flex">
                         <div class="md:w-1/3">
-                            <img src="{{ Storage::url('/images/IMG_5180.webp') }}" alt="Hungarogumi hírek"
+                            <img src="{{ Storage::url('/images/IMG_5180.webp') }}" alt="Somigumi hírek"
                                 class="w-full h-48 md:h-full object-cover">
                         </div>
                         <div class="md:w-2/3 p-6">

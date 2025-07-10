@@ -6,25 +6,7 @@
     <x-slot name="keywords">{{ $product->keywords ?? 'Nincs kulcsszók' }}</x-slot>
 
     <!-- Breadcrumb -->
-    <div class="container mx-auto px-4 py-3">
-        <nav class="flex text-sm text-gray-500">
-            <a href="{{ route('home') }}" class="hover:text-gray-700">hungarogumi.hu</a>
-            <span class="mx-2">›</span>
-            @if ($product->isTire())
-                <a href="{{ route('tyres') }}" class="hover:text-gray-700">Gumiabroncs</a>
-            @elseif ($product->isSteelWheel() || $product->isAlloyWheel())
-                <a href="{{ route('wheels') }}" class="hover:text-gray-700">Felni</a>
-            @else
-                <a href="{{ route('home') }}" class="hover:text-gray-700">Főoldal</a>
-            @endif
-            <span class="mx-2">›</span>
-            <a href="#" class="hover:text-gray-700">205/55 R16</a>
-            <span class="mx-2">›</span>
-            <a href="#" class="hover:text-gray-700">Téli gumi</a>
-            <span class="mx-2">›</span>
-            <span class="text-gray-700">Kelly 205/55 R16 91H DOT22 FR HP</span>
-        </nav>
-    </div>
+    <x-breadcrumb />
 
     <!-- Main Content -->
     <div class="container mx-auto px-4 space-y-6">
@@ -170,7 +152,7 @@
                 <div class="bg-white rounded-lg shadow-sm p-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-6">Hasonló termékek</h3>
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @foreach (Product::limit(12)->get() ?? [] as $product)
+                        @foreach (Product::where('item_type_name', $product->item_type_name)->inRandomOrder()->limit(12)->get() ?? [] as $product)
                             <livewire:product-add-to-cart :productId="$product->id" :key="$product->id" />
                         @endforeach
                     </div>

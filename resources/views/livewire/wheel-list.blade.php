@@ -5,14 +5,6 @@
         <div class="filter">
             <div class="sticky-sidebar">
                 <div class="bg-white rounded-lg shadow-sm">
-                    <!-- Search by Auto -->
-                    <div class="mb-6">
-                        <button
-                            class="w-full flex items-center gap-4 p-4 text-brand-blue bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md">
-                            <i class="fas fa-car text-2xl"></i>
-                            <span>Gumi keresése autó szerint</span>
-                        </button>
-                    </div>
 
                     <!-- Warning -->
                     <div class="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-md">

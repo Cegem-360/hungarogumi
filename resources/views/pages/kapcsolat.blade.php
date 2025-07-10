@@ -1,18 +1,12 @@
 <x-layouts.app>
     <x-slot name="title">Kapcsolat</x-slot>
-    <x-slot name="description">Hungarogumi kapcsolati adatok, nyitvatartás, telefonszám, email cím. Gumiabroncs és
+    <x-slot name="description">Somigumi kapcsolati adatok, nyitvatartás, telefonszám, email cím. Gumiabroncs és
         alufelni szaküzlet Budapest.</x-slot>
-    <x-slot name="keywords">kapcsolat, hungarogumi, gumiabroncs, alufelni, Budapest, telefonszám, email,
+    <x-slot name="keywords">kapcsolat, Somigumi, gumiabroncs, alufelni, Budapest, telefonszám, email,
         nyitvatartás</x-slot>
 
     <!-- Breadcrumb -->
-    <div class="container mx-auto px-4 py-3">
-        <nav class="flex text-sm text-gray-500">
-            <a href="/" class="hover:text-gray-700">Kezdőlap</a>
-            <span class="mx-2">></span>
-            <a href="#" class="hover:text-gray-700">Kapcsolat</a>
-        </nav>
-    </div>
+    <x-breadcrumb />
 
     <!-- Header Section -->
     <section class="bg-white py-8">
@@ -90,8 +84,8 @@
                                 </svg>
                                 <div>
                                     <p class="font-semibold text-gray-900">Email:</p>
-                                    <a href="mailto:info@hungarogumi.hu"
-                                        class="text-brand-blue hover:text-brand-blue-dark">info@hungarogumi.hu</a>
+                                    <a href="mailto:info@somigumi.hu"
+                                        class="text-brand-blue hover:text-brand-blue-dark">info@somigumi.hu</a>
                                 </div>
                             </div>
 

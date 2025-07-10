@@ -4,15 +4,8 @@
     <x-slot name="description">Fedezze fel a legjobb felniket széles választékunkból!</x-slot>
     <x-slot name="keywords">felnik, autófelnik, könnyűfelnik, alufelnik, 18 col</x-slot>
     <!-- Breadcrumb -->
-    <div class="container mx-auto px-4 py-3">
-        <nav class="flex text-sm text-gray-500">
-            <a href="#" class="hover:text-gray-700">somigumi.hu</a>
-            <span class="mx-2">></span>
-            <a href="#" class="hover:text-gray-700">Felnik</a>
-            <span class="mx-2">></span>
-            <span class="text-gray-700">18 col</span>
-        </nav>
-    </div>
+    <x-breadcrumb />
+
     <section class="py-8 bg-white">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center mb-6">

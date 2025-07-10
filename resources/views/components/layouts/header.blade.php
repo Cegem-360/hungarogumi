@@ -17,7 +17,7 @@
             <div class="flex items-center space-x-4 text-sm">
                 <div class="hidden md:flex items-center space-x-1">
                     <i class="fas fa-user text-gray-600"></i>
-                    <span>Belépés / Regisztrácíó</span>
+                    <span>Belépés / Regisztráció</span>
                 </div>
                 {{-- <div class="flex items-center space-x-1">
                     <i class="fas fa-heart text-gray-600"></i>
@@ -54,12 +54,7 @@
                 <li>
                     <a href="#" class="nav-item px-3 py-2 rounded hover:text-brand-blue">MOTOROLAJ</a>
                 </li> --}}
-                <li>
-                    <a wire:navigate href="{{ route('et-kalkulator') }}"
-                        class="nav-item px-3 py-2 rounded hover:text-brand-blue">
-                        ET-KALKULÁTOR
-                    </a>
-                </li>
+
                 <li>
                     <a wire:navigate href="{{ route('rolunk') }}"
                         class="nav-item px-3 py-2 rounded hover:text-brand-blue">
@@ -76,6 +71,12 @@
                     <a wire:navigate href="{{ route('news') }}"
                         class="nav-item px-3 py-2 rounded hover:text-brand-blue">
                         HÍREK
+                    </a>
+                </li>
+                <li>
+                    <a wire:navigate href="{{ route('et-kalkulator') }}"
+                        class="nav-item px-3 py-2 rounded hover:text-brand-blue">
+                        ET-KALKULÁTOR
                     </a>
                 </li>
                 <li>
