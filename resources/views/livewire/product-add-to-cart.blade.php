@@ -48,7 +48,7 @@
             </button>
         @else
             <p>
-                Figyelem csak Rendelhető
+                Jelenleg nem elérhető
             </p>
         @endif
 
