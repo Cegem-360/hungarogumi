@@ -91,7 +91,7 @@
                     @endforeach
 
                     <div class="total">
-                        Végösszeg: {{ Number::currency((int) $order->total, 'HUF', 'hu', 0) }}
+                        Végösszeg: {{ Number::currency((int) $order->orderTotal(), 'HUF', 'hu', 0) }}
                     </div>
                 @endif
             </div>
