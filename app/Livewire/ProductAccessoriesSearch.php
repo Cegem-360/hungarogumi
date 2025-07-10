@@ -123,7 +123,6 @@ final class ProductAccessoriesSearch extends Component
                 ->orWhere('item_type_name', 'lemezfelni')
                 ->orWhere('item_type_name', 'alufelni');
         });
-        dump($query->toRawSql());
 
         return $query->paginate(12);
     }

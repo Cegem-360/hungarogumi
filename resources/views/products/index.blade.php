@@ -12,7 +12,6 @@
     <x-breadcrumb />
 
     <!-- Main Content -->
-    @dump($currentProduct)
     <div class="container mx-auto px-4 space-y-6">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
             <!-- Product Image -->
