@@ -57,7 +57,7 @@
                                         @if (!empty($this->width))
                                             @foreach (Product::tyre()->where('width', $this->width)->distinct('aspect_ratio')->orderBy('aspect_ratio')->pluck('aspect_ratio') as $productAspectRatio)
                                                 <option value="{{ $productAspectRatio }}"
-                                                    {{ old('aspect_ratio', request('aspect_ratio')) == $productAspectRatio ? 'selected' : '' }}>
+                                                    {{ old('aspect_ratio') == $productAspectRatio ? 'selected' : '' }}>
                                                     {{ $productAspectRatio }}</option>
                                             @endforeach
                                         @endif
@@ -111,7 +111,7 @@
                             <h3 class="font-semibold text-gray-900 mb-3">Márka</h3>
                             <select id="marka" wire:model.live="manufacturer"
                                 class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-sm">
-                                <option value="" data-select2-id="984">Összes...</option>
+                                <option value="">Összes...</option>
                                 @foreach (Manufacturer::whereHas('products', function ($q) {
         $q->tyre();
     })->distinct('name')->orderBy('name')->pluck('name') as $manufacturer)
@@ -433,5 +433,5 @@
         </div>
 
     </div>
-    {{ $products->links() }}
+    {{ $this->products()->links() }}
 </div>

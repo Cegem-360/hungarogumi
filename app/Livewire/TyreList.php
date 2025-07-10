@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
+use App\Models\Manufacturer;
 use App\Models\Product;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,20 +18,25 @@ final class TyreList extends Component
 {
     use WithPagination;
 
+    #[Url]
     public $manufacturer; // Manufacturer:id
 
+    #[Url]
     public $width; // mm
 
+    #[Url]
     public $aspect_ratio; // %
 
     public $structure; // R / L
 
+    #[Url]
     public $diameter;
 
     public $li; // suly index
 
     public $si; // sebesség index
 
+    #[Url]
     public $seasons = []; // Nyári / Téli / Négyévszakos (1,2,3),{summer(),winter(),allSeason()}
 
     public $consumptions = []; // A / B / C / D / E / F / G
@@ -44,10 +51,12 @@ final class TyreList extends Component
 
     public $rim_dedicated; // Homológizáció
 
+    #[Url]
     public $reinforced; // igen / nem
 
     public $pattern_name; // Mintázat
 
+    #[Url]
     public $runflat; // igen / nem
 
     public $tire_spec_data; // Gumiabroncs specifikációs adatok
@@ -66,18 +75,17 @@ final class TyreList extends Component
 
     public function mount(): void
     {
-        /* $tmpSeasons[] = request('season', '');
-        $this->seasons = $tmpSeasons;
-        $this->width = request('width', '');
-        $this->aspect_ratio = request('aspect_ratio', '');
-        $this->diameter = request('diameter', ''); */
+        /* $this->seasons = request('seasons', []);
+        if (! is_array($this->seasons)) {
+            $this->seasons = [$this->seasons];
+        } */
+
     }
 
     public function render(): View|Factory
     {
-        $products = $this->buildQuery();
 
-        return view('livewire.tyre-list', ['products' => $products]);
+        return view('livewire.tyre-list');
     }
 
     private function buildQuery(): LengthAwarePaginator
@@ -85,9 +93,7 @@ final class TyreList extends Component
         $query = Product::query();
 
         $query->when($this->manufacturer, function ($query): void {
-            $query->whereHas('manufacturer', function ($q) {
-                $q->where('name', $this->manufacturer);
-            });
+            $query->where('manufacturer_id', Manufacturer::where('name', $this->manufacturer)->first('id')->id);
         })->when($this->price_min, function ($query): void {
             $query->where('net_retail_price', '>=', $this->price_min);
         })->when($this->price_max, function ($query): void {
@@ -125,6 +131,7 @@ final class TyreList extends Component
         })->when($this->runflat, function ($query): void {
             $query->punctureResistant();
         })->tyre();
+        dump($query->toRawSql());
 
         return $query->paginate(24);
     }

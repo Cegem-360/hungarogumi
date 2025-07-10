@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,24 +17,26 @@ final class WheelList extends Component
     use WithPagination;
 
     // Felni specifikus szűrők
+    #[Url]
+    public $pcd; // Osztókor (PCD)
 
-    public $pcd = ''; // Osztókor (PCD)
-
+    #[Url]
     public $bolt_count; // Csavarlyukak száma
 
+    #[Url]
     public $diameter;
 
     public $width_min; // Szélesség minimum (hüvelyk)
 
     public $width_max; // Szélesség maximum (hüvelyk)
 
-    public $manufacturer = ''; // Márka
+    public $manufacturer; // Márka
 
-    public $outlet = false; // Outlet termékek
+    public $outlet; // Outlet termékek
 
     public $wheel_type = []; // Típus (alufelni/lemezfelni)
 
-    public $stock_min = false; // min. 4 db azonnal
+    public $stock_min; // min. 4 db azonnal
 
     public $price_category = []; // Árkategória (budget/közepes/prémium)
 
@@ -41,22 +44,15 @@ final class WheelList extends Component
 
     public $price_max; // Árszűrő maximum
 
-    public $wheel_model = ''; // Modell
+    public $wheel_model; // Modell
 
-    public $rim_color = ''; // Dedikáltság
+    public $rim_color; // Dedikáltság
 
-    public $et_min = 0.0; // ET minimum
+    public $et_min; // ET minimum
 
-    public $et_max = 111.0; // ET maximum
+    public $et_max; // ET maximum
 
-    public function mount()
-    {
-        /*  $this->bolt_count = request()->input('bolt_count');
-         $this->pcd = request()->input('pcd');
-         $this->diameter = request()->input('diameter'); */
-        // Példa: ha van for_winter paraméter, azt is beállíthatod, ha szükséges
-        // $this->for_winter = request()->boolean('for_winter');
-    }
+    public function mount() {}
 
     public function render(): View|Factory
     {
@@ -71,6 +67,7 @@ final class WheelList extends Component
 
         $query->when($this->manufacturer, function ($query): void {
             $query->whereHas('manufacturer', function ($q) {
+
                 $q->where('name', $this->manufacturer);
             });
         })

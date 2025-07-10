@@ -22,6 +22,7 @@
                     <h2 class="text-xl font-bold mb-4">Keress autófelni méret alapján</h2>
                     <div class="grid grid-cols-1">
                         <div class="grid grid-cols-4 gap-4 mb-4">
+                            {{-- Felni és lemez --}}
                             <form method="GET" action="{{ route('wheels') }}" class="contents">
                                 <div>
                                     <label class="block text-sm font-medium mb-1">Lyukosztás</label>
@@ -129,18 +130,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- FIX: SOS need fix to hungarogumi.hu/kereső --}}
-                        {{-- <div class="flex flex-wrap gap-2 mb-4 text-xs">
-                            <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Runflat</button>
-                            <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Peremvédős</button>
-                            <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Extra terhelés</button>
-                            <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Téli</button>
-                            <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Négyévszakos</button>
-                        </div>
-                        <button
-                            class="w-full bg-brand-blue text-white py-3 rounded-md font-semibold hover:bg-brand-blue/80">
-                            <i class="fas fa-search mr-2"></i>Találatok megjelenítése
-                        </button> --}}
+
                     </div>
                 </div>
             </div>
@@ -182,23 +172,56 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1">Szezon</label>
-                            <select name="season"
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                                <option value="">Összes</option>
-                                <option value="1">Nyári</option>
-                                <option value="2">Téli</option>
-                                <option value="3">Négyévszakos</option>
-                            </select>
+                            <div x-data="{ open: false, selected: [] }" class="relative">
+                                <button type="button" @click="open = !open"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue flex justify-between items-center">
+                                    <span
+                                        x-text="selected.length ? selected.map(i => ({1:'Nyári',2:'Téli',3:'Négyévszakos'}[i])).join(', ') : 'Összes'"></span>
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div x-show="open" @click.away="open = false"
+                                    class="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg">
+                                    <label class="flex items-center px-4 py-2">
+                                        <input type="checkbox" name="seasons[0]" value="1"
+                                            :checked="selected.includes(1)"
+                                            @change="$event.target.checked ? selected.push(1) : selected.splice(selected.indexOf(1), 1)"
+                                            class="mr-2 rounded border-gray-300 focus:ring-2 focus:ring-brand-blue">
+                                        Nyári
+                                    </label>
+                                    <label class="flex items-center px-4 py-2">
+                                        <input type="checkbox" name="seasons[1]" value="2"
+                                            :checked="selected.includes(2)"
+                                            @change="$event.target.checked ? selected.push(2) : selected.splice(selected.indexOf(2), 1)"
+                                            class="mr-2 rounded border-gray-300 focus:ring-2 focus:ring-brand-blue">
+                                        Téli
+                                    </label>
+                                    <label class="flex items-center px-4 py-2">
+                                        <input type="checkbox" name="seasons[2]" value="3"
+                                            :checked="selected.includes(3)"
+                                            @change="$event.target.checked ? selected.push(3) : selected.splice(selected.indexOf(3), 1)"
+                                            class="mr-2 rounded border-gray-300 focus:ring-2 focus:ring-brand-blue">
+                                        Négyévszakos
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="flex flex-wrap gap-2 mb-4 text-xs">
 
-                        <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Runflat</button>
-                        <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Peremvédős</button>
-                        <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Extra terhelés</button>
-                        <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Téli</button>
-                        <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Négyévszakos</button>
+                        <a href="{{ route('tyres', ['runflat' => true]) }}"
+                            class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Runflat</a>
+                        {{--   <a href="{{ route('tyres', ['rim_protection' => 1]) }}"
+                            class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Peremvédős</a> --}}
+                        {{--  <a href="{{ route('tyres', ['extra_load' => 1]) }}"
+                            class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Extra terhelés</a> --}}
+                        <a href="{{ route('tyres', ['seasons' => [2]]) }}"
+                            class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Téli</a>
+                        <a href="{{ route('tyres', ['seasons' => [3]]) }}"
+                            class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Négyévszakos</a>
                     </div>
 
                     <button
