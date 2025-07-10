@@ -138,10 +138,10 @@
         </div>
 
         <div class="footer">
-            <p>Köszönjük, hogy a Hungarogumi-t választotta!</p>
-            <p><strong>Hungarogumi Kft.</strong><br>
-                E-mail: info@hungarogumi.hu<br>
-                Telefon: +36 1 XXX XXXX</p>
+            <p>Köszönjük, hogy a Somigumi-t választotta!</p>
+            <p><strong>Somigumi Kft.</strong><br>
+                E-mail: info@somigumiwebaruhaz.hu<br>
+                Telefon: +36 30 700 9668</p>
         </div>
     </body>
 

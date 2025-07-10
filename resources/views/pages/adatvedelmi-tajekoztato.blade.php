@@ -318,14 +318,14 @@
                                 </svg>
                                 +36 1 415 2075
                             </a>
-                            <a href="mailto:info@hungarogumi.hu"
+                            <a href="mailto:info@somigumiwebaruhaz.hu"
                                 class="flex items-center bg-white text-brand-blue px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
                                     </path>
                                 </svg>
-                                info@hungarogumi.hu
+                                info@somigumiwebaruhaz.hu
                             </a>
                         </div>
                     </div>
