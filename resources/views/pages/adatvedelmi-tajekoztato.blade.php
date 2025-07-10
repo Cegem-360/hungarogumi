@@ -492,40 +492,60 @@
                 <li class="mb-1">az adatszolgáltatás elmaradása azzal a <strong>következményekkel</strong> jár, hogy
                     nem tudunk Önnek hírlevelet küldeni.</li>
             </ul>
-            <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mt-10 mb-6"><strong>Közösségi oldalak</strong></h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mt-10 mb-6"><strong>Közösségi oldalak</strong>
+            </h2>
             <ol class="list-decimal pl-6 mb-4 text-gray-700">
                 <li class="mb-2">
-                    <p>Az adatgyűjtés ténye, a kezelt adatok köre: Facebook/Google+/Twitter/Pinterest/Youtube/Instagram stb. közösségi oldalakon regisztrált neve, illetve a felhasználó nyilvános profilképe.</p>
+                    <p>Az adatgyűjtés ténye, a kezelt adatok köre: Facebook/Google+/Twitter/Pinterest/Youtube/Instagram
+                        stb. közösségi oldalakon regisztrált neve, illetve a felhasználó nyilvános profilképe.</p>
                 </li>
                 <li class="mb-2">
-                    <p>Az érintettek köre: Valamennyi érintett, aki regisztrált a Facebook/Google+/Twitter/Pinterest/Youtube/Instagram stb. közösségi oldalakon, és „lájkolta” a weboldalt.</p>
+                    <p>Az érintettek köre: Valamennyi érintett, aki regisztrált a
+                        Facebook/Google+/Twitter/Pinterest/Youtube/Instagram stb. közösségi oldalakon, és „lájkolta” a
+                        weboldalt.</p>
                 </li>
                 <li class="mb-2">
-                    <p>Az adatgyűjtés célja: A közösségi oldalakon, a weboldal egyes tartalmi elemeinek, termékeinek, akcióinak vagy magának a weboldalnak a megosztása, illetve „lájkolása”, népszerűsítése.</p>
+                    <p>Az adatgyűjtés célja: A közösségi oldalakon, a weboldal egyes tartalmi elemeinek, termékeinek,
+                        akcióinak vagy magának a weboldalnak a megosztása, illetve „lájkolása”, népszerűsítése.</p>
                 </li>
                 <li class="mb-2">
-                    <p>Az adatkezelés időtartama, az adatok törlésének határideje, az adatok megismerésére jogosult lehetséges adatkezelők személye és az érintettek adatkezeléssel kapcsolatos jogainak ismertetése: Az adatok forrásáról, azok kezeléséről, illetve az átadás módjáról, és jogalapjáról az adott közösségi oldalon tájékozódhat az érintett. Az adatkezelés a közösségi oldalakon valósul meg, így az adatkezelés időtartamára, módjára, illetve az adatok törlési és módosítási lehetőségeire az adott közösségi oldal szabályozása vonatkozik.</p>
+                    <p>Az adatkezelés időtartama, az adatok törlésének határideje, az adatok megismerésére jogosult
+                        lehetséges adatkezelők személye és az érintettek adatkezeléssel kapcsolatos jogainak
+                        ismertetése: Az adatok forrásáról, azok kezeléséről, illetve az átadás módjáról, és jogalapjáról
+                        az adott közösségi oldalon tájékozódhat az érintett. Az adatkezelés a közösségi oldalakon
+                        valósul meg, így az adatkezelés időtartamára, módjára, illetve az adatok törlési és módosítási
+                        lehetőségeire az adott közösségi oldal szabályozása vonatkozik.</p>
                 </li>
                 <li class="mb-2">
-                    <p>Az adatkezelés jogalapja: az érintett önkéntes hozzájárulása személyes adatai kezeléséhez a közösségi oldalakon.</p>
+                    <p>Az adatkezelés jogalapja: az érintett önkéntes hozzájárulása személyes adatai kezeléséhez a
+                        közösségi oldalakon.</p>
                 </li>
             </ol>
-            <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mt-10 mb-6"><strong>Ügyfélkapcsolatok és egyéb adatkezelések</strong></h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mt-10 mb-6"><strong>Ügyfélkapcsolatok és egyéb
+                    adatkezelések</strong></h2>
             <ol class="list-decimal pl-6 mb-4 text-gray-700">
                 <li class="mb-2">
-                    <p>Amennyiben az adatkezelő szolgáltatásaink igénybevétele során kérdés merülne fel, esetleg problémája lenne az érintettnek, a honlapon megadott módokon (telefon, e-mail, közösségi oldalak stb.) kapcsolatba léphet az adatkezelővel.</p>
+                    <p>Amennyiben az adatkezelő szolgáltatásaink igénybevétele során kérdés merülne fel, esetleg
+                        problémája lenne az érintettnek, a honlapon megadott módokon (telefon, e-mail, közösségi oldalak
+                        stb.) kapcsolatba léphet az adatkezelővel.</p>
                 </li>
                 <li class="mb-2">
-                    <p>Adatkezelő a beérkezett e-maileket, üzeneteket, telefonon, Facebook-on stb. megadott adatokat az érdeklődő nevével és e-mail címével, valamint más, önként megadott személyes adatával együtt, az adatközléstől számított legfeljebb 2 év elteltével törli.</p>
+                    <p>Adatkezelő a beérkezett e-maileket, üzeneteket, telefonon, Facebook-on stb. megadott adatokat az
+                        érdeklődő nevével és e-mail címével, valamint más, önként megadott személyes adatával együtt, az
+                        adatközléstől számított legfeljebb 2 év elteltével törli.</p>
                 </li>
                 <li class="mb-2">
                     <p>E tájékoztatóban fel nem sorolt adatkezelésekről az adat felvételekor adunk tájékoztatást.</p>
                 </li>
                 <li class="mb-2">
-                    <p>Kivételes hatósági megkeresésre, illetőleg jogszabály felhatalmazása alapján más szervek megkeresése esetén a Szolgáltató köteles tájékoztatás adására, adatok közlésére, átadására, illetőleg iratok rendelkezésre bocsátására.</p>
+                    <p>Kivételes hatósági megkeresésre, illetőleg jogszabály felhatalmazása alapján más szervek
+                        megkeresése esetén a Szolgáltató köteles tájékoztatás adására, adatok közlésére, átadására,
+                        illetőleg iratok rendelkezésre bocsátására.</p>
                 </li>
                 <li class="mb-2">
-                    <p>A Szolgáltató ezen esetekben a megkereső részére – amennyiben az a pontos célt és az adatok körét megjelölte – személyes adatot csak annyit és olyan mértékben ad ki, amely a megkeresés céljának megvalósításához elengedhetetlenül szükséges.</p>
+                    <p>A Szolgáltató ezen esetekben a megkereső részére – amennyiben az a pontos célt és az adatok körét
+                        megjelölte – személyes adatot csak annyit és olyan mértékben ad ki, amely a megkeresés céljának
+                        megvalósításához elengedhetetlenül szükséges.</p>
                 </li>
             </ol>
             <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mt-10 mb-6"><strong>Az érintettek jogai</strong>
@@ -533,248 +553,199 @@
             <ol class="list-decimal pl-6 mb-4 text-gray-700">
                 <li class="mb-2">
                     <p><strong>A hozzáférés joga</strong></p>
+                    <p class="mt-1">Ön jogosult arra, hogy az adatkezelőtől visszajelzést kapjon arra vonatkozóan,
+                        hogy személyes adatainak kezelése folyamatban van-e, és ha ilyen adatkezelés folyamatban van,
+                        jogosult arra, hogy a személyes adatokhoz és a rendeletben felsorolt információkhoz hozzáférést
+                        kapjon.</p>
                 </li>
-            </ol>
-            <p class="mb-4 text-gray-700 leading-relaxed">Ön jogosult arra, hogy az adatkezelőtől visszajelzést kapjon
-                arra vonatkozóan, hogy személyes adatainak
-                kezelése folyamatban van-e, és ha ilyen adatkezelés folyamatban van, jogosult arra, hogy a személyes
-                adatokhoz és a rendeletben felsorolt információkhoz hozzáférést kapjon.</p>
-            <ol start="2" class="list-decimal pl-6 mb-4 text-gray-700">
                 <li class="mb-2">
                     <p><strong>A helyesbítéshez való jog</strong></p>
+                    <p class="mt-1">Ön jogosult arra, hogy kérésére az adatkezelő indokolatlan késedelem nélkül
+                        helyesbítse a rá vonatkozó pontatlan személyes adatokat. Figyelembe véve az adatkezelés célját,
+                        Ön jogosult arra, hogy kérje a hiányos személyes adatok – egyebek mellett kiegészítő nyilatkozat
+                        útján történő – kiegészítését.</p>
                 </li>
-            </ol>
-            <p class="mb-4 text-gray-700 leading-relaxed">Ön jogosult arra, hogy kérésére az adatkezelő indokolatlan
-                késedelem nélkül helyesbítse a rá vonatkozó
-                pontatlan személyes adatokat. Figyelembe véve az adatkezelés célját, Ön jogosult arra, hogy kérje a
-                hiányos személyes adatok – egyebek mellett kiegészítő nyilatkozat útján történő – kiegészítését.</p>
-            <ol start="3" class="list-decimal pl-6 mb-4 text-gray-700">
                 <li class="mb-2">
                     <p><strong>A törléshez való jog</strong></p>
+                    <p class="mt-1">Ön jogosult arra, hogy kérésére az adatkezelő indokolatlan késedelem nélkül
+                        törölje a rá vonatkozó személyes adatokat, az adatkezelő pedig köteles arra, hogy Önre vonatkozó
+                        személyes adatokat indokolatlan késedelem nélkül törölje meghatározott feltételek esetén.</p>
                 </li>
-            </ol>
-            <p class="mb-4 text-gray-700 leading-relaxed">Ön jogosult arra, hogy kérésére az adatkezelő indokolatlan
-                késedelem nélkül törölje a rá vonatkozó
-                személyes adatokat, az adatkezelő pedig köteles arra, hogy Önre vonatkozó személyes adatokat
-                indokolatlan késedelem nélkül törölje meghatározott feltételek esetén.</p>
-            <ol start="4" class="list-decimal pl-6 mb-4 text-gray-700">
                 <li class="mb-2">
                     <p><strong>Az elfeledtetéshez való jog</strong></p>
+                    <p class="mt-1">Ha az adatkezelő nyilvánosságra hozta a személyes adatot, és azt törölni köteles,
+                        az elérhető technológia és a megvalósítás költségeinek figyelembevételével megteszi az ésszerűen
+                        elvárható lépéseket – ideértve technikai intézkedéseket – annak érdekében, hogy tájékoztassa az
+                        adatokat kezelő adatkezelőket, hogy Ön kérelmezte a szóban forgó személyes adatokra mutató
+                        linkek vagy e személyes adatok másolatának, illetve másodpéldányának törlését.</p>
                 </li>
-            </ol>
-            <p class="mb-4 text-gray-700 leading-relaxed">Ha az adatkezelő nyilvánosságra hozta a személyes adatot, és
-                azt törölni köteles, az elérhető technológia
-                és a megvalósítás költségeinek figyelembevételével megteszi az ésszerűen elvárható lépéseket – ideértve
-                technikai intézkedéseket – annak érdekében, hogy tájékoztassa az adatokat kezelő adatkezelőket, hogy Ön
-                kérelmezte a szóban forgó személyes adatokra mutató linkek vagy e személyes adatok másolatának, illetve
-                másodpéldányának törlését.</p>
-            <ol start="5" class="list-decimal pl-6 mb-4 text-gray-700">
                 <li class="mb-2">
                     <p><strong>Az adatkezelés korlátozásához való jog</strong></p>
+                    <p class="mt-1">Ön jogosult arra, hogy kérésére az adatkezelő korlátozza az adatkezelést, ha az
+                        alábbi feltételek valamelyike teljesül:</p>
+                    <ul class="list-disc pl-8 mt-1">
+                        <li class="mb-1">Ön vitatja a személyes adatok pontosságát, ez esetben a korlátozás arra az
+                            időtartamra vonatkozik, amely lehetővé teszi, hogy az adatkezelő ellenőrizze a személyes
+                            adatok pontosságát;</li>
+                        <li class="mb-1">az adatkezelés jogellenes, és Ön ellenzi az adatok törlését, és ehelyett
+                            kéri azok felhasználásának korlátozását;</li>
+                        <li class="mb-1">az adatkezelőnek már nincs szüksége a személyes adatokra adatkezelés
+                            céljából, de Ön igényli azokat jogi igények előterjesztéséhez, érvényesítéséhez vagy
+                            védelméhez;</li>
+                        <li class="mb-1">Ön tiltakozott az adatkezelés ellen; ez esetben a korlátozás arra az
+                            időtartamra vonatkozik, amíg megállapításra nem kerül, hogy az adatkezelő jogos indokai
+                            elsőbbséget élveznek-e Ön jogos indokaival szemben.</li>
+                    </ul>
                 </li>
-            </ol>
-            <p class="mb-4 text-gray-700 leading-relaxed">Ön jogosult arra, hogy kérésére az adatkezelő korlátozza az
-                adatkezelést, ha az alábbi feltételek
-                valamelyike teljesül:</p>
-            <ul class="list-disc pl-8 mb-4 text-gray-700">
-                <li class="mb-1">Ön vitatja a személyes adatok pontosságát, ez esetben a korlátozás arra az
-                    időtartamra
-                    vonatkozik, amely lehetővé teszi, hogy az adatkezelő ellenőrizze a személyes adatok pontosságát;
-                </li>
-                <li class="mb-1">az adatkezelés jogellenes, és Ön ellenzi az adatok törlését, és ehelyett kéri azok
-                    felhasználásának korlátozását;</li>
-                <li class="mb-1">az adatkezelőnek már nincs szüksége a személyes adatokra adatkezelés céljából, de Ön
-                    igényli
-                    azokat jogi igények előterjesztéséhez, érvényesítéséhez vagy védelméhez;</li>
-                <li class="mb-1">Ön tiltakozott az adatkezelés ellen; ez esetben a korlátozás arra az időtartamra
-                    vonatkozik, amíg
-                    megállapításra nem kerül, hogy az adatkezelő jogos indokai elsőbbséget élveznek-e Ön jogos
-                    indokaival szemben.</li>
-            </ul>
-            <ol start="6" class="list-decimal pl-6 mb-4 text-gray-700">
                 <li class="mb-2">
                     <p><strong>Az adathordozhatósághoz való jog</strong></p>
+                    <p class="mt-1">Ön jogosult arra, hogy a rá vonatkozó, általa egy adatkezelő rendelkezésére
+                        bocsátott személyes adatokat tagolt, széles körben használt, géppel olvasható formátumban
+                        megkapja, továbbá jogosult arra, hogy ezeket az adatokat egy másik adatkezelőnek továbbítsa
+                        anélkül, hogy ezt akadályozná az az adatkezelő, amelynek a személyes adatokat a rendelkezésére
+                        bocsátotta (…)</p>
                 </li>
-            </ol>
-            <p class="mb-4 text-gray-700 leading-relaxed">Ön jogosult arra, hogy a rá vonatkozó, általa egy adatkezelő
-                rendelkezésére bocsátott személyes adatokat
-                tagolt, széles körben használt, géppel olvasható formátumban megkapja, továbbá jogosult arra, hogy
-                ezeket az adatokat egy másik adatkezelőnek továbbítsa anélkül, hogy ezt akadályozná az az adatkezelő,
-                amelynek a személyes adatokat a rendelkezésére bocsátotta (…)</p>
-            <ol start="7" class="list-decimal pl-6 mb-4 text-gray-700">
                 <li class="mb-2">
                     <p><strong>A tiltakozáshoz való jog</strong></p>
+                    <p class="mt-1">Ön jogosult arra, hogy a saját helyzetével kapcsolatos okokból bármikor
+                        tiltakozzon személyes adatainak a (…) kezelése ellen, ideértve az említett rendelkezéseken
+                        alapuló profilalkotást is.</p>
                 </li>
-            </ol>
-            <p class="mb-4 text-gray-700 leading-relaxed">Ön jogosult arra, hogy a saját helyzetével kapcsolatos
-                okokból bármikor tiltakozzon személyes adatainak a
-                (…) kezelése ellen, ideértve az említett rendelkezéseken alapuló profilalkotást is.</p>
-            <ol start="8" class="list-decimal pl-6 mb-4 text-gray-700">
                 <li class="mb-2">
                     <p><strong>Tiltakozás közvetlen üzletszerzés estén</strong></p>
+                    <p class="mt-1">Ha a személyes adatok kezelése közvetlen üzletszerzés érdekében történik, Ön
+                        jogosult arra, hogy bármikor tiltakozzon a rá vonatkozó személyes adatok e célból történő
+                        kezelése ellen, ideértve a profilalkotást is, amennyiben az a közvetlen üzletszerzéshez
+                        kapcsolódik. Ha Ön tiltakozik a személyes adatok közvetlen üzletszerzés érdekében történő
+                        kezelése ellen, akkor a személyes adatok a továbbiakban e célból nem kezelhetők.</p>
                 </li>
-            </ol>
-            <p class="mb-4 text-gray-700 leading-relaxed">Ha a személyes adatok kezelése közvetlen üzletszerzés
-                érdekében történik, Ön jogosult arra, hogy bármikor
-                tiltakozzon a rá vonatkozó személyes adatok e célból történő kezelése ellen, ideértve a profilalkotást
-                is, amennyiben az a közvetlen üzletszerzéshez kapcsolódik. Ha Ön tiltakozik a személyes adatok közvetlen
-                üzletszerzés érdekében történő kezelése ellen, akkor a személyes adatok a továbbiakban e célból nem
-                kezelhetők.</p>
-            <ol start="9" class="list-decimal pl-6 mb-4 text-gray-700">
                 <li class="mb-2">
                     <p><strong>Automatizált döntéshozatal egyedi ügyekben, beleértve a profilalkotást</strong></p>
+                    <p class="mt-1">Ön jogosult arra, hogy ne terjedjen ki rá az olyan, kizárólag automatizált
+                        adatkezelésen – ideértve a profilalkotást is – alapuló döntés hatálya, amely rá nézve
+                        joghatással járna vagy őt hasonlóképpen jelentős mértékben érintené.</p>
+                    <p class="mt-1">Az előző bekezdés nem alkalmazandó abban az esetben, ha a döntés:</p>
+                    <ul class="list-disc pl-8 mt-1">
+                        <li class="mb-1">Ön és az adatkezelő közötti szerződés megkötése vagy teljesítése érdekében
+                            szükséges;</li>
+                        <li class="mb-1">meghozatalát az adatkezelőre alkalmazandó olyan uniós vagy tagállami jog
+                            teszi lehetővé, amely Ön jogainak és szabadságainak, valamint jogos érdekeinek védelmét
+                            szolgáló megfelelő intézkedéseket is megállapít; vagy</li>
+                        <li class="mb-1">Ön kifejezett hozzájárulásán alapul.</li>
+                    </ul>
                 </li>
             </ol>
-            <p class="mb-4 text-gray-700 leading-relaxed">Ön jogosult arra, hogy ne terjedjen ki rá az olyan, kizárólag
-                automatizált adatkezelésen – ideértve a
-                profilalkotást is – alapuló döntés hatálya, amely rá nézve joghatással járna vagy őt hasonlóképpen
-                jelentős mértékben érintené.</p>
-            <p class="mb-4 text-gray-700 leading-relaxed">Az előző bekezdés nem alkalmazandó abban az esetben, ha a
-                döntés:</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mt-10 mb-6"><strong>Intézkedési határidő</strong>
+            </h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">Az adatkezelő indokolatlan késedelem nélkül, de
+                mindenféleképpen a kérelem beérkezésétől számított <strong>1 hónapon belül</strong> tájékoztatja Önt a
+                fenti kérelmek nyomán hozott intézkedésekről.</p>
+            <p class="mb-4 text-gray-700 leading-relaxed">Szükség esetén ez <strong>2 hónappal
+                    meghosszabbítható</strong>. A határidő meghosszabbításáról az adatkezelő a késedelem okainak
+                megjelölésével a kérelem kézhezvételétől számított <strong>1 hónapon belül</strong> tájékoztatja Önt.
+            </p>
+            <p class="mb-4 text-gray-700 leading-relaxed">Ha az adatkezelő nem tesz intézkedéseket Ön kérelme nyomán,
+                <strong>késedelem nélkül, de legkésőbb a kérelem beérkezésétől számított egy hónapon belül tájékoztatja
+                    Önt az intézkedés elmaradásának okairól</strong>, valamint arról, hogy Ön panaszt nyújthat be
+                valamely felügyeleti hatóságnál, és élhet bírósági jogorvoslati jogával.</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mt-10 mb-6"><strong>Az adatkezelés
+                    biztonsága</strong></h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">Az adatkezelő és az adatfeldolgozó a tudomány és technológia
+                állása és a megvalósítás költségei, továbbá az adatkezelés jellege, hatóköre, körülményei és céljai,
+                valamint a természetes személyek jogaira és szabadságaira jelentett, változó valószínűségű és súlyosságú
+                kockázat figyelembevételével megfelelő technikai és szervezési intézkedéseket hajt végre annak
+                érdekében, hogy a kockázat mértékének megfelelő szintű adatbiztonságot garantálja, ideértve, többek
+                között, adott esetben:</p>
+            <ol class="list-decimal pl-6 mb-4 text-gray-700">
+                <li class="mb-2">a személyes adatok titkosítását;</li>
+                <li class="mb-2">a személyes adatok kezelésére használt rendszerek és szolgáltatások folyamatos
+                    bizalmas jellegének biztosítását, integritását, rendelkezésre állását és ellenálló képességét;</li>
+                <li class="mb-2">fizikai vagy műszaki incidens esetén az arra való képességet, hogy a személyes
+                    adatokhoz való hozzáférést és az adatok rendelkezésre állását kellő időben vissza lehet állítani;
+                </li>
+                <li class="mb-2">az adatkezelés biztonságának garantálására hozott technikai és szervezési
+                    intézkedések hatékonyságának rendszeres tesztelésére, felmérésére és értékelésére szolgáló eljárást.
+                </li>
+            </ol>
+            <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mt-10 mb-6"><strong>Az érintett tájékoztatása az
+                    adatvédelmi incidensről</strong></h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">Ha az adatvédelmi incidens valószínűsíthetően magas
+                kockázattal jár a természetes személyek jogaira és szabadságaira nézve, az adatkezelő indokolatlan
+                késedelem nélkül tájékoztatja az érintettet az adatvédelmi incidensről.</p>
+            <p class="mb-4 text-gray-700 leading-relaxed">Az érintett részére adott tájékoztatásban <strong>világosan
+                    és közérthetően</strong> ismertetni kell az adatvédelmi incidens jellegét, és közölni kell az
+                adatvédelmi tisztviselő vagy a további tájékoztatást nyújtó egyéb kapcsolattartó nevét és
+                elérhetőségeit; ismertetni kell az adatvédelmi incidensből eredő, valószínűsíthető következményeket;
+                ismertetni kell az adatkezelő által az adatvédelmi incidens orvoslására tett vagy tervezett
+                intézkedéseket, beleértve adott esetben az adatvédelmi incidensből eredő esetleges hátrányos
+                következmények enyhítését célzó intézkedéseket.</p>
+            <p class="mb-4 text-gray-700 leading-relaxed">Az érintettet nem kell tájékoztatni, ha a következő
+                feltételek bármelyike teljesül:</p>
             <ul class="list-disc pl-8 mb-4 text-gray-700">
-                <li class="mb-1">Ön és az adatkezelő közötti szerződés megkötése vagy teljesítése érdekében
-                    szükséges;</li>
-                <li class="mb-1">meghozatalát az adatkezelőre alkalmazandó olyan uniós vagy tagállami jog teszi
-                    lehetővé, amely Ön
-                    jogainak és szabadságainak, valamint jogos érdekeinek védelmét szolgáló megfelelő intézkedéseket
-                    is megállapít; vagy</li>
-                <li class="mb-1">Ön kifejezett hozzájárulásán alapul.</li>
-            </ul>
-            <h2><strong>Intézkedési határidő</strong></h2>
-            <p>Az adatkezelő indokolatlan késedelem nélkül, de mindenféleképpen a kérelem beérkezésétől számított
-                <strong>1 hónapon belül</strong> tájékoztatja Önt a fenti kérelmek nyomán hozott intézkedésekről.
-            </p>
-            <p>Szükség esetén ez <strong>2 hónappal meghosszabbítható</strong>. A határidő meghosszabbításáról az
-                adatkezelő a késedelem okainak megjelölésével a kérelem kézhezvételétől számított <strong>1 hónapon
-                    belül</strong> tájékoztatja Önt.</p>
-            <p>Ha az adatkezelő nem tesz intézkedéseket Ön kérelme nyomán, <strong>késedelem nélkül, de legkésőbb a
-                    kérelem beérkezésétől számított egy hónapon belül tájékoztatja Önt az intézkedés elmaradásának
-                    okairól</strong>, valamint arról, hogy Ön panaszt nyújthat be valamely felügyeleti hatóságnál, és
-                élhet bírósági jogorvoslati jogával.</p>
-            <h2><strong>Az adatkezelés biztonsága</strong></h2>
-            <p>Az adatkezelő és az adatfeldolgozó a tudomány és technológia állása és a megvalósítás költségei, továbbá
-                az adatkezelés jellege, hatóköre, körülményei és céljai, valamint a természetes személyek jogaira és
-                szabadságaira jelentett, változó valószínűségű és súlyosságú kockázat figyelembevételével megfelelő
-                technikai és szervezési intézkedéseket hajt végre annak érdekében, hogy a kockázat mértékének megfelelő
-                szintű adatbiztonságot garantálja, ideértve, többek között, adott esetben:</p>
-            <ol>
-                <li>
-                    <p>a személyes adatok titkosítását;</p>
-                </li>
-            </ol>
-            <ol start="2">
-                <li>
-                    <p>a személyes adatok kezelésére használt rendszerek és szolgáltatások folyamatos bizalmas
-                        jellegének biztosítását, integritását, rendelkezésre állását és ellenálló képességét;</p>
-                </li>
-            </ol>
-            <ol start="3">
-                <li>
-                    <p>fizikai vagy műszaki incidens esetén az arra való képességet, hogy a személyes adatokhoz való
-                        hozzáférést és az adatok rendelkezésre állását kellő időben vissza lehet állítani;</p>
-                </li>
-            </ol>
-            <ol start="4">
-                <li>
-                    <p>az adatkezelés biztonságának garantálására hozott technikai és szervezési intézkedések
-                        hatékonyságának rendszeres tesztelésére, felmérésére és értékelésére szolgáló eljárást.</p>
-                </li>
-            </ol>
-            <h2><strong>Az érintett tájékoztatása az adatvédelmi incidensről</strong></h2>
-            <p>Ha az adatvédelmi incidens valószínűsíthetően magas kockázattal jár a természetes személyek jogaira és
-                szabadságaira nézve, az adatkezelő indokolatlan késedelem nélkül tájékoztatja az érintettet az
-                adatvédelmi incidensről.</p>
-            <p>Az érintett részére adott tájékoztatásban <strong>világosan és közérthetően</strong> ismertetni kell az
-                adatvédelmi incidens jellegét, és közölni kell az adatvédelmi tisztviselő vagy a további tájékoztatást
-                nyújtó egyéb kapcsolattartó nevét és elérhetőségeit; ismertetni kell az adatvédelmi incidensből eredő,
-                valószínűsíthető következményeket; ismertetni kell az adatkezelő által az adatvédelmi incidens
-                orvoslására tett vagy tervezett intézkedéseket, beleértve adott esetben az adatvédelmi incidensből eredő
-                esetleges hátrányos következmények enyhítését célzó intézkedéseket.</p>
-            <p>Az érintettet nem kell tájékoztatni, ha a következő feltételek bármelyike teljesül:</p>
-            <ul>
-                <li>
-                    <p>az adatkezelő <strong>megfelelő technikai és szervezési védelmi intézkedéseket hajtott
-                            végre</strong>, és ezeket az intézkedéseket az adatvédelmi incidens által érintett adatok
-                        tekintetében alkalmazták, különösen azokat az intézkedéseket – mint például a titkosítás
-                        alkalmazása –, amelyek a személyes adatokhoz való hozzáférésre fel nem jogosított személyek
-                        számára <strong>értelmezhetetlenné teszik az adatokat</strong>;</p>
-                </li>
-                <li>
-                    <p>az adatkezelő az adatvédelmi incidenst követően olyan további intézkedéseket tett, amelyek
-                        <strong>biztosítják, hogy az érintett jogaira és szabadságaira jelentett, magas kockázat a
-                            továbbiakban valószínűsíthetően nem valósul meg</strong>;
-                    </p>
-                </li>
-                <li>
-                    <p>a tájékoztatás <strong>aránytalan erőfeszítést tenne szükségessé</strong>. Ilyen esetekben az
-                        érintetteket nyilvánosan közzétett információk útján kell tájékoztatni, vagy olyan hasonló
-                        intézkedést kell hozni, amely biztosítja az érintettek hasonlóan hatékony tájékoztatását.</p>
+                <li class="mb-1">az adatkezelő <strong>megfelelő technikai és szervezési védelmi intézkedéseket
+                        hajtott végre</strong>, és ezeket az intézkedéseket az adatvédelmi incidens által érintett
+                    adatok tekintetében alkalmazták, különösen azokat az intézkedéseket – mint például a titkosítás
+                    alkalmazása –, amelyek a személyes adatokhoz való hozzáférésre fel nem jogosított személyek számára
+                    <strong>értelmezhetetlenné teszik az adatokat</strong>;</li>
+                <li class="mb-1">az adatkezelő az adatvédelmi incidenst követően olyan további intézkedéseket tett,
+                    amelyek <strong>biztosítják, hogy az érintett jogaira és szabadságaira jelentett, magas kockázat a
+                        továbbiakban valószínűsíthetően nem valósul meg</strong>;</li>
+                <li class="mb-1">a tájékoztatás <strong>aránytalan erőfeszítést tenne szükségessé</strong>. Ilyen
+                    esetekben az érintetteket nyilvánosan közzétett információk útján kell tájékoztatni, vagy olyan
+                    hasonló intézkedést kell hozni, amely biztosítja az érintettek hasonlóan hatékony tájékoztatását.
                 </li>
             </ul>
-            <p>Ha az adatkezelő még nem értesítette az érintettet az adatvédelmi incidensről, a felügyeleti hatóság,
-                miután mérlegelte, hogy az adatvédelmi incidens valószínűsíthetően magas kockázattal jár-e, elrendelheti
-                az érintett tájékoztatását.</p>
-            <h2><strong>Adatvédelmi incidens bejelentése a hatóságnak</strong></h2>
-            <p>Az adatvédelmi incidenst az adatkezelő indokolatlan késedelem nélkül, és ha lehetséges, legkésőbb 72
-                órával azután, hogy az adatvédelmi incidens a tudomására jutott, bejelenti az 55. cikk alapján illetékes
-                felügyeleti hatóságnak, kivéve, ha az adatvédelmi incidens valószínűsíthetően nem jár kockázattal a
-                természetes személyek jogaira és szabadságaira nézve. Ha a bejelentés nem történik meg 72 órán belül,
-                mellékelni kell hozzá a késedelem igazolására szolgáló indokokat is.</p>
-            <h2><strong>Panasztételi lehetőség</strong></h2>
-            <p>Az adatkezelő esetleges jogsértése ellen panasszal a Nemzeti Adatvédelmi és Információszabadság
-                Hatóságnál lehet élni:</p>
-            <p>Nemzeti Adatvédelmi és Információszabadság Hatóság
-                <br>1125 Budapest, Szilágyi Erzsébet fasor 22/C.
-                <br>Levelezési cím: 1530 Budapest, Postafiók: 5.
-                <br>Telefon: +36 -1-391-1400
-                <br>Fax: +36-1-391-1410
-                <br>E-mail: <a target="_blank" rel="noopener noreferrer nofollow"
-                    href="mailto:ugyfelszolgalat@naih.hu">ugyfelszolgalat@naih.hu</a>
-            </p>
-            <h2><strong>Zárszó</strong></h2>
-            <p>A tájékoztató elkészítése során figyelemmel voltunk az alábbi jogszabályokra:</p>
-            <ul>
-                <li>
-                    <p>A természetes személyeknek a személyes adatok kezelése tekintetében történő védelméről és az
-                        ilyen adatok szabad áramlásáról, valamint a 95/46/EK rendelet hatályon kívül helyezéséről
-                        (általános adatvédelmi rendelet) AZ EURÓPAI PARLAMENT ÉS A TANÁCS (EU) 2016/679 RENDELETE (2016.
-                        április 27.)</p>
-                </li>
-                <li>
-                    <p>2011. évi CXII. törvény – az információs önrendelkezési jogról és az információszabadságról (a
-                        továbbiakban: Infotv.)</p>
-                </li>
-                <li>
-                    <p>2001. évi CVIII. törvény – az elektronikus kereskedelmi szolgáltatások, valamint az információs
-                        társadalommal összefüggő szolgáltatások egyes kérdéseiről (főképp a 13/A. §-a)</p>
-                </li>
-                <li>
-                    <p>2008. évi XLVII. törvény – a fogyasztókkal szembeni tisztességtelen kereskedelmi gyakorlat
-                        tilalmáról;</p>
-                </li>
-                <li>
-                    <p>2008. évi XLVIII. törvény – a gazdasági reklámtevékenység alapvető feltételeiről és egyes
-                        korlátairól (különösen a 6.§-a)</p>
-                </li>
-                <li>
-                    <p>2005. évi XC. törvény az elektronikus információszabadságról</p>
-                </li>
-                <li>
-                    <p>2003. évi C. törvény az elektronikus hírközlésről (kifejezetten a 155.§-a)</p>
-                </li>
-                <li>
-                    <p>16/2011. sz. vélemény a viselkedésalapú online reklám bevált gyakorlatára vonatkozó
-                        EASA/IAB-ajánlásról</p>
-                </li>
-                <li>
-                    <p>A Nemzeti Adatvédelmi és Információszabadság Hatóság ajánlása az előzetes tájékoztatás
-                        adatvédelmi követelményeiről</p>
-                </li>
-                <li>
-                    <p>Az Európai Parlament és a Tanács (EU) 2016/679 rendelete (2016. április 27.) a természetes
-                        személyeknek a személyes adatok kezelése tekintetében történő védelméről és az ilyen adatok
-                        szabad áramlásáról, valamint a 95/46/EK rendelet hatályon kívül helyezéséről</p>
-                </li>
+            <p class="mb-4 text-gray-700 leading-relaxed">Ha az adatkezelő még nem értesítette az érintettet az
+                adatvédelmi incidensről, a felügyeleti hatóság, miután mérlegelte, hogy az adatvédelmi incidens
+                valószínűsíthetően magas kockázattal jár-e, elrendelheti az érintett tájékoztatását.</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mt-10 mb-6"><strong>Adatvédelmi incidens
+                    bejelentése a hatóságnak</strong></h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">Az adatvédelmi incidenst az adatkezelő indokolatlan késedelem
+                nélkül, és ha lehetséges, legkésőbb 72 órával azután, hogy az adatvédelmi incidens a tudomására jutott,
+                bejelenti az 55. cikk alapján illetékes felügyeleti hatóságnak, kivéve, ha az adatvédelmi incidens
+                valószínűsíthetően nem jár kockázattal a természetes személyek jogaira és szabadságaira nézve. Ha a
+                bejelentés nem történik meg 72 órán belül, mellékelni kell hozzá a késedelem igazolására szolgáló
+                indokokat is.</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mt-10 mb-6"><strong>Panasztételi
+                    lehetőség</strong></h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">Az adatkezelő esetleges jogsértése ellen panasszal a Nemzeti
+                Adatvédelmi és Információszabadság Hatóságnál lehet élni:</p>
+            <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                <p class="mb-1 font-semibold">Nemzeti Adatvédelmi és Információszabadság Hatóság</p>
+                <p class="mb-1">1125 Budapest, Szilágyi Erzsébet fasor 22/C.</p>
+                <p class="mb-1">Levelezési cím: 1530 Budapest, Postafiók: 5.</p>
+                <p class="mb-1">Telefon: +36 -1-391-1400</p>
+                <p class="mb-1">Fax: +36-1-391-1410</p>
+                <p class="mb-1">E-mail: <a target="_blank" rel="noopener noreferrer nofollow"
+                        href="mailto:ugyfelszolgalat@naih.hu"
+                        class="text-brand-blue underline hover:text-brand-blue-dark transition-colors">ugyfelszolgalat@naih.hu</a>
+                </p>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mt-10 mb-6"><strong>Zárszó</strong></h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">A tájékoztató elkészítése során figyelemmel voltunk az alábbi
+                jogszabályokra:</p>
+            <ul class="list-disc pl-8 mb-4 text-gray-700">
+                <li class="mb-1">A természetes személyeknek a személyes adatok kezelése tekintetében történő
+                    védelméről és az ilyen adatok szabad áramlásáról, valamint a 95/46/EK rendelet hatályon kívül
+                    helyezéséről (általános adatvédelmi rendelet) AZ EURÓPAI PARLAMENT ÉS A TANÁCS (EU) 2016/679
+                    RENDELETE (2016. április 27.)</li>
+                <li class="mb-1">2011. évi CXII. törvény – az információs önrendelkezési jogról és az
+                    információszabadságról (a továbbiakban: Infotv.)</li>
+                <li class="mb-1">2001. évi CVIII. törvény – az elektronikus kereskedelmi szolgáltatások, valamint az
+                    információs társadalommal összefüggő szolgáltatások egyes kérdéseiről (főképp a 13/A. §-a)</li>
+                <li class="mb-1">2008. évi XLVII. törvény – a fogyasztókkal szembeni tisztességtelen kereskedelmi
+                    gyakorlat tilalmáról;</li>
+                <li class="mb-1">2008. évi XLVIII. törvény – a gazdasági reklámtevékenység alapvető feltételeiről és
+                    egyes korlátairól (különösen a 6.§-a)</li>
+                <li class="mb-1">2005. évi XC. törvény az elektronikus információszabadságról</li>
+                <li class="mb-1">2003. évi C. törvény az elektronikus hírközlésről (kifejezetten a 155.§-a)</li>
+                <li class="mb-1">16/2011. sz. vélemény a viselkedésalapú online reklám bevált gyakorlatára vonatkozó
+                    EASA/IAB-ajánlásról</li>
+                <li class="mb-1">A Nemzeti Adatvédelmi és Információszabadság Hatóság ajánlása az előzetes
+                    tájékoztatás adatvédelmi követelményeiről</li>
+                <li class="mb-1">Az Európai Parlament és a Tanács (EU) 2016/679 rendelete (2016. április 27.) a
+                    természetes személyeknek a személyes adatok kezelése tekintetében történő védelméről és az ilyen
+                    adatok szabad áramlásáról, valamint a 95/46/EK rendelet hatályon kívül helyezéséről</li>
             </ul>
         </div>
     </div>
