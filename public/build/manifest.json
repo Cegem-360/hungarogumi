@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-CUyyU5zs.css",
+    "file": "assets/app-VMfTv5Kx.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -33,13 +33,13 @@
     "src": "resources/images/tyre.webp"
   },
   "resources/js/app.js": {
-    "file": "assets/app-CzFXRS8r.js",
+    "file": "assets/app-1RNKKXj6.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
       "assets/app-BOxqoYY3.css",
-      "assets/app-CUyyU5zs.css"
+      "assets/app-VMfTv5Kx.css"
     ]
   }
 }

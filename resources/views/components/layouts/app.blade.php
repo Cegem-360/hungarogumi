@@ -34,6 +34,9 @@
 
         {{ $slot }}
 
+        <!-- Notifikációs container -->
+        <x-notification-container />
+
         @livewire('notifications')
 
         @filamentScripts

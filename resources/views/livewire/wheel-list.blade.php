@@ -222,58 +222,59 @@
 
     </div>
     {{ $products->links() }}
+    @script
+        <script>
+            let sliderInitialized = false;
 
-    <script>
-        let sliderInitialized = false;
-
-        function destroySlider() {
-            const slider = $('#wheel-width-slider');
-            if (slider.length && slider.data("ionRangeSlider")) {
-                slider.data("ionRangeSlider").destroy();
-                sliderInitialized = false;
-            }
-        }
-
-        function initializeSlider() {
-            // Don't initialize if already done
-            if (sliderInitialized) return;
-
-            const slider = $('#wheel-width-slider');
-            if (slider.length && typeof slider.ionRangeSlider === 'function') {
-                slider.ionRangeSlider({
-                    type: "double",
-                    min: {{ Product::wheel()->min('width') }},
-                    max: {{ Product::wheel()->max('width') }},
-                    from: {{ Product::wheel()->min('width') }},
-                    to: {{ Product::wheel()->max('width') }},
-                    step: 0.5,
-                    grid: true,
-                    skin: "round",
-                    postfix: "\"",
-                    onFinish: function(data) {
-                        document.getElementById('widthMin').value = data.min;
-                        document.getElementById('widthMax').value = data.max;
-                    }
-                });
-                sliderInitialized = true;
-            }
-        }
-
-        // Initialize only once when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // Wait a bit for all scripts to load
-            setTimeout(() => {
-                initializeSlider();
-            }, 500);
-        });
-
-        // For Livewire v3
-        document.addEventListener('livewire:navigated', function() {
-            setTimeout(() => {
-                if (!sliderInitialized) {
-                    initializeSlider();
+            function destroySlider() {
+                const slider = $('#wheel-width-slider');
+                if (slider.length && slider.data("ionRangeSlider")) {
+                    slider.data("ionRangeSlider").destroy();
+                    sliderInitialized = false;
                 }
-            }, 500);
-        });
-    </script>
+            }
+
+            function initializeSlider() {
+                // Don't initialize if already done
+                if (sliderInitialized) return;
+
+                const slider = $('#wheel-width-slider');
+                if (slider.length && typeof slider.ionRangeSlider === 'function') {
+                    slider.ionRangeSlider({
+                        type: "double",
+                        min: {{ Product::wheel()->min('width') }},
+                        max: {{ Product::wheel()->max('width') }},
+                        from: {{ Product::wheel()->min('width') }},
+                        to: {{ Product::wheel()->max('width') }},
+                        step: 0.5,
+                        grid: true,
+                        skin: "round",
+                        postfix: "\"",
+                        onFinish: function(data) {
+                            document.getElementById('widthMin').value = data.min;
+                            document.getElementById('widthMax').value = data.max;
+                        }
+                    });
+                    sliderInitialized = true;
+                }
+            }
+
+            // Initialize only once when page loads
+            document.addEventListener('DOMContentLoaded', function() {
+                // Wait a bit for all scripts to load
+                setTimeout(() => {
+                    initializeSlider();
+                }, 500);
+            });
+
+            // For Livewire v3
+            document.addEventListener('livewire:navigated', function() {
+                setTimeout(() => {
+                    if (!sliderInitialized) {
+                        initializeSlider();
+                    }
+                }, 500);
+            });
+        </script>
+    @endscript
 </div>
