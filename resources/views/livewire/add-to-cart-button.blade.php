@@ -44,7 +44,7 @@
                                 $maxQty = $product->all_quantity ?? 8;
                                 $minQty = $product->min_order_quantity ?? 1;
                             @endphp
-                            @for ($i = $minQty; $i <= $maxQty; $i++)
+                            @for ($i = $minQty; $i <= $maxQty; $i += $minQty)
                                 <option value="{{ $i }}">{{ $i }} db</option>
                             @endfor
                         </select>

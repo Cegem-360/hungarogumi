@@ -40,7 +40,7 @@
                                         <select
                                             wire:change="updateQuantity({{ $item['product']->id }}, $event.target.value)"
                                             class="border rounded px-2 py-1">
-                                            @for ($i = $item->product->min_order_quantity; $i <= $item->product->all_quantity; $i++)
+                                            @for ($i = $item->product->min_order_quantity; $i <= $item->product->all_quantity; $i += $item->product->min_order_quantity)
                                                 <option value="{{ $i }}"
                                                     @if ($item->quantity == $i) selected @endif>
                                                     {{ $i }} db</option>
