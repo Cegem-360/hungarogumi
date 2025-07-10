@@ -145,7 +145,7 @@ return [
     */
 
     'contact' => [
-        'admin_email' => env('CONTACT_ADMIN_EMAIL', 'info@somigumiwebaruhaz.hu'),
+        'admin_email' => env('CONTACT_ADMIN_EMAIL', 'cegem360@gmail.com'),
     ],
 
 ];
