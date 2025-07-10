@@ -43,7 +43,7 @@ final class TyreList extends Component
 
     public $grips = []; // A / B / C / D / E / F
 
-    public $noise_levels; // 1 / 2 / 3
+    public $noise_levels = []; // 1 / 2 / 3
 
     public $noise_value;
 

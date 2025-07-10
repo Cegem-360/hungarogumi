@@ -63,6 +63,7 @@ final class AuthController extends Controller
         ]);
 
         $user->sendEmailVerificationNotification();
+        Auth::login($user);
 
         return redirect()->route('verification.notice')
             ->with('success', 'Sikeres regisztráció! Elküldtük a megerősítő emailt a megadott címre.');

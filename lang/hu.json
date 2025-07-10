@@ -1,3 +1,21 @@
 {
-   
+    "Please click the button below to verify your email address.": "Kérjük, kattintson az alábbi gombra az email címe ellenőrzéséhez.",
+    "If you did not create an account, no further action is required.": "Ha nem hozott létre fiókot, nincs további teendő.",
+    "Verify Email Address": "Email cím ellenőrzése",
+    "Thank you for verifying your email address.": "Köszönjük, hogy ellenőrizte az email címét.",
+    "Your email address has been successfully verified.": "Az email címe sikeresen ellenőrizve lett.",
+    "Resend Verification Email": "Megerősítő email újraküldése",
+    "A fresh verification link has been sent to your email address.": "Egy új megerősítő linket küldtünk az email címére.",
+    "Before proceeding, please check your email for a verification link.": "Mielőtt folytatná, kérjük, ellenőrizze az emailjét egy megerősítő linkért.",
+    "If you did not receive the email,": "Ha nem kapta meg az emailt,",
+    "click here to request another.": "kattintson ide egy új kéréséhez.",
+    "Email Verification": "Email ellenőrzés",
+    "Email Verification Notification": "Email ellenőrzési értesítés",
+    "Your email address is not verified.": "Az email címe nincs ellenőrizve.",
+    "Please verify your email address before proceeding.": "Kérjük, ellenőrizze az email címét a folytatás előtt.",
+    "You are receiving this email because we received a registration request for your account.": "Ezt az emailt azért kapja, mert regisztrációs kérelmet kaptunk az Ön fiókjához.",
+    "Regards,": "Üdvözlettel,",
+    "Whoops!": "Hoppá!",
+    "Hello!": "Helló!",
+    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below into your web browser:": "Ha nem tud az \":actionText\" gombra kattintani, másolja be az alábbi URL-t a böngészőjébe:"
 }
