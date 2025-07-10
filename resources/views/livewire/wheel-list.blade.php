@@ -199,16 +199,20 @@
                         <p class="text-sm mb-2">Hívjon minket, ha megtudásával kapcsolatban kérdése van!</p>
                         <div class="flex items-center text-lg font-bold">
                             <i class="fas fa-phone mr-2"></i>
-                            +36 1 123 45 67
+                            +36 30 700 9668
                         </div>
                     </div>
 
                     <!-- Opening Hours -->
                     <div class="mt-4 text-sm text-gray-600">
                         <div class="font-semibold mb-2">ELÉRHETŐSÉG</div>
-                        <div>H-P: 8:00 - 18:00</div>
-                        <div>SZ: 8:00 - 15:00</div>
-                        <div>V: ZÁRVA</div>
+                        <div>Hétfő: 9:00–17:00</div>
+                        <div>Kedd: 9:00–17:00</div>
+                        <div>Szerda: 9:00–17:00</div>
+                        <div>Csütörtök: 9:00–17:00</div>
+                        <div>Péntek: 9:00–17:00</div>
+                        <div>Szombat: Zárva</div>
+                        <div>Vasárnap: Zárva</div>
                     </div>
                 </div>
             </div>

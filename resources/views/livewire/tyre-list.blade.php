@@ -6,13 +6,6 @@
             <div class="sticky-sidebar">
                 <div class="bg-white rounded-lg shadow-sm">
                     <!-- Search by Auto -->
-                    <div class="mb-6">
-                        <button
-                            class="w-full flex items-center gap-4 p-4 text-brand-blue bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md">
-                            <i class="fas fa-car text-2xl"></i>
-                            <span>Gumi keresése autó szerint</span>
-                        </button>
-                    </div>
 
                     <!-- Warning -->
                     <div class="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-md">
@@ -411,16 +404,20 @@
                         <p class="text-sm mb-2">Hívjon minket, ha megtudásával kapcsolatban kérdése van!</p>
                         <div class="flex items-center text-lg font-bold">
                             <i class="fas fa-phone mr-2"></i>
-                            +36 1 123 45 67
+                            +36 30 700 9668
                         </div>
                     </div>
 
                     <!-- Opening Hours -->
                     <div class="mt-4 text-sm text-gray-600">
                         <div class="font-semibold mb-2">ELÉRHETŐSÉG</div>
-                        <div>H-P: 8:00 - 18:00</div>
-                        <div>SZ: 8:00 - 15:00</div>
-                        <div>V: ZÁRVA</div>
+                        <div>Hétfő: 9:00–17:00</div>
+                        <div>Kedd: 9:00–17:00</div>
+                        <div>Szerda: 9:00–17:00</div>
+                        <div>Csütörtök: 9:00–17:00</div>
+                        <div>Péntek: 9:00–17:00</div>
+                        <div>Szombat: Zárva</div>
+                        <div>Vasárnap: Zárva</div>
                     </div>
                 </div>
             </div>
