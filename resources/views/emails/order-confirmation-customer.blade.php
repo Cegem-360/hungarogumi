@@ -85,8 +85,8 @@
                             <strong>{{ $item->product->item_name ?? 'Termék' }}</strong><br>
                             <small>SKU: {{ $item->product->sku ?? 'N/A' }}</small><br>
                             Mennyiség: {{ $item->quantity }} db<br>
-                            Egységár: {{ Number::currency($item->price, 'HUF', 'hu', 0) }} Ft<br>
-                            Összesen: {{ Number::currency($item->price * $item->quantity, 'HUF', 'hu', 0) }} Ft
+                            Egységár: {{ Number::currency($item->total, 'HUF', 'hu', 0) }}<br>
+                            Összesen: {{ Number::currency($item->total * $item->quantity, 'HUF', 'hu', 0) }}
                         </div>
                     @endforeach
 
