@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\Cart;
+use App\Models\CartItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -25,10 +26,13 @@ final class CartService
 
     public function addItem($productId, $quantity): void
     {
+
         $cartItem = $this->cart->cartItems()->where('product_id', $productId)->first();
 
         if ($cartItem) {
-            $cartItem->quantity += $quantity;
+            if ($cartItem->quantity + $quantity <= $cartItem->product->all_quantity) {
+                $cartItem->quantity += $quantity;
+            }
             $cartItem->save();
         } else {
             $this->cart->cartItems()->create([
@@ -43,7 +47,9 @@ final class CartService
         $cartItem = $this->cart->items()->where('product_id', $productId)->first();
 
         if ($cartItem) {
-            $cartItem->quantity = $quantity;
+            if ($quantity <= $cartItem->product->all_quantity) {
+                $cartItem->quantity = $quantity;
+            }
             $cartItem->save();
         }
     }
@@ -73,5 +79,10 @@ final class CartService
         return $this->cart->cartItems->sum(function ($item): int|float {
             return $item->product->net_retail_price * $item->quantity;
         });
+    }
+
+    public function getItem(int $productId): ?CartItem
+    {
+        return $this->cart->cartItems()->where('product_id', $productId)->first();
     }
 }

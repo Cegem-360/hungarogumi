@@ -15,10 +15,10 @@
             <div class="lg:col-span-4">
                 <div class="bg-white rounded-lg shadow-sm p-6 h-full">
                     <div class="relative">
-                        <button
+                        {{--  <button
                             class="absolute top-4 left-4 w-8 h-8 border border-gray-300 rounded flex items-center justify-center hover:bg-gray-50">
                             <i class="far fa-heart text-gray-400"></i>
-                        </button>
+                        </button> --}}
                         <div
                             class="green-badge text-white px-3 py-1 rounded-full text-xs font-medium absolute top-4 right-4">
                             KÉSZLETEN
@@ -32,91 +32,7 @@
 
             <!-- Product Details -->
             <div class="lg:col-span-8">
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <h1 class="text-3xl font-bold text-gray-900 mb-2">
-                        {{ $product->manufacturer->name ?? 'Nincs gyártó' }}
-                    </h1>
-                    <h2 class="text-xl text-gray-700 mb-4">{{ $product->pattern_name ?? 'Nincs termék név' }}
-                    </h2>
-                    <p class="text-gray-600 mb-4">{{ $product->item_name ?? 'Nincs termék név' }}</p>
-
-                    <div class="text-sm text-gray-500 mb-6">
-                        {{ $product->sku ? 'SKU: ' . $product->sku : 'Nincs SKU' }} |
-                        {{ $product->consumption ? 'Energiacímke: ' . $product->consumption : 'Nincs energiacímke' }}
-                        |
-                        {{ $product->grip ? 'Tapadás nedves úton: ' . $product->grip : 'Nincs tapadás' }}
-                    </div>
-                    <div class="text-sm text-gray-500 mb-6">
-                        <div class="flex items-center">
-                            @if ($product->season == 1)
-                                <i class="fas fa-sun bg-yellow-500 text-white mr-2 p-1 rounded-md text-xl"></i>
-                                <span class="">Nyári</span>
-                            @elseif ($product->season == 2)
-                                <i class="fas fa-snowflake bg-brand-blue text-white mr-2 p-1 rounded-md text-xl"></i>
-                                <span class="">Téli</span>
-                            @elseif ($product->season == 3)
-                                <i
-                                    class="fa-solid fa-circle-plus bg-brand-anthracite text-white mr-2 p-1 rounded-md text-xl"></i>
-                                <span class="">Négyévszakos</span>
-                            @else
-                                <span class="">Ismeretlen évszak</span>
-                            @endif
-                        </div>
-                    </div>
-
-                    <!-- Price Section -->
-                    <div class="border-t pt-6">
-                        <div class="flex items-end justify-between mb-4">
-                            <div>
-                                <div class="text-sm text-gray-500">Bruttó ár (db)</div>
-                                @php
-                                    $brutto = isset($product->net_retail_price)
-                                        ? round($product->net_retail_price * 1.27)
-                                        : 0;
-                                @endphp
-                                <div class="text-3xl font-bold text-gray-900">
-                                    {{ Number::currency($brutto, 'HUF', 'hu', 0) }}</div>
-                            </div>
-                            <div class="flex items-end gap-6" x-data="{ quantity: 4, price: {{ $brutto }}, get total() { return this.quantity * this.price; } }">
-                                <select class="border border-gray-300 rounded px-3 py-2 text-sm"
-                                    x-model.number="quantity">
-                                    @php
-                                        $maxQty = $product->all_quantity ?? 8;
-                                        $minQty = $product->min_order_quantity ?? 1;
-                                    @endphp
-                                    @for ($i = $minQty; $i <= $maxQty; $i++)
-                                        <option value="{{ $i }}">{{ $i }} db</option>
-                                    @endfor
-                                </select>
-                                <div class="min-w-[7rem] text-right">
-                                    <div class="text-sm text-gray-500"
-                                        x-text="`(${quantity} × {{ Number::currency($brutto, 'HUF', 'hu', 0) }})`">
-                                    </div>
-                                    <div class="text-xl font-bold text-gray-900"
-                                        x-text="total.toLocaleString('hu-HU') + ' Ft'"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center text-sm text-green-600 mb-4">
-                            <i class="fas fa-check-circle mr-2"></i>
-                            @if ($product->all_quantity >= 5)
-                                <span>Készleten: 4+ darab termék azonnal elvihető</span>
-                            @elseif ($product->all_quantity > 0 && $product->all_quantity <= 4)
-                                <span>Készleten: {{ $product->all_quantity }} darab termék azonnal
-                                    elvihető</span>
-                            @else
-                                <span>Rendelhető</span>
-                            @endif
-                        </div>
-
-                        <button
-                            class="w-full lg:w-1/3 bg-brand-blue hover:bg-brand-blue/80 text-white font-medium py-3 px-6 rounded-lg transition-colors">
-                            <i class="fas fa-shopping-cart mr-2"></i>
-                            Kosárba
-                        </button>
-                    </div>
-                </div>
+                <livewire:add-to-cart-button :product="$product" />
             </div>
 
         </div>

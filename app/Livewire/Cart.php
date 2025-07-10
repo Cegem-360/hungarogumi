@@ -21,12 +21,27 @@ final class Cart extends Component
 
     public function updateQuantity($cartItemId, $quantity): void
     {
-        $product = Product::find($cartItemId);
-        if ($product && is_numeric($quantity) && $quantity > 0) {
-            $cartService = new CartService();
-            $cartService->updateItem($cartItemId, (int) $quantity);
-            // Optionally, handle notifications here
+        $cartService = app(CartService::class);
+        $cartItem = $cartService->getItem($cartItemId);
+        if ($cartItem && $quantity > $cartItem->product->all_quantity) {
+            // Dispatch event for frontend notification
+            $this->dispatch('notify', [
+                'type' => 'error',
+                'title' => 'Hiba',
+                'message' => 'A kosárban lévő mennyiség meghaladja a készletet.',
+                'duration' => 5000,
+            ]);
+
+            return;
         }
+
+        $cartService->updateItem($cartItemId, (int) $quantity);
+        $this->dispatch('notify', [
+            'type' => 'success',
+            'title' => 'Siker',
+            'message' => 'A kosárban lévő mennyiség frissítve lett.',
+            'duration' => 5000,
+        ]);
     }
 
     public function removeFromCart($cartItemId): void
