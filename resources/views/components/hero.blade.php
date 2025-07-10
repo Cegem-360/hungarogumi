@@ -2,7 +2,8 @@
 @use('App\Models\Manufacturer')
 <section class="hero-bg py-16 text-white"
     style="background: url('{{ Storage::url('images/IMG_5177.webp') }}') no-repeat center center; background-size: cover;">
-    <div class="container mx-auto p-12 bg-white/20 border border-white/15 backdrop-blur-2xl shadow-2xl rounded-xl">
+    <div
+        class="container mx-auto p-4 lg:p-12 bg-white/20 border border-white/15 backdrop-blur-2xl shadow-2xl rounded-xl">
         <div class="flex justify-start gap-1">
             <button id="toggle-tyre-button"
                 class="bg-brand-blue text-white py-2 px-4 rounded-t-md font-semibold cursor-pointer">
