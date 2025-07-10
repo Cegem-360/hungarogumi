@@ -100,9 +100,7 @@ final class Checkout extends Component
 
         $cartService = app(CartService::class);
         $cart = $cartService->getCart();
-        if (Auth::check()) {
-            $orderData['user_id'] = Auth::id();
-        }
+
         $orderData = [
             'payment_method' => $this->paymentMethod,
             'payment_method_title' => 'Bank Transfer', // Example, can be dynamic
@@ -132,6 +130,10 @@ final class Checkout extends Component
         // Example: Save order to database (assuming Order model exists)
         try {
             $order = Order::create($orderData);
+            if (Auth::check()) {
+                $order->update(['user_id' => Auth::id()]); // Update user ID if authenticated
+            }
+
         } catch (Throwable $th) {
             throw $th;
         }
