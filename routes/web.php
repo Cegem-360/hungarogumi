@@ -71,6 +71,11 @@ Route::middleware(['auth', 'verified'])->prefix('profil')->as('profile.')->group
 });
 
 Route::middleware([EnsureCartExists::class])->group(function (): void {
+
+    Route::get('kiegeszitok', function () {
+        return view('pages.accessories');
+    })->name('accessories');
+
     // Add routes here that require the ensureCartExist middleware
     Route::get('/kosar', function () {
         // You can pass the cart service to the view if needed

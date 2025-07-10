@@ -84,10 +84,11 @@
                         FELNIK
                     </a>
                 </li>
-                {{-- <li>
-                    <a href="#" class="nav-item px-3 py-2 rounded hover:text-brand-blue">AKKUMULÁTOR</a>
-                </li>
                 <li>
+                    <a href="{{ route('accessories') }}"
+                        class="nav-item px-3 py-2 rounded hover:text-brand-blue">KIEGÉSZÍTŐK</a>
+                </li>
+                {{--  <li>
                     <a href="#" class="nav-item px-3 py-2 rounded hover:text-brand-blue">MOTOROLAJ</a>
                 </li> --}}
 
