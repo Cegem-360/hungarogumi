@@ -37,15 +37,19 @@
                                         /db
                                     </td>
                                     <td class="py-4 px-2 align-middle">
-                                        <select
-                                            wire:change="updateQuantity({{ $item['product']->id }}, $event.target.value)"
-                                            class="border rounded px-2 py-1">
-                                            @for ($i = $item->product->min_order_quantity; $i <= $item->product->all_quantity; $i += $item->product->min_order_quantity)
-                                                <option value="{{ $i }}"
-                                                    @if ($item->quantity == $i) selected @endif>
-                                                    {{ $i }} db</option>
-                                            @endfor
-                                        </select>
+                                        @if ($item->product->type === 'tyre' || $item->product->type === 'wheel')
+                                            <select
+                                                wire:change="updateQuantity({{ $item['product']->id }}, $event.target.value)"
+                                                class="border rounded px-2 py-1">
+                                                @for ($i = $item->product->min_order_quantity; $i <= $item->product->all_quantity; $i += $item->product->min_order_quantity)
+                                                    <option value="{{ $i }}"
+                                                        @if ($item->quantity == $i) selected @endif>
+                                                        {{ $i }} db</option>
+                                                @endfor
+                                            </select>
+                                        @else
+                                            <span class="text-gray-700">{{ $item->quantity }} db</span>
+                                        @endif
                                     </td>
                                     <td
                                         class="py-4 px-2 align-middle text-xl font-bold text-gray-900 whitespace-nowrap">
