@@ -14,6 +14,6 @@ final class CheckoutController extends Controller
         $orderId = $request->session()->get('order_id');
         $order = $orderId ? Order::with(['orderItems.product', 'shippingMethod'])->find($orderId) : null;
 
-        return view('pages.checkout-success', compact('order'));
+        return view('pages.checkout-success', ['order' => $order]);
     }
 }

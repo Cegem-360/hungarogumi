@@ -65,7 +65,7 @@ final class Checkout extends Component
 
     public string $customerType = 'individual';
 
-    public function mount()
+    public function mount(): void
     {
         if (Auth::check()) {
             $user = Auth::user();
@@ -126,16 +126,10 @@ final class Checkout extends Component
             'shipping_country' => null, // Adjust if you have country fields
             'shipping_method_id' => ShippingMethod::find($this->shippingMethod)->id,
         ];
-        $order = null;
         // Example: Save order to database (assuming Order model exists)
-        try {
-            $order = Order::create($orderData);
-            if (Auth::check()) {
-                $order->update(['user_id' => Auth::id()]); // Update user ID if authenticated
-            }
-
-        } catch (Throwable $th) {
-            throw $th;
+        $order = Order::create($orderData);
+        if (Auth::check()) {
+            $order->update(['user_id' => Auth::id()]); // Update user ID if authenticated
         }
 
         foreach ($cart->items as $item) {
@@ -160,10 +154,10 @@ final class Checkout extends Component
             $adminEmail = config('mail.admin_email', 'info@cegem360.hu');
             Mail::to($adminEmail)->send(new OrderNotificationAdmin($order));
 
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             // Log email sending error but don't fail the checkout
-            Log::error('Failed to send order emails: '.$e->getMessage());
-            session()->flash('error', $e->getMessage());
+            Log::error('Failed to send order emails: '.$exception->getMessage());
+            session()->flash('error', $exception->getMessage());
         }
 
         // Optionally, clear the cart

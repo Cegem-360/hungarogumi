@@ -52,10 +52,10 @@ final class ContactController extends Controller
             Log::info('Contact form email sent successfully');
 
             return back()->with('success', 'Üzenetét sikeresen elküldtük! Hamarosan felvesszük Önnel a kapcsolatot.');
-        } catch (Exception $e) {
-            Log::error('Contact form error: '.$e->getMessage(), [
-                'exception' => $e,
-                'trace' => $e->getTraceAsString(),
+        } catch (Exception $exception) {
+            Log::error('Contact form error: '.$exception->getMessage(), [
+                'exception' => $exception,
+                'trace' => $exception->getTraceAsString(),
             ]);
 
             return back()

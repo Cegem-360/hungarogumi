@@ -62,6 +62,7 @@ final class ProductSearch extends Component
             $this->sortBy = $field;
             $this->sortDirection = 'asc';
         }
+
         $this->resetPage();
     }
 
@@ -79,29 +80,29 @@ final class ProductSearch extends Component
         $query = Product::with(['manufacturer']);
 
         // Keresés a termék névben, gyártó névben és egyéb mezőkben
-        if (! empty($this->search)) {
-            $query->where(function ($q) {
+        if ($this->search !== '' && $this->search !== '0') {
+            $query->where(function ($q): void {
                 $q->where('item_name', 'like', '%'.$this->search.'%')
                     ->orWhere('pattern_name', 'like', '%'.$this->search.'%')
                     ->orWhere('ean', 'like', '%'.$this->search.'%')
                     ->orWhere('sku', 'like', '%'.$this->search.'%')
                     ->orWhere('factory_code', 'like', '%'.$this->search.'%')
-                    ->orWhereHas('manufacturer', function ($manufacturerQuery) {
+                    ->orWhereHas('manufacturer', function ($manufacturerQuery): void {
                         $manufacturerQuery->where('name', 'like', '%'.$this->search.'%');
                     });
             });
         }
 
         // Kategória szűrés a categories JSON mezőn alapulva vagy item_type_name alapján
-        if (! empty($this->category)) {
-            $query->where(function ($q) {
+        if ($this->category !== '' && $this->category !== '0') {
+            $query->where(function ($q): void {
                 $q->where('categories', 'like', '%"'.$this->category.'"%')
                     ->orWhere('item_type_name', 'like', '%'.$this->category.'%');
             });
         }
 
         // Csak aktív termékek
-        $query->where(function ($q) {
+        $query->where(function ($q): void {
             $q->where('all_quantity', '>', 0)
                 ->orWhere('quantity_szt_mihaly', '>', 0)
                 ->orWhere('quantity_kesmark', '>', 0);

@@ -7,22 +7,22 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
-describe('Authentication', function () {
-    test('login page can be rendered', function () {
+describe('Authentication', function (): void {
+    test('login page can be rendered', function (): void {
         $response = $this->get('/belepes');
 
         $response->assertStatus(200);
         $response->assertViewIs('auth.login');
     });
 
-    test('register page can be rendered', function () {
+    test('register page can be rendered', function (): void {
         $response = $this->get('/regisztracio');
 
         $response->assertStatus(200);
         $response->assertViewIs('auth.register');
     });
 
-    test('users can authenticate using the login screen', function () {
+    test('users can authenticate using the login screen', function (): void {
         $user = User::factory()->create([
             'email_verified_at' => now(),
         ]);
@@ -36,7 +36,7 @@ describe('Authentication', function () {
         $response->assertRedirect(route('profile.orders'));
     });
 
-    test('users can not authenticate with invalid password', function () {
+    test('users can not authenticate with invalid password', function (): void {
         $user = User::factory()->create();
 
         $this->post('/belepes', [
@@ -47,7 +47,7 @@ describe('Authentication', function () {
         $this->assertGuest();
     });
 
-    test('users can register', function () {
+    test('users can register', function (): void {
         $response = $this->post('/regisztracio', [
             'name' => 'Test User',
             'email' => 'test@example.com',
@@ -64,7 +64,7 @@ describe('Authentication', function () {
         ]);
     });
 
-    test('registration requires valid data', function () {
+    test('registration requires valid data', function (): void {
         $response = $this->post('/regisztracio', [
             'name' => '',
             'email' => 'not-an-email',
@@ -76,7 +76,7 @@ describe('Authentication', function () {
         $this->assertGuest();
     });
 
-    test('users can logout', function () {
+    test('users can logout', function (): void {
         $user = User::factory()->create();
 
         $this->actingAs($user);
@@ -87,7 +87,7 @@ describe('Authentication', function () {
         $response->assertRedirect('/');
     });
 
-    test('login screen cannot be rendered when authenticated', function () {
+    test('login screen cannot be rendered when authenticated', function (): void {
         $user = User::factory()->create();
 
         $this->actingAs($user);
@@ -97,7 +97,7 @@ describe('Authentication', function () {
         $response->assertRedirect(route('home'));
     });
 
-    test('register screen cannot be rendered when authenticated', function () {
+    test('register screen cannot be rendered when authenticated', function (): void {
         $user = User::factory()->create();
 
         $this->actingAs($user);
@@ -107,7 +107,7 @@ describe('Authentication', function () {
         $response->assertRedirect(route('home'));
     });
 
-    test('unverified users are redirected to verification notice', function () {
+    test('unverified users are redirected to verification notice', function (): void {
         $user = User::factory()->create([
             'email_verified_at' => null,
         ]);
@@ -121,7 +121,7 @@ describe('Authentication', function () {
         $response->assertRedirect(route('verification.notice'));
     });
 
-    test('verified users can access profile after login', function () {
+    test('verified users can access profile after login', function (): void {
         $user = User::factory()->create([
             'email_verified_at' => now(),
         ]);
@@ -135,7 +135,7 @@ describe('Authentication', function () {
         $response->assertRedirect(route('profile.orders'));
     });
 
-    test('unverified users cannot access profile pages', function () {
+    test('unverified users cannot access profile pages', function (): void {
         $user = User::factory()->create([
             'email_verified_at' => null,
         ]);
@@ -146,7 +146,7 @@ describe('Authentication', function () {
         $response->assertRedirect(route('verification.notice'));
     });
 
-    test('verification notice page can be rendered', function () {
+    test('verification notice page can be rendered', function (): void {
         $user = User::factory()->create();
 
         $this->actingAs($user);

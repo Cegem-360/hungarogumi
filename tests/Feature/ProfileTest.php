@@ -10,15 +10,15 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
-describe('Profile', function () {
-    test('unauthenticated users cannot access profile pages', function () {
+describe('Profile', function (): void {
+    test('unauthenticated users cannot access profile pages', function (): void {
         $response = $this->get('/profil/rendelesek');
         $response->assertRedirect('/belepes');
 
         $response = $this->get('/profil/adatok');
         $response->assertRedirect('/belepes');
     });
-    test('authenticated users can view orders page', function () {
+    test('authenticated users can view orders page', function (): void {
         $user = User::factory()->create([
             'email_verified_at' => now(),
         ]);
@@ -31,7 +31,7 @@ describe('Profile', function () {
         $response->assertViewIs('profile.orders');
         $response->assertSee('Rendeléseim');
     });
-    test('authenticated users can view profile page', function () {
+    test('authenticated users can view profile page', function (): void {
         $user = User::factory()->create([
             'email_verified_at' => now(),
         ]);
@@ -46,7 +46,7 @@ describe('Profile', function () {
         $response->assertSee($user->email);
     });
 
-    test('orders page displays user orders', function () {
+    test('orders page displays user orders', function (): void {
         $user = User::factory()->create([
             'email_verified_at' => now(),
         ]);
@@ -69,12 +69,12 @@ describe('Profile', function () {
 
         $response = $this->get('/profil/rendelesek');
 
-        $response->assertSee("Rendelés #{$order->id}");
+        $response->assertSee('Rendelés #' . $order->id);
         $response->assertSee('50 000 Ft'); // 2 * 25000
         $response->assertSee('Részletek');
     });
 
-    test('user can view single order details', function () {
+    test('user can view single order details', function (): void {
         $user = User::factory()->create([
             'email_verified_at' => now(),
         ]);
@@ -98,11 +98,11 @@ describe('Profile', function () {
 
         $this->actingAs($user);
 
-        $response = $this->get("/profil/rendelesek/{$order->id}");
+        $response = $this->get('/profil/rendelesek/' . $order->id);
 
         $response->assertStatus(200);
         $response->assertViewIs('profile.order-show');
-        $response->assertSee("Rendelés #{$order->id}");
+        $response->assertSee('Rendelés #' . $order->id);
         $response->assertSee('Test Gumiabroncs');
         $response->assertSee('TEST-123');
         $response->assertSee('2 db');
@@ -112,7 +112,7 @@ describe('Profile', function () {
         $response->assertSee('Vissza a rendelésekhez');
     });
 
-    test('user cannot view other users orders', function () {
+    test('user cannot view other users orders', function (): void {
         $user = User::factory()->create(['email_verified_at' => now()]);
         $otherUser = User::factory()->create();
 
@@ -122,11 +122,11 @@ describe('Profile', function () {
 
         $this->actingAs($user);
 
-        $response = $this->get("/profil/rendelesek/{$order->id}");
+        $response = $this->get('/profil/rendelesek/' . $order->id);
 
         $response->assertStatus(404);
     });
-    test('orders page shows empty state when no orders', function () {
+    test('orders page shows empty state when no orders', function (): void {
         $user = User::factory()->create([
             'email_verified_at' => now(),
         ]);
@@ -138,7 +138,7 @@ describe('Profile', function () {
         $response->assertSee('Még nincs rendelése');
         $response->assertSee('Termékek böngészése');
     });
-    test('user can logout from profile page', function () {
+    test('user can logout from profile page', function (): void {
         $user = User::factory()->create([
             'email_verified_at' => now(),
         ]);

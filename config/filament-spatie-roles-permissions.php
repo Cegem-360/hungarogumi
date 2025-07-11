@@ -1,10 +1,15 @@
 <?php
 
+use Althinect\FilamentSpatieRolesPermissions\Resources\PermissionResource;
+use Althinect\FilamentSpatieRolesPermissions\Resources\RoleResource;
+use App\Models\Team;
+use App\Models\User;
+
 return [
 
     'resources' => [
-        'PermissionResource' => \Althinect\FilamentSpatieRolesPermissions\Resources\PermissionResource::class,
-        'RoleResource' => \Althinect\FilamentSpatieRolesPermissions\Resources\RoleResource::class,
+        'PermissionResource' => PermissionResource::class,
+        'RoleResource' => RoleResource::class,
     ],
 
     'preload_roles' => true,
@@ -13,7 +18,7 @@ return [
 
     'navigation_section_group' => 'filament-spatie-roles-permissions::filament-spatie.section.roles_and_permissions', // Default uses language constant
 
-    'team_model' => \App\Models\Team::class,
+    'team_model' => Team::class,
 
     'scope_to_tenant' => true,
     
@@ -204,7 +209,7 @@ return [
         ],
 
         'excluded_policy_models' => [
-            \App\Models\User::class,
+            User::class,
         ],
 
         /*
@@ -214,7 +219,7 @@ return [
             //'view-log'
         ],
 
-        'user_model' => \App\Models\User::class,
+        'user_model' => User::class,
 
         'user_model_class' => 'User',
 

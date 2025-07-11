@@ -47,6 +47,7 @@ final class CartService
             if ($quantity <= $cartItem->product->all_quantity) {
                 $cartItem->quantity = $quantity;
             }
+
             $cartItem->save();
         }
     }

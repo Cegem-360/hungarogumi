@@ -15,7 +15,7 @@ final class ProfileController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('profile.orders', compact('orders'));
+        return view('profile.orders', ['orders' => $orders]);
     }
 
     public function orderShow($id)
@@ -23,7 +23,7 @@ final class ProfileController extends Controller
         $user = Auth::user();
         $order = $user->orders()->with(['orderItems.product', 'shippingMethod'])->findOrFail($id);
 
-        return view('profile.order-show', compact('order'));
+        return view('profile.order-show', ['order' => $order]);
     }
 
     public function profile()

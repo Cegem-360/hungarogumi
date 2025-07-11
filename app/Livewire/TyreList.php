@@ -68,7 +68,7 @@ final class TyreList extends Component
     public $price_max;
 
     #[Computed]
-    public function products()
+    public function products(): LengthAwarePaginator
     {
         return $this->buildQuery();
     }

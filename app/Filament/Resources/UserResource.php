@@ -52,12 +52,12 @@ final class UserResource extends Resource
                     ->multiple()
                     ->options(fn () => Role::pluck('name', 'id')->toArray())
                     ->dehydrated(false)
-                    ->afterStateHydrated(function ($component, $record) {
+                    ->afterStateHydrated(function ($component, $record): void {
                         if ($record) {
                             $component->state($record->roles->pluck('id')->toArray());
                         }
                     })
-                    ->saveRelationshipsUsing(function ($record, $state) {
+                    ->saveRelationshipsUsing(function ($record, $state): void {
                         $roleNames = Role::whereIn('id', (array) $state)->pluck('name')->toArray();
                         $record->syncRoles($roleNames);
                     }),

@@ -42,7 +42,7 @@ Route::view('/kapcsolat', 'pages.kapcsolat')->name('kapcsolat');
 Route::post('/kapcsolat', [ContactController::class, 'store'])->name('contact.store');
 Route::view('/aszf', 'pages.aszf')->name('aszf');
 // Auth routes
-Route::middleware('guest')->group(function () {
+Route::middleware('guest')->group(function (): void {
     Route::get('/belepes', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/belepes', [AuthController::class, 'login']);
     Route::get('/regisztracio', [AuthController::class, 'showRegister'])->name('register');
@@ -50,7 +50,7 @@ Route::middleware('guest')->group(function () {
 });
 
 // Email verification routes
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function (): void {
     Route::get('/email/verify', [AuthController::class, 'verificationNotice'])
         ->name('verification.notice');
 
@@ -66,7 +66,7 @@ Route::middleware('auth')->group(function () {
 Route::post('/kilepes', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Profile routes
-Route::middleware(['auth', 'verified'])->prefix('profil')->as('profile.')->group(function () {
+Route::middleware(['auth', 'verified'])->prefix('profil')->as('profile.')->group(function (): void {
     Route::get('/rendelesek', [ProfileController::class, 'orders'])->name('orders');
     Route::get('/rendelesek/{id}', [ProfileController::class, 'orderShow'])->name('orders.show');
     Route::get('/adatok', [ProfileController::class, 'profile'])->name('profile');

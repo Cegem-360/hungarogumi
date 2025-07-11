@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
+use App\Models\CartItem;
 use App\Models\Product;
 use App\Services\CartService;
 use Livewire\Attributes\Locked;
@@ -24,7 +25,7 @@ final class ProductAddToCart extends Component
     {
         $cartService = new CartService();
         $cartItem = $cartService->getItem($this->productId);
-        if ($cartItem === null) {
+        if (!$cartItem instanceof CartItem) {
             $cartService->addItem($this->productId, $quantity);
             $this->dispatch('notify', [
                 'type' => 'success',

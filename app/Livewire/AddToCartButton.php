@@ -16,20 +16,20 @@ final class AddToCartButton extends Component
 
     public bool $loading = false;
 
-    public function mount(Product $product)
+    public function mount(Product $product): void
     {
         $this->product = $product;
         $this->quantity = $product->min_order_quantity ?? 1;
     }
 
-    public function getBruttoProperty()
+    public function getBruttoProperty(): float|int
     {
-        return isset($this->product->net_retail_price)
+        return property_exists($this->product, 'net_retail_price') && $this->product->net_retail_price !== null
             ? round($this->product->net_retail_price * 1.27)
             : 0;
     }
 
-    public function addToCart(CartService $cartService)
+    public function addToCart(CartService $cartService): void
     {
         $cartItem = $cartService->getItem($this->product->id);
         if ($cartItem && $cartItem->quantity + $this->quantity > $this->product->all_quantity) {
@@ -43,6 +43,7 @@ final class AddToCartButton extends Component
 
             return;
         }
+
         if ($this->product && $this->product->all_quantity >= 0 && $this->product->min_order_quantity <= $this->quantity) {
             // Assuming you have a CartService to handle adding items to the cart
             $cartService = new CartService();
@@ -67,7 +68,7 @@ final class AddToCartButton extends Component
         }
     }
 
-    public function updatedQuantity()
+    public function updatedQuantity(): void
     {
         $minQty = $this->product->min_order_quantity ?? 1;
         $maxQty = $this->product->all_quantity ?? 8;

@@ -191,7 +191,7 @@ final class Product extends Model
     protected function wheel(Builder $query): void
     {
         $query->alloyWheel()
-            ->orWhere(function (Builder $q) {
+            ->orWhere(function (Builder $q): void {
                 $q->steelWheel();
             });
     }

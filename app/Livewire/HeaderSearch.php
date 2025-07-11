@@ -12,9 +12,10 @@ final class HeaderSearch extends Component
 
     public function performSearch()
     {
-        if (! empty(mb_trim($this->search))) {
+        if (!in_array(mb_trim($this->search), ['', '0'], true)) {
             return redirect()->route('search', ['search' => mb_trim($this->search)]);
         }
+        return null;
     }
 
     public function render()

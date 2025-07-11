@@ -48,7 +48,7 @@ final class ShippingMethodResource extends Resource
                 TextInput::make('name')
                     ->live()
                     ->unique(ShippingMethod::class, 'name', ignorable: fn (?ShippingMethod $record): ?ShippingMethod => $record)
-                    ->afterStateUpdated(fn (Set $set, $state) => $set('slug', Str::slug($state)))
+                    ->afterStateUpdated(fn (Set $set, $state): mixed => $set('slug', Str::slug($state)))
                     ->maxLength(255)
                     ->required(),
                 TextInput::make('title')

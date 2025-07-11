@@ -52,7 +52,7 @@ final class WheelList extends Component
 
     public $et_max; // ET maximum
 
-    public function mount() {}
+    public function mount(): void {}
 
     public function render(): View|Factory
     {
@@ -66,7 +66,7 @@ final class WheelList extends Component
         $query = Product::query();
 
         $query->when($this->manufacturer, function ($query): void {
-            $query->whereHas('manufacturer', function ($q) {
+            $query->whereHas('manufacturer', function ($q): void {
 
                 $q->where('name', $this->manufacturer);
             });
@@ -95,11 +95,13 @@ final class WheelList extends Component
                 if (in_array('budget', $this->price_category)) {
                     $query->orWhere('net_retail_price', '<', 50000);
                 }
+
                 if (in_array('közepes', $this->price_category)) {
-                    $query->orWhere(function ($q) {
+                    $query->orWhere(function ($q): void {
                         $q->whereBetween('net_retail_price', [50000, 150000]);
                     });
                 }
+
                 if (in_array('prémium', $this->price_category)) {
                     $query->orWhere('net_retail_price', '>', 150000);
                 }
