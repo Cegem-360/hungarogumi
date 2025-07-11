@@ -84,7 +84,6 @@ final class ProductImporter extends Importer
     {
         $category = Category::firstOrCreate([
             'name' => $this->data['item_type_name'],
-        ], [
             'slug' => Str::slug($this->data['item_type_name'], language: 'hu'),
             'category_id' => null,
             'description' => '',
@@ -93,7 +92,7 @@ final class ProductImporter extends Importer
 
         return Product::firstOrNew([
             'id' => $this->data['id'],
-            'categories' => [$category->id],
+            'categories' => json_encode([$category->id]),
         ]);
     }
 }
