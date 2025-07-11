@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
+use Spatie\Permission\DefaultTeamResolver;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\DefaultTeamResolver;
 
 return [
 
@@ -170,7 +172,7 @@ return [
      * See documentation to understand supported syntax.
      */
 
-    'enable_wildcard_permission' => false,
+    'enable_wildcard_permission' => true,
 
     /*
      * The class to use for interpreting wildcard permissions.

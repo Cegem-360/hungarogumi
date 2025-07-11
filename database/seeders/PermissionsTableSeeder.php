@@ -13,39 +13,67 @@ final class PermissionsTableSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
-            'view products',
-            'edit products',
-            'delete products',
-            'manage orders',
-            'view users',
-            'edit users',
-            'delete users',
-            'manage shop',
+            'view',
+            'view any',
+            'create',
+            'edit',
+            'delete',
         ];
+        $model = [
+            'roles',
+            'permissions',
+            'products',
+            'categories',
+            'orders',
+            'order items',
+            'users',
+            'blogs',
+            'shipping methods',
+            'manufacturers',
+            'carts',
+            'cart items',
 
-        foreach ($permissions as $permission) {
-            Permission::firstOrCreate(['name' => $permission]);
+        ];
+        foreach ($model as $m) {
+            foreach ($permissions as $permission) {
+                Permission::firstOrCreate(
+                    ['name' => sprintf('%s %s', $permission, $m),
+                        'guard_name' => 'web',
+                    ]);
+            }
         }
 
+        // Super Admin role létrehozása, ha még nem létezik
+        $superAdmin = Role::firstOrCreate(['name' => 'Super Admin']);
+        // Minden jogosultság hozzárendelése a Super Admin szerepkörhöz
+        $allPermissions = Permission::all();
+        $superAdmin->syncPermissions($allPermissions);
         // Példa: jogosultságok hozzárendelése szerepkörökhöz
         $admin = Role::where('name', 'admin')->first();
         if ($admin) {
-            $admin->givePermissionTo($permissions);
+            $adminPermissions = [];
+            foreach ($model as $m) {
+                foreach ($permissions as $permission) {
+                    $adminPermissions[] = sprintf('%s %s', $permission, $m);
+                }
+            }
+            dump($adminPermissions);
+            $admin->givePermissionTo($adminPermissions);
         }
 
         $shopkeeper = Role::where('name', 'shopkeeper')->first();
         if ($shopkeeper) {
-            $shopkeeper->givePermissionTo(['manage shop', 'view products', 'manage orders']);
+            $shopkeeper->syncPermissions(['view any products', 'view any orders']);
         }
 
         $user = Role::where('name', 'user')->first();
         if ($user) {
-            $user->givePermissionTo(['view products']);
+            $user->syncPermissions(['view any products']);
         }
 
         $guest = Role::where('name', 'guest')->first();
         if ($guest) {
-            $guest->givePermissionTo(['view products']);
+            $guest->syncPermissions(['create orders']);
         }
     }
 }

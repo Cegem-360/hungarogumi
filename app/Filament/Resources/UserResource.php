@@ -18,7 +18,6 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
@@ -26,7 +25,7 @@ use Filament\Tables\Table;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
-final class UserResource extends Resource
+final class UserResource extends BaseResource
 {
     protected static ?string $model = User::class;
 
@@ -78,7 +77,7 @@ final class UserResource extends Resource
                     ->dateTime(),
                 TextEntry::make('roles')
                     ->label('Szerepkörök')
-                    ->getStateUsing(fn ($record) => $record->roles->pluck('name')->join(', ')),
+                    ->state(fn ($record) => $record->roles->pluck('name')->join(', ')),
             ]);
     }
 

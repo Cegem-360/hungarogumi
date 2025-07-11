@@ -18,7 +18,7 @@ final class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
+        $admin = User::factory()->create([
             'name' => 'Test User',
             'email' => 'admin@admin.com',
             'email_verified_at' => now(),
@@ -36,5 +36,8 @@ final class DatabaseSeeder extends Seeder
             RolesTableSeeder::class,
             PermissionsTableSeeder::class,
         ]);
+
+        $admin->assignRole('Super Admin');
+
     }
 }

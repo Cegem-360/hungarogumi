@@ -4,28 +4,25 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Select;
-use Filament\Infolists\Components\TextEntry;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Actions\ViewAction;
-use Filament\Actions\EditAction;
+use App\Filament\Resources\RoleResource\Pages\CreateRole;
+use App\Filament\Resources\RoleResource\Pages\EditRole;
+use App\Filament\Resources\RoleResource\Pages\ListRoles;
+use App\Filament\Resources\RoleResource\Pages\ViewRole;
+use BackedEnum;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use App\Filament\Resources\RoleResource\Pages\ListRoles;
-use App\Filament\Resources\RoleResource\Pages\CreateRole;
-use App\Filament\Resources\RoleResource\Pages\ViewRole;
-use App\Filament\Resources\RoleResource\Pages\EditRole;
-use App\Filament\Resources\RoleResource\Pages;
-use BackedEnum;
-use Filament\Actions;
-use Filament\Resources\Resource;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Spatie\Permission\Models\Role;
 
-final class RoleResource extends Resource
+final class RoleResource extends BaseResource
 {
     protected static ?string $model = Role::class;
 
@@ -53,7 +50,7 @@ final class RoleResource extends Resource
                 TextEntry::make('guard_name'),
                 TextEntry::make('permissions')
                     ->label('Jogosultságok')
-                    ->getStateUsing(fn ($record) => $record->permissions->pluck('name')->join(', ')),
+                    ->state(fn ($record) => $record->permissions->pluck('name')->join(', ')),
             ]);
     }
 

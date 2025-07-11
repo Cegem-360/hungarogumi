@@ -19,14 +19,13 @@ use Filament\Actions\ImportAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use UnitEnum;
 
-final class ManufacturerResource extends Resource
+final class ManufacturerResource extends BaseResource
 {
     protected static ?string $model = Manufacturer::class;
 
