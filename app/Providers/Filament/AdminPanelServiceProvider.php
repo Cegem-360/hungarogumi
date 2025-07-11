@@ -59,10 +59,9 @@ final class AdminPanelServiceProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->plugins(
-                app()->environment('local')
-                    ? [HooksHelperPlugin::make()]
-                    : []
+            ->plugins([app()->environment('local')
+                    ? HooksHelperPlugin::make()
+                    : null, ]
             );
     }
 }

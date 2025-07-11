@@ -15,6 +15,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
@@ -23,6 +24,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 final class UserResource extends Resource
 {
@@ -45,6 +47,20 @@ final class UserResource extends Resource
                     ->dehydrateStateUsing(fn (string $state): string => Hash::make($state))
                     ->dehydrated(fn (?string $state): bool => filled($state))
                     ->label('Jelszó'),
+                Select::make('roles')
+                    ->label('Szerepkörök')
+                    ->multiple()
+                    ->options(fn () => Role::pluck('name', 'id')->toArray())
+                    ->dehydrated(false)
+                    ->afterStateHydrated(function ($component, $record) {
+                        if ($record) {
+                            $component->state($record->roles->pluck('id')->toArray());
+                        }
+                    })
+                    ->saveRelationshipsUsing(function ($record, $state) {
+                        $roleNames = Role::whereIn('id', (array) $state)->pluck('name')->toArray();
+                        $record->syncRoles($roleNames);
+                    }),
             ]);
     }
 
@@ -60,6 +76,9 @@ final class UserResource extends Resource
                     ->dateTime(),
                 TextEntry::make('updated_at')
                     ->dateTime(),
+                TextEntry::make('roles')
+                    ->label('Szerepkörök')
+                    ->getStateUsing(fn ($record) => $record->roles->pluck('name')->join(', ')),
             ]);
     }
 
@@ -82,6 +101,9 @@ final class UserResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('roles')
+                    ->label('Szerepkörök')
+                    ->getStateUsing(fn ($record) => $record->roles->pluck('name')->join(', ')),
             ])
             ->filters([
                 //

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use App\Enums\ResourceGroup;
 use App\Filament\Resources\ShippingMethodResource\Pages\CreateShippingMethod;
 use App\Filament\Resources\ShippingMethodResource\Pages\EditShippingMethod;
 use App\Filament\Resources\ShippingMethodResource\Pages\ListShippingMethods;
@@ -24,12 +25,21 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use UnitEnum;
 
 final class ShippingMethodResource extends Resource
 {
     protected static ?string $model = ShippingMethod::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    protected static UnitEnum|string|null $navigationGroup = ResourceGroup::SHIPPING;
+
+    protected static ?int $navigationSort = 1;
+
+    protected static ?string $modelLabel = 'Szállítási mód';
+
+    protected static ?string $pluralLabel = 'Szállítási módok';
 
     public static function form(Schema $schema): Schema
     {
@@ -82,7 +92,7 @@ final class ShippingMethodResource extends Resource
                 TextColumn::make('slug')
                     ->searchable(),
                 TextColumn::make('cost')
-                    ->money()
+                    ->money('HUF', 0, decimalPlaces: 0)
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()

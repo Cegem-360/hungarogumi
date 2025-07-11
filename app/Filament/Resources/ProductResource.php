@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use App\Enums\ResourceGroup;
 use App\Filament\Imports\ProductImporter;
 use App\Filament\Resources\ProductResource\Pages\CreateProduct;
 use App\Filament\Resources\ProductResource\Pages\EditProduct;
@@ -27,12 +28,21 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use UnitEnum;
 
 final class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    protected static UnitEnum|string|null $navigationGroup = ResourceGroup::PRODUCTS;
+
+    protected static ?int $navigationSort = 0;
+
+    protected static ?string $modelLabel = 'Termék';
+
+    protected static ?string $pluralLabel = 'Termékek';
 
     public static function form(Schema $schema): Schema
     {

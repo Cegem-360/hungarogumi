@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use App\Enums\ResourceGroup;
 use App\Filament\Imports\ManufacturerImporter;
 use App\Filament\Resources\ManufacturerResource\Pages\CreateManufacturer;
 use App\Filament\Resources\ManufacturerResource\Pages\EditManufacturer;
@@ -23,12 +24,21 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use UnitEnum;
 
 final class ManufacturerResource extends Resource
 {
     protected static ?string $model = Manufacturer::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    protected static UnitEnum|string|null $navigationGroup = ResourceGroup::PRODUCTS;
+
+    protected static ?int $navigationSort = 1;
+
+    protected static ?string $modelLabel = 'Gyártó';
+
+    protected static ?string $pluralLabel = 'Gyártók';
 
     public static function form(Schema $schema): Schema
     {

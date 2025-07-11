@@ -31,5 +31,10 @@ final class DatabaseSeeder extends Seeder
             'description' => 'Az átvétel üzletünkben történik, ahol a megrendelt termékeket átveheted. Az átvétel ingyenes.',
             'cost' => 0,
         ]);
+
+        $this->call([
+            RolesTableSeeder::class,
+            PermissionsTableSeeder::class,
+        ]);
     }
 }
