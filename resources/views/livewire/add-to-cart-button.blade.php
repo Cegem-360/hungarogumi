@@ -55,7 +55,7 @@
                             {{ Number::currency($this->net_retail_price * 1.27, 'HUF', 'hu', 0) }})
                         </div>
                         <div class="text-xl font-bold text-gray-900">
-                            {{ Number::currency($quantity * $this->brutto, 'HUF', 'hu', 0) }}
+                            {{ Number::currency($quantity * $this->net_retail_price * 1.27, 'HUF', 'hu', 0) }}
                         </div>
                     </div>
                 </div>
