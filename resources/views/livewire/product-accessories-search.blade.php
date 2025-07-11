@@ -1,4 +1,4 @@
-@use('App\Models\Product')
+@use('App\Models\Product\Category')
 <div>
     <!-- Keresős form -->
     <div class="bg-white shadow-sm border-b border-gray-200 mb-6">
@@ -21,7 +21,7 @@
                     <select wire:model.live="category"
                         class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
                         <option value="">Összes kategória</option>
-                        @foreach (Product::distinct('item_type_name')->whereNot('item_type_name', 'gumiabroncs')->whereNot('item_type_name', 'lemezfelni')->whereNot('item_type_name', 'alufelni')->pluck('item_type_name') as $category)
+                        @foreach (Category::whereNot('name', 'gumiabroncs')->whereNot('name', 'lemezfelni')->whereNot('name', 'alufelni')->pluck('name') as $category)
                             <option value="{{ $category }}">{{ $category }}</option>
                         @endforeach
                     </select>

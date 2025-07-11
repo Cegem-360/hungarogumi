@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace App\Filament\Imports;
 
 use App\Models\Product;
+use App\Models\Product\Category;
 use Filament\Actions\Imports\ImportColumn;
 use Filament\Actions\Imports\Importer;
 use Filament\Actions\Imports\Models\Import;
 use Illuminate\Support\Number;
+use Illuminate\Support\Str;
 
 final class ProductImporter extends Importer
 {
@@ -80,8 +82,18 @@ final class ProductImporter extends Importer
 
     public function resolveRecord(): Product
     {
+        $category = Category::firstOrCreate([
+            'name' => $this->data['item_type_name'],
+        ], [
+            'slug' => Str::slug($this->data['item_type_name'], language: 'hu'),
+            'category_id' => null,
+            'description' => '',
+            'display' => true,
+        ]);
+
         return Product::firstOrNew([
             'id' => $this->data['id'],
+            'categories' => [$category->id],
         ]);
     }
 }

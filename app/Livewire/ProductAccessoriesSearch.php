@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire;
 
 use App\Models\Product;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,6 +15,7 @@ final class ProductAccessoriesSearch extends Component
 
     public string $search = '';
 
+    #[Url]
     public string $category = '';
 
     public string $sortBy = 'name';

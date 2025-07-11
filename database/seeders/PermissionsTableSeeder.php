@@ -32,6 +32,7 @@ final class PermissionsTableSeeder extends Seeder
             'manufacturers',
             'carts',
             'cart items',
+            'categories',
 
         ];
         foreach ($model as $m) {
@@ -57,6 +58,7 @@ final class PermissionsTableSeeder extends Seeder
                     $adminPermissions[] = sprintf('%s %s', $permission, $m);
                 }
             }
+
             dump($adminPermissions);
             $admin->givePermissionTo($adminPermissions);
         }

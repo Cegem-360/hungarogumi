@@ -79,6 +79,7 @@ final class Product extends Model
         'id' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'categories' => 'json',
     ];
 
     public static function speedIndexes(): array
@@ -117,15 +118,15 @@ final class Product extends Model
         return $this->belongsTo(Manufacturer::class);
     }
 
-    public function stocks(): HasMany
-    {
-        return $this->hasMany(Stock::class);
-    }
+    /*  public function stocks(): HasMany
+     {
+         return $this->hasMany(Stock::class);
+     } */
 
-    public function categories(): BelongsToMany
-    {
-        return $this->belongsToMany(Category::class);
-    }
+    /*  public function categories(): BelongsToMany
+     {
+         return $this->belongsToMany(Category::class);
+     } */
 
     public function getPrice(): int|float
     {

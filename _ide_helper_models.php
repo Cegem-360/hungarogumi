@@ -316,12 +316,11 @@ namespace App\Models{
  * @property string|null $url
  * @property int|null $retail_price_eur
  * @property int|null $wholesale_price_eur
- * @property \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product\Category> $categories
+ * @property array<array-key, mixed>|null $categories
  * @property int|null $price
  * @property int $is_featured
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
- * @property-read int|null $categories_count
  * @property-read \App\Models\Manufacturer|null $manufacturer
  * @method static \Database\Factories\ProductFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product newModelQuery()

@@ -11,6 +11,7 @@ use App\Filament\Resources\ProductResource\Pages\EditProduct;
 use App\Filament\Resources\ProductResource\Pages\ListProducts;
 use App\Filament\Resources\ProductResource\Pages\ViewProduct;
 use App\Models\Product;
+use App\Models\Product\Category;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -49,6 +50,10 @@ final class ProductResource extends BaseResource
             ->components([
                 Select::make('manufacturer_id')
                     ->relationship('manufacturer', 'name'),
+                Select::make('categories')
+                    ->multiple()
+                    ->options(fn () => Category::all()->pluck('name', 'id'))
+                    ->preload(),
                 TextInput::make('ean'),
                 TextInput::make('sku'),
                 TextInput::make('factory_code'),
