@@ -25,7 +25,7 @@ abstract class BaseResource extends Resource
         $model = static::getModel();
         // A modelnév legyen többes szám, ahogy a seederben is szerepel
         $modelName = Str::plural(Str::kebab(class_basename($model)));
-        $permissionName = 'view any '.$modelName;
+        $permissionName = $modelName.'.*';
 
         // dump($user->can($permissionName));
         return $user->can($permissionName);

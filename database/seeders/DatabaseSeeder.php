@@ -37,7 +37,7 @@ final class DatabaseSeeder extends Seeder
             PermissionsTableSeeder::class,
         ]);
 
-        $admin->assignRole('Super Admin');
+        $admin->assignRole('shopkeeper');
 
     }
 }

@@ -38,7 +38,13 @@ final class PermissionsTableSeeder extends Seeder
         foreach ($model as $m) {
             foreach ($permissions as $permission) {
                 Permission::firstOrCreate(
-                    ['name' => sprintf('%s %s', $permission, $m),
+                    [
+                        'name' => sprintf('%s %s', $permission, $m),
+                        'guard_name' => 'web',
+                    ]);
+                Permission::firstOrCreate(
+                    [
+                        'name' => $m.'.*',
                         'guard_name' => 'web',
                     ]);
             }
@@ -59,23 +65,21 @@ final class PermissionsTableSeeder extends Seeder
                 }
             }
 
-            dump($adminPermissions);
             $admin->givePermissionTo($adminPermissions);
         }
 
         $shopkeeper = Role::where('name', 'shopkeeper')->first();
         if ($shopkeeper) {
-            $shopkeeper->syncPermissions(['view any products', 'view any orders']);
+            $shopkeeper->givePermissionTo(
+                [
+                    'products.*',
+                    'orders.*',
+                    'categories.*',
+                    'blogs.*',
+                    'manufacturers.*',
+                    'shipping methods.*',
+                ]);
         }
 
-        $user = Role::where('name', 'user')->first();
-        if ($user) {
-            $user->syncPermissions(['view any products']);
-        }
-
-        $guest = Role::where('name', 'guest')->first();
-        if ($guest) {
-            $guest->syncPermissions(['create orders']);
-        }
     }
 }
