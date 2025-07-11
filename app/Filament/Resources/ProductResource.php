@@ -54,6 +54,12 @@ final class ProductResource extends BaseResource
                     ->multiple()
                     ->options(fn () => Category::all()->pluck('name', 'id'))
                     ->preload(),
+                TextInput::make('net_wholesale_price')
+                    ->numeric()
+                    ->suffix(' Ft'),
+                TextInput::make('net_retail_price')
+                    ->numeric()
+                    ->suffix(' Ft'),
                 TextInput::make('ean'),
                 TextInput::make('sku'),
                 TextInput::make('factory_code'),
