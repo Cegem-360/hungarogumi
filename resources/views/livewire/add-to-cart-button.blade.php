@@ -52,10 +52,10 @@
                     <div class="min-w-[7rem] text-right">
                         <div class="text-sm text-gray-500">
                             ({{ $quantity }} ×
-                            {{ Number::currency($this->net_retail_price * 1.27, 'HUF', 'hu', 0) }})
+                            {{ Number::currency($product->net_retail_price * 1.27, 'HUF', 'hu', 0) }})
                         </div>
                         <div class="text-xl font-bold text-gray-900">
-                            {{ Number::currency($quantity * $this->net_retail_price * 1.27, 'HUF', 'hu', 0) }}
+                            {{ Number::currency($quantity * $product->net_retail_price * 1.27, 'HUF', 'hu', 0) }}
                         </div>
                     </div>
                 </div>
