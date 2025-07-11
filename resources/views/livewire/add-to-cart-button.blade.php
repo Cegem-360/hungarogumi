@@ -35,7 +35,7 @@
                 <div>
                     <div class="text-sm text-gray-500">Bruttó ár (db)</div>
                     <div class="text-3xl font-bold text-gray-900">
-                        {{ Number::currency($currentProduct->net_retail_price * 1.27, 'HUF', 'hu', 0) }}</div>
+                        {{ Number::currency($product->net_retail_price * 1.27, 'HUF', 'hu', 0) }}</div>
                 </div>
                 <div class="flex items-end gap-6">
                     @if ($product->all_quantity >= 0 && $product->min_order_quantity <= $product->all_quantity)
