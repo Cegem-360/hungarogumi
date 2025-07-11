@@ -51,7 +51,8 @@
                     @endif
                     <div class="min-w-[7rem] text-right">
                         <div class="text-sm text-gray-500">
-                            ({{ $quantity }} × {{ Number::currency($this->brutto, 'HUF', 'hu', 0) }})
+                            ({{ $quantity }} ×
+                            {{ Number::currency($this->net_retail_price * 1.27, 'HUF', 'hu', 0) }})
                         </div>
                         <div class="text-xl font-bold text-gray-900">
                             {{ Number::currency($quantity * $this->brutto, 'HUF', 'hu', 0) }}
