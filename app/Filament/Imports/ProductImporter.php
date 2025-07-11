@@ -6,9 +6,13 @@ namespace App\Filament\Imports;
 
 use App\Models\Product;
 use App\Models\Product\Category;
+use Exception;
 use Filament\Actions\Imports\ImportColumn;
 use Filament\Actions\Imports\Importer;
 use Filament\Actions\Imports\Models\Import;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 
@@ -91,9 +95,76 @@ final class ProductImporter extends Importer
             'display' => true,
         ]);
 
-        return Product::firstOrNew([
+        // Képek letöltése ha vannak URL-ek
+        $mainImage = $this->downloadImageIfNeeded($this->data['main_image'] ?? null);
+        $secondaryImage = $this->downloadImageIfNeeded($this->data['secondary_image'] ?? null);
+
+        $product = Product::firstOrNew([
             'id' => $this->data['id'],
-            'categories' => [$category->id],
         ]);
+
+        $product->categories = [$category->id];
+
+        // Képek mentése a termékhez - ha sikerült letölteni, akkor a helyi útvonalat, ha nem akkor az eredeti URL-t
+        $product->main_image = $mainImage ?? $this->data['main_image'] ?? null;
+        $product->secondary_image = $secondaryImage ?? $this->data['secondary_image'] ?? null;
+
+        return $product;
+    }
+
+    /**
+     * Letölti a képet ha még nem létezik
+     */
+    private function downloadImageIfNeeded(?string $imageUrl): ?string
+    {
+        if (empty($imageUrl) || ! filter_var($imageUrl, FILTER_VALIDATE_URL)) {
+            return null;
+        }
+
+        try {
+            // Generálunk egy fájlnevet az URL alapján
+            $fileName = basename(parse_url($imageUrl, PHP_URL_PATH));
+
+            // Ha nincs kiterjesztés, próbáljuk meg kitalálni
+            if (! pathinfo($fileName, PATHINFO_EXTENSION)) {
+                $fileName .= '.jpg';
+            }
+
+            // Egyedi fájlnév generálása ha már létezik
+            $originalFileName = $fileName;
+            $counter = 1;
+            while (Storage::disk('public')->exists('products/images/'.$fileName)) {
+                $pathInfo = pathinfo($originalFileName);
+                $fileName = $pathInfo['filename'].'_'.$counter.'.'.($pathInfo['extension'] ?? 'jpg');
+                $counter++;
+            }
+
+            $filePath = 'products/images/'.$fileName;
+
+            // Ellenőrizzük, hogy a fájl már létezik-e
+            if (Storage::disk('public')->exists($filePath)) {
+                return $filePath;
+            }
+
+            // Letöltjük a képet
+            $response = Http::timeout(30)->get($imageUrl);
+
+            if ($response->successful()) {
+                // Mentjük a fájlt
+                Storage::disk('public')->put($filePath, $response->body());
+
+                Log::info("Kép sikeresen letöltve: {$imageUrl} -> {$filePath}");
+
+                return $filePath;
+            }
+            Log::warning("Nem sikerült letölteni a képet: {$imageUrl} (HTTP {$response->status()})");
+
+            return null;
+
+        } catch (Exception $e) {
+            Log::error("Hiba a kép letöltésekor: {$imageUrl} - ".$e->getMessage());
+
+            return null;
+        }
     }
 }

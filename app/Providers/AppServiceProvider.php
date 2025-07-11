@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -48,6 +49,10 @@ final class AppServiceProvider extends ServiceProvider
         });
 
         FileUpload::configureUsing(function (FileUpload $component): void {
+            $component->translateLabel();
+        });
+
+        RichEditor::configureUsing(function (RichEditor $component): void {
             $component->translateLabel();
         });
 
