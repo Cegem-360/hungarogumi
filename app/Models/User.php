@@ -47,7 +47,7 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        return $this->hasRole('admin') || $this->hasRole('Super Admin') || $this->hasRole('shopkeeper');
     }
 
     public function orders(): HasMany
