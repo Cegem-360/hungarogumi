@@ -14,6 +14,7 @@ final class Manufacturer extends Model
 
     protected $fillable = [
         'name',
+        'slug',
     ];
 
     public function products(): HasMany

@@ -1,0 +1,24 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    /*
+    |--------------------------------------------------------------------------
+    | Third Party Services
+    |--------------------------------------------------------------------------
+    |
+    | This file is for storing the credentials for third party services such
+    | as Mailgun, Postmark, AWS and more. This file provides the de facto
+    | location for this type of information, allowing packages to have
+    | a conventional file to locate the various service credentials.
+    |
+    */
+
+    'external_feed' => [
+        'host' => env('EXTERNAL_FEED_HOST', '165.22.84.139'),
+        'port' => env('EXTERNAL_FEED_PORT', 22),
+        'username' => env('EXTERNAL_FEED_USERNAME', 'feed'),
+        'password' => env('EXTERNAL_FEED_PASSWORD'),
+    ],
+];
