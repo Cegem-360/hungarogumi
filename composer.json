@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.10.1",
         "livewire/livewire": "^4.0",
         "nunomaduro/essentials": "^0.1",
+        "phpseclib/phpseclib": "^3.0",
         "spatie/laravel-permission": "^6.20"
     },
     "require-dev": {
@@ -34,7 +35,6 @@
         "pestphp/pest-plugin-faker": "*",
         "pestphp/pest-plugin-laravel": "*",
         "pestphp/pest-plugin-livewire": "*",
-        "phpseclib/phpseclib": "*",
         "rector/rector": "*"
     },
     "autoload": {
