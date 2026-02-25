@@ -51,7 +51,7 @@ final class Cart extends Model
         return $this->products->isEmpty();
     }
 
-    public function total(): int
+    public function total(): float
     {
         $total = 0;
         foreach ($this->items as $cartItem) {

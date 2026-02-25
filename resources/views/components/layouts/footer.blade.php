@@ -55,7 +55,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('accessories') }}" class="hover:text-white">Kiegészítők</a>
+                        <a wire:navigate href="{{ route('accessories') }}" class="hover:text-white">Kiegészítők</a>
                     </li>
                     {{--  <li>
                     <a href="#" class="hover:text-white">motorolaj</a>
