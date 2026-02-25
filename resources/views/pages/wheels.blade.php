@@ -12,7 +12,7 @@
                 <h2 class="text-2xl font-bold">Felnik</h2>
             </div>
 
-            <livewire:wheel-list>
+            <livewire:wheel-list />
         </div>
     </section>
 

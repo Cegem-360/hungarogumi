@@ -12,7 +12,7 @@
                 <h2 class="text-2xl font-bold">Gumiabroncsok</h2>
             </div>
             <!-- Left Sidebar -->
-            <livewire:tyre-list>
+            <livewire:tyre-list />
 
         </div>
     </section>
