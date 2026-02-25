@@ -19,7 +19,6 @@
         "spatie/laravel-permission": "^6.20"
     },
     "require-dev": {
-        "agencetwogether/hookshelper": "*",
         "barryvdh/laravel-debugbar": "*",
         "barryvdh/laravel-ide-helper": "*",
         "driftingly/rector-laravel": "*",
