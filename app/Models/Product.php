@@ -70,6 +70,7 @@ final class Product extends Model
         'wholesale_price_eur',
         'price',
         'is_featured',
+        'is_external',
         'categories',
         'created_at',
         'updated_at',

@@ -114,25 +114,6 @@
                             </select>
                         </div>
 
-                        <!-- Vehicle Type -->
-                        {{-- <div class="mb-6">
-                            <h3 class="font-semibold text-gray-900 mb-3">Jármű típus</h3>
-                            <select id="tipus" name="tipus"
-                                class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-sm">
-                                <option value="">Összes...</option>
-                                <option value="szemelygepjarmu-suv">Személygépjármű/SUV</option>
-                                <option value="kistehergepjarmu">Kistehergépjármű</option>
-                            </select>
-                        </div> --}}
-
-                        <!-- Outlet -->
-                        {{--  <div class="mb-6">
-                            <label class="flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                <input type="checkbox" id="outlet" name="outlet" value="outlet"
-                                    class="w-4 h-4 rounded focus:ring-brand-blue focus:ring-2 mr-3">
-                                <span class="text-sm">Outlet termékek</span>
-                            </label>
-                        </div> --}}
                     </div>
 
                     <div class="mb-8 p-4 bg-gray-200 border border-gray-100 rounded-lg">
@@ -171,7 +152,8 @@
                         <div class="mb-6">
                             <h3 class="font-semibold text-gray-900 mb-3">Árszűrő</h3>
                             <div class="flex items-center gap-2">
-                                <input type="number" wire:model.live.debounce.500ms="price_min" min="0" placeholder="min"
+                                <input type="number" wire:model.live.debounce.500ms="price_min" min="0"
+                                    placeholder="min"
                                     class="w-1/2 bg-gray-100 border border-gray-300 rounded px-2 py-1 text-sm text-center" />
                                 <span class="text-gray-500">-</span>
                                 <input type="number" wire:model.live.debounce.500ms="price_max" min="0"
@@ -212,10 +194,23 @@
                             <select wire:model.live="si"
                                 class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-sm">
                                 <option value="">Összes...</option>
-                                @foreach (Product::speedIndexes() as $symbol => $speed)
-                                    <option value="{{ $symbol }}">{{ $symbol }} ({{ $speed }}
-                                        km/h)
-                                    </option>
+                                @php
+                                    $siQuery = Product::tyre();
+                                    if ($this->manufacturer) {
+                                        $siQuery->whereHas(
+                                            'manufacturer',
+                                            fn($q) => $q->where('name', $this->manufacturer),
+                                        );
+                                    }
+                                    $availableSi = $siQuery->distinct('si')->pluck('si')->filter()->toArray();
+                                    $allSpeedIndexes = Product::speedIndexes();
+                                @endphp
+                                @foreach ($allSpeedIndexes as $symbol => $speed)
+                                    @if (in_array($symbol, $availableSi))
+                                        <option value="{{ $symbol }}">{{ $symbol }} ({{ $speed }}
+                                            km/h)
+                                        </option>
+                                    @endif
                                 @endforeach
 
                             </select>
@@ -229,11 +224,14 @@
                                 <option>Összes...</option>
 
                                 @php
-                                    $liValues = Product::tyre()
-                                        ->distinct('li')
-                                        ->orderByDesc('li')
-                                        ->pluck('li')
-                                        ->filter();
+                                    $liQuery = Product::tyre();
+                                    if ($this->manufacturer) {
+                                        $liQuery->whereHas(
+                                            'manufacturer',
+                                            fn($q) => $q->where('name', $this->manufacturer),
+                                        );
+                                    }
+                                    $liValues = $liQuery->distinct('li')->orderByDesc('li')->pluck('li')->filter();
                                     $loadIndexes = collect(Product::loadIndexes());
                                     $commonLi = $liValues->intersect($loadIndexes->keys());
                                 @endphp
@@ -290,7 +288,16 @@
                             <select id="pattern" wire:model.live="pattern_name"
                                 class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-sm">
                                 <option value="">Összes...</option>
-                                @foreach (Product::tyre()->whereNotNull('pattern_name')->distinct('pattern_name')->pluck('pattern_name') as $pattern)
+                                @php
+                                    $patternQuery = Product::tyre()->whereNotNull('pattern_name');
+                                    if ($this->manufacturer) {
+                                        $patternQuery->whereHas(
+                                            'manufacturer',
+                                            fn($q) => $q->where('name', $this->manufacturer),
+                                        );
+                                    }
+                                @endphp
+                                @foreach ($patternQuery->distinct('pattern_name')->pluck('pattern_name') as $pattern)
                                     <option value="{{ $pattern }}">{{ $pattern }}</option>
                                 @endforeach
                             </select>
@@ -302,98 +309,34 @@
                         <!-- Fuel Efficiency -->
                         <div class="mb-6">
                             <h3 class="font-semibold text-gray-900 mb-3">Fogyasztás</h3>
+                            @php $availableConsumptions = $this->availableConsumptions; @endphp
                             <div class="space-y-2">
-                                <label
-                                    class="rating-item rating-a flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="consumptions" value="A"
-                                        class="w-4 h-4 text-green-500 rounded focus:ring-brand-blue focus:ring-2 mr-3">
-                                    <span class="font-medium">A</span>
-                                </label>
-                                <label
-                                    class="rating-item rating-b flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="consumptions" value="B"
-                                        class="w-4 h-4 text-lime-500 rounded focus:ring-brand-blue focus:ring-2 mr-3">
-                                    <span class="font-medium">B</span>
-                                </label>
-                                <label
-                                    class="rating-item rating-c flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="consumptions" value="C"
-                                        class="w-4 h-4 text-yellow-500 rounded focus:ring-brand-blue focus:ring-2 mr-3">
-                                    <span class="font-medium">C</span>
-                                </label>
-                                <label
-                                    class="rating-item rating-d flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="consumptions" value="D"
-                                        class="w-4 h-4 text-amber-500 rounded focus:ring-brand-blue focus:ring-2 mr-3">
-                                    <span class="font-medium">D</span>
-                                </label>
-                                <label
-                                    class="rating-item rating-e flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="consumptions" value="E"
-                                        class="w-4 h-4 text-orange-500 rounded focus:ring-brand-blue focus:ring-2 mr-3">
-                                    <span class="font-medium">E</span>
-                                </label>
-                                <label
-                                    class="rating-item rating-f flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="consumptions" value="F"
-                                        class="w-4 h-4 text-red-500 rounded focus:ring-brand-blue focus:ring-2 mr-3">
-                                    <span class="font-medium">F</span>
-                                </label>
-                                <label
-                                    class="rating-item rating-g flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="consumptions" value="G"
-                                        class="w-4 h-4 text-red-600 rounded focus:ring-brand-blue focus:ring-2 mr-3 cursor-not-allowed">
-                                    <span class="font-medium">G</span>
-                                </label>
+                                @foreach (['A' => 'green-500', 'B' => 'lime-500', 'C' => 'yellow-500', 'D' => 'amber-500', 'E' => 'orange-500', 'F' => 'red-500', 'G' => 'red-600'] as $grade => $color)
+                                    @php $available = in_array($grade, $availableConsumptions); @endphp
+                                    <label class="rating-item rating-{{ strtolower($grade) }} flex items-center bg-gray-100 p-2 rounded {{ $available ? 'cursor-pointer' : 'opacity-40 cursor-not-allowed' }}">
+                                        <input type="checkbox" wire:model.live="consumptions" value="{{ $grade }}"
+                                            class="w-4 h-4 text-{{ $color }} rounded focus:ring-brand-blue focus:ring-2 mr-3"
+                                            {{ $available ? '' : 'disabled' }}>
+                                        <span class="font-medium">{{ $grade }}</span>
+                                    </label>
+                                @endforeach
                             </div>
                         </div>
 
                         <!-- Wet Grip -->
                         <div class="mb-6">
                             <h3 class="font-semibold text-gray-900 mb-3">Nedves tapadás</h3>
+                            @php $availableGrips = $this->availableGrips; @endphp
                             <div class="space-y-2">
-                                <label
-                                    class="rating-item wet-rating-a flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="grips" value="A"
-                                        class="w-4 h-4 text-blue-800 rounded focus:ring-brand-blue focus:ring-2 mr-3">
-                                    <span class="font-medium">A</span>
-                                </label>
-                                <label
-                                    class="rating-item wet-rating-b flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="grips" value="B"
-                                        class="w-4 h-4 text-blue-700 rounded focus:ring-brand-blue focus:ring-2 mr-3">
-                                    <span class="font-medium">B</span>
-                                </label>
-                                <label
-                                    class="rating-item wet-rating-c flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="grips" value="C"
-                                        class="w-4 h-4 text-blue-600 rounded focus:ring-brand-blue focus:ring-2 mr-3">
-                                    <span class="font-medium">C</span>
-                                </label>
-                                <label
-                                    class="rating-item wet-rating-d flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="grips" value="D"
-                                        class="w-4 h-4 text-blue-500 rounded focus:ring-brand-blue focus:ring-2 mr-3">
-                                    <span class="font-medium">D</span>
-                                </label>
-                                <label
-                                    class="rating-item wet-rating-e flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="grips" value="E"
-                                        class="w-4 h-4 text-blue-400 rounded focus:ring-brand-blue focus:ring-2 mr-3">
-                                    <span class="font-medium">E</span>
-                                </label>
-                                <label
-                                    class="rating-item wet-rating-f flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="grips" value="F"
-                                        class="w-4 h-4 text-blue-300 rounded focus:ring-brand-blue focus:ring-2 mr-3">
-                                    <span class="font-medium">F</span>
-                                </label>
-                                <label
-                                    class="rating-item wet-rating-g flex items-center bg-gray-100 p-2 rounded cursor-pointer">
-                                    <input type="checkbox" wire:model.live="grips" value="G"
-                                        class="w-4 h-4 text-blue-200 rounded focus:ring-brand-blue focus:ring-2 mr-3 cursor-not-allowed">
-                                    <span class="font-medium">G</span>
-                                </label>
+                                @foreach (['A' => 'blue-800', 'B' => 'blue-700', 'C' => 'blue-600', 'D' => 'blue-500', 'E' => 'blue-400', 'F' => 'blue-300', 'G' => 'blue-200'] as $grade => $color)
+                                    @php $available = in_array($grade, $availableGrips); @endphp
+                                    <label class="rating-item wet-rating-{{ strtolower($grade) }} flex items-center bg-gray-100 p-2 rounded {{ $available ? 'cursor-pointer' : 'opacity-40 cursor-not-allowed' }}">
+                                        <input type="checkbox" wire:model.live="grips" value="{{ $grade }}"
+                                            class="w-4 h-4 text-{{ $color }} rounded focus:ring-brand-blue focus:ring-2 mr-3"
+                                            {{ $available ? '' : 'disabled' }}>
+                                        <span class="font-medium">{{ $grade }}</span>
+                                    </label>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -423,10 +366,26 @@
             </div>
         </div>
         <!-- Main Content Area -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach ($this->products ?? [] as $product)
-                <livewire:product-add-to-cart :productId="$product->id" :key="$product->id" />
-            @endforeach
+        <div>
+            <div class="flex items-center justify-between mb-4">
+                <div class="text-sm text-gray-600">
+                    {{ $this->products()->total() }} termék
+                </div>
+                <div class="flex items-center gap-2">
+                    <label class="text-sm text-gray-600">Rendezés:</label>
+                    <select wire:model.live="sortBy"
+                        class="bg-gray-100 border border-gray-300 rounded px-3 py-1 text-sm">
+                        <option value="availability">Elérhetőség</option>
+                        <option value="price_asc">Ár: alacsony elől</option>
+                        <option value="price_desc">Ár: magas elől</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach ($this->products ?? [] as $product)
+                    <livewire:product-add-to-cart :productId="$product->id" :key="$product->id" />
+                @endforeach
+            </div>
         </div>
 
     </div>

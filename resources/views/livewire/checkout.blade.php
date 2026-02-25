@@ -15,7 +15,7 @@
                 <div class="bg-white rounded shadow p-6 border-t-4 border-green-500">
                     <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
                         <span
-                            class="inline-block w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center mr-2">
+                            class="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center mr-2">
                             <span class="bg-gray-400 w-2 h-2 rounded-full"></span>
                         </span>
                         Megrendelő adatai
@@ -86,7 +86,7 @@
                 <div class="bg-white rounded shadow p-6 border-t-4 border-green-500">
                     <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
                         <span
-                            class="inline-block w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center mr-2">
+                            class="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center mr-2">
                             <span class="bg-gray-400 w-2 h-2 rounded-full"></span>
                         </span>
                         Szállítási módok

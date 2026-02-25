@@ -61,20 +61,26 @@
                 </div>
             </div>
 
-            <div class="flex items-center text-sm text-green-600 mb-4">
-                <i class="fas fa-check-circle mr-2"></i>
-
-                @if ($product->all_quantity >= 0 && $product->min_order_quantity <= $product->all_quantity)
-                    @if ($product->all_quantity >= 5)
-                        <span>Készleten: 4+ darab termék azonnal elvihető</span>
+            @if ($product->is_external)
+                <div class="flex items-center text-sm text-amber-600 mb-4">
+                    <i class="fas fa-truck mr-2"></i>
+                    <span>Szállítási idő: 2-4 munkanap</span>
+                </div>
+            @else
+                <div class="flex items-center text-sm text-green-600 mb-4">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    @if ($product->all_quantity >= 0 && $product->min_order_quantity <= $product->all_quantity)
+                        @if ($product->all_quantity >= 5)
+                            <span>Készleten: 4+ darab termék azonnal elvihető</span>
+                        @else
+                            <span>Készleten: {{ $product->all_quantity }} darab termék azonnal
+                                elvihető</span>
+                        @endif
                     @else
-                        <span>Készleten: {{ $product->all_quantity }} darab termék azonnal
-                            elvihető</span>
+                        <span>Rendelhető</span>
                     @endif
-                @else
-                    <span>Rendelhető</span>
-                @endif
-            </div>
+                </div>
+            @endif
 
             @if ($product->all_quantity >= 0 && $product->min_order_quantity <= $product->all_quantity)
                 <button type="button" wire:click="addToCart" wire:loading.attr="disabled"

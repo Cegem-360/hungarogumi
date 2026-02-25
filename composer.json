@@ -25,7 +25,6 @@
         "driftingly/rector-laravel": "*",
         "fakerphp/faker": "*",
         "filament/blueprint": "*",
-        "filament/upgrade": "^5.0",
         "laravel/boost": "*",
         "laravel/pail": "*",
         "laravel/pint": "*",

@@ -167,17 +167,11 @@
                     <!-- Extra Properties Group -->
                     <div class="mb-8 p-4 bg-gray-200 border border-gray-100 rounded-lg">
                         <!-- ET Range -->
-                        <div class="mb-6">
+                        <div class="mb-6" wire:ignore>
                             <h3 class="font-semibold text-gray-900 mb-3">ET tartomány</h3>
-                            <div class="flex items-center gap-2">
-                                <input type="number" wire:model.live="et_min" step="0.1" min="0"
-                                    placeholder="min ET"
-                                    class="w-1/2 bg-gray-100 border border-gray-300 rounded px-2 py-1 text-sm text-center" />
-                                <span class="text-gray-500">-</span>
-                                <input type="number" wire:model.live="et_max" step="0.1" min="0"
-                                    placeholder="max ET"
-                                    class="w-1/2 bg-gray-100 border border-gray-300 rounded px-2 py-1 text-sm text-center" />
-                            </div>
+                            <input type="text" id="wheel-et-slider" class="wheel-et-slider" value="" />
+                            <input type="hidden" id="etMin" wire:model.live="et_min" />
+                            <input type="hidden" id="etMax" wire:model.live="et_max" />
                         </div>
 
                         <!-- Dedication -->
@@ -218,66 +212,94 @@
             </div>
         </div>
         <!-- Main Content Area -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach ($products ?? [] as $product)
-                <livewire:product-add-to-cart :productId="$product->id" :key="$product->id" />
-            @endforeach
+        <div>
+            <div class="flex items-center justify-between mb-4">
+                <div class="text-sm text-gray-600">
+                    {{ $products->total() }} termék
+                </div>
+                <div class="flex items-center gap-2">
+                    <label class="text-sm text-gray-600">Rendezés:</label>
+                    <select wire:model.live="sortBy"
+                        class="bg-gray-100 border border-gray-300 rounded px-3 py-1 text-sm">
+                        <option value="availability">Elérhetőség</option>
+                        <option value="price_asc">Ár: alacsony elől</option>
+                        <option value="price_desc">Ár: magas elől</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach ($products ?? [] as $product)
+                    <livewire:product-add-to-cart :productId="$product->id" :key="$product->id" />
+                @endforeach
+            </div>
         </div>
 
     </div>
     {{ $products->links() }}
     @script
         <script>
-            let sliderInitialized = false;
+            let widthSliderInitialized = false;
+            let etSliderInitialized = false;
 
-            function destroySlider() {
-                const slider = $('#wheel-width-slider');
-                if (slider.length && slider.data("ionRangeSlider")) {
-                    slider.data("ionRangeSlider").destroy();
-                    sliderInitialized = false;
-                }
-            }
-
-            function initializeSlider() {
-                // Don't initialize if already done
-                if (sliderInitialized) return;
+            function initializeWidthSlider() {
+                if (widthSliderInitialized) return;
 
                 const slider = $('#wheel-width-slider');
                 if (slider.length && typeof slider.ionRangeSlider === 'function') {
                     slider.ionRangeSlider({
                         type: "double",
-                        min: {{ Product::wheel()->min('width') }},
-                        max: {{ Product::wheel()->max('width') }},
-                        from: {{ Product::wheel()->min('width') }},
-                        to: {{ Product::wheel()->max('width') }},
+                        min: {{ Product::wheel()->min('width') ?? 0 }},
+                        max: {{ Product::wheel()->max('width') ?? 13 }},
+                        from: {{ Product::wheel()->min('width') ?? 0 }},
+                        to: {{ Product::wheel()->max('width') ?? 13 }},
                         step: 0.5,
                         grid: true,
                         skin: "round",
                         postfix: "\"",
                         onFinish: function(data) {
-                            document.getElementById('widthMin').value = data.min;
-                            document.getElementById('widthMax').value = data.max;
+                            @this.set('width_min', data.from);
+                            @this.set('width_max', data.to);
                         }
                     });
-                    sliderInitialized = true;
+                    widthSliderInitialized = true;
                 }
             }
 
-            // Initialize only once when page loads
+            function initializeEtSlider() {
+                if (etSliderInitialized) return;
+
+                const slider = $('#wheel-et-slider');
+                if (slider.length && typeof slider.ionRangeSlider === 'function') {
+                    slider.ionRangeSlider({
+                        type: "double",
+                        min: {{ (int) (Product::wheel()->min('et') ?? 0) }},
+                        max: {{ (int) (Product::wheel()->max('et') ?? 60) }},
+                        from: {{ (int) (Product::wheel()->min('et') ?? 0) }},
+                        to: {{ (int) (Product::wheel()->max('et') ?? 60) }},
+                        step: 1,
+                        grid: true,
+                        skin: "round",
+                        postfix: " mm",
+                        onFinish: function(data) {
+                            @this.set('et_min', data.from);
+                            @this.set('et_max', data.to);
+                        }
+                    });
+                    etSliderInitialized = true;
+                }
+            }
+
+            function initializeSliders() {
+                initializeWidthSlider();
+                initializeEtSlider();
+            }
+
             document.addEventListener('DOMContentLoaded', function() {
-                // Wait a bit for all scripts to load
-                setTimeout(() => {
-                    initializeSlider();
-                }, 500);
+                setTimeout(() => initializeSliders(), 500);
             });
 
-            // For Livewire v3
             document.addEventListener('livewire:navigated', function() {
-                setTimeout(() => {
-                    if (!sliderInitialized) {
-                        initializeSlider();
-                    }
-                }, 500);
+                setTimeout(() => initializeSliders(), 500);
             });
         </script>
     @endscript

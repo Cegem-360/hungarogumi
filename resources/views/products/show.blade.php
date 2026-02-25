@@ -19,10 +19,15 @@
                             class="absolute top-4 left-4 w-8 h-8 border border-gray-300 rounded flex items-center justify-center hover:bg-gray-50">
                             <i class="far fa-heart text-gray-400"></i>
                         </button> --}}
-                        <div
-                            class="green-badge text-white px-3 py-1 rounded-full text-xs font-medium absolute top-4 right-4">
-                            KÉSZLETEN
-                        </div>
+                        @if ($product->is_external)
+                            <div class="bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-medium absolute top-4 right-4">
+                                2-4 MUNKANAP
+                            </div>
+                        @else
+                            <div class="green-badge text-white px-3 py-1 rounded-full text-xs font-medium absolute top-4 right-4">
+                                KÉSZLETEN
+                            </div>
+                        @endif
                         <img src="{{ $product->main_image ?? 'https://placehold.co/200' }}"
                             alt="{{ $product->item_name ?? 'Nincs termék név' }}"
                             class="w-full h-auto object-contain aspect-square">

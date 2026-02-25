@@ -213,6 +213,7 @@ final class ImportExternalProducts extends Command
             'url' => $data['url'] ?: null,
             'retail_price_eur' => $this->parseNumeric($data['retail_price_eur'] ?? null),
             'wholesale_price_eur' => $this->parseNumeric($data['wholesale_price_eur'] ?? null),
+            'is_external' => true,
         ];
 
         if ($this->option('dry-run')) {

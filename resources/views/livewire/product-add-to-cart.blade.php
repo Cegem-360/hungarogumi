@@ -45,6 +45,9 @@
         @else
             <div class="mb-3"></div>
         @endif
+        @if ($product->is_external)
+            <div class="text-xs text-amber-600 mb-2"><i class="fas fa-truck mr-1"></i>2-4 munkanap</div>
+        @endif
         @if ($product->all_quantity > 0 && $product->min_order_quantity <= $product->all_quantity)
             <button type="submit" wire:click="addToCart({{ $product->min_order_quantity ?? 1 }})"
                 class="w-full bg-brand-blue text-white py-2 rounded hover:bg-brand-blue/80 flex items-center justify-center gap-1">

@@ -18,12 +18,10 @@
 
             <!-- Desktop User Menu & Mobile Controls -->
             <div class="flex items-center space-x-2 lg:space-x-4 text-sm">
-                <!-- Cart -->
-                <a href="{{ route('cart.index') }}" wire:navigate class="lg:hidden">
-                    <div class="flex items-center space-x-1">
-                        <i class="fas fa-shopping-cart text-gray-600 text-lg"></i>
-                    </div>
-                </a>
+                <!-- Cart (mobile icon) -->
+                <div class="lg:hidden">
+                    <livewire:cart-badge />
+                </div>
 
                 <!-- Desktop User Menu -->
                 <div class="hidden lg:flex items-center space-x-4">
@@ -68,12 +66,7 @@
                         </a>
                     @endauth
 
-                    <a href="{{ route('cart.index') }}" wire:navigate>
-                        <div class="flex items-center space-x-1">
-                            <i class="fas fa-shopping-cart text-gray-600"></i>
-                            <span class="hidden md:inline">Kosár</span>
-                        </div>
-                    </a>
+                    <livewire:cart-badge />
                 </div>
 
                 <!-- Mobile Menu Button -->

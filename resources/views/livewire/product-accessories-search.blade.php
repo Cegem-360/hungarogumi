@@ -1,5 +1,50 @@
 @use('App\Models\Product\Category')
+@use('App\Models\Product')
 <div>
+    <!-- Kategória kártyák -->
+    <div class="container mx-auto px-4 py-6">
+        @php
+            $accessoryCategories = Product::whereNot('item_type_name', 'gumiabroncs')
+                ->whereNot('item_type_name', 'lemezfelni')
+                ->whereNot('item_type_name', 'alufelni')
+                ->where('all_quantity', '>', 0)
+                ->selectRaw('item_type_name, COUNT(*) as count')
+                ->groupBy('item_type_name')
+                ->orderByDesc('count')
+                ->get();
+
+            $categoryIcons = [
+                'tehermentesítő gyűrűk' => 'fa-ring',
+                'mankókerék' => 'fa-tire',
+                'dísztárcsák' => 'fa-circle',
+                'csavarok és anyák' => 'fa-wrench',
+                'autószőnyegek' => 'fa-car',
+                'takaróhuzatok' => 'fa-couch',
+                'kerékanya' => 'fa-cog',
+                'csavar' => 'fa-screwdriver',
+            ];
+        @endphp
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
+            @foreach ($accessoryCategories as $cat)
+                <button wire:click="$set('category', '{{ $cat->item_type_name }}')"
+                    class="group flex flex-col items-center gap-2 p-4 rounded-lg transition-all
+                        {{ $category === $cat->item_type_name ? 'bg-brand-blue text-white shadow-md' : 'bg-white hover:bg-brand-blue hover:text-white border border-gray-200' }}">
+                    <i class="fas {{ $categoryIcons[$cat->item_type_name] ?? 'fa-box' }} text-2xl
+                        {{ $category === $cat->item_type_name ? 'text-white' : 'text-brand-blue group-hover:text-white' }}"></i>
+                    <span class="text-sm font-medium text-center capitalize">{{ $cat->item_type_name }}</span>
+                    <span class="text-xs {{ $category === $cat->item_type_name ? 'text-blue-100' : 'text-gray-400 group-hover:text-blue-100' }}">{{ $cat->count }} db</span>
+                </button>
+            @endforeach
+            @if ($category !== '')
+                <button wire:click="$set('category', '')"
+                    class="flex flex-col items-center justify-center gap-2 p-4 rounded-lg bg-gray-100 hover:bg-gray-200 border border-gray-200 transition-all">
+                    <i class="fas fa-times text-2xl text-gray-500"></i>
+                    <span class="text-sm font-medium text-gray-600">Összes</span>
+                </button>
+            @endif
+        </div>
+    </div>
+
     <!-- Keresős form -->
     <div class="bg-white shadow-sm border-b border-gray-200 mb-6">
         <div class="container mx-auto px-4 py-6">

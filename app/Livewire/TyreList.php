@@ -67,20 +67,37 @@ final class TyreList extends Component
 
     public $price_max;
 
+    #[Url]
+    public $sortBy = 'availability'; // availability, price_asc, price_desc
+
     #[Computed]
     public function products(): LengthAwarePaginator
     {
         return $this->buildQuery();
     }
 
-    public function mount(): void
+    #[Computed]
+    public function availableConsumptions(): array
     {
-        /* $this->seasons = request('seasons', []);
-        if (! is_array($this->seasons)) {
-            $this->seasons = [$this->seasons];
-        } */
-
+        return $this->baseFilterQuery()
+            ->whereNotNull('consumption')
+            ->distinct('consumption')
+            ->pluck('consumption')
+            ->toArray();
     }
+
+    #[Computed]
+    public function availableGrips(): array
+    {
+        return $this->baseFilterQuery()
+            ->whereNotNull('grip')
+            ->distinct('grip')
+            ->pluck('grip')
+            ->toArray();
+    }
+
+    public function mount(): void {}
+
 
     public function render(): View|Factory
     {
@@ -88,16 +105,39 @@ final class TyreList extends Component
         return view('livewire.tyre-list');
     }
 
+    private function baseFilterQuery()
+    {
+        $query = Product::query();
+
+        $query->when($this->manufacturer, function ($query): void {
+            $query->where('manufacturer_id', Manufacturer::where('name', $this->manufacturer)->first('id')?->id);
+        })->when($this->width, function ($query): void {
+            $query->where('width', $this->width);
+        })->when($this->aspect_ratio, function ($query): void {
+            $query->where('aspect_ratio', $this->aspect_ratio);
+        })->when($this->diameter, function ($query): void {
+            $query->where('diameter', $this->diameter);
+        })->when($this->seasons, function ($query): void {
+            $query->whereIn('season', array_map('strval', $this->seasons));
+        })->when($this->reinforced, function ($query): void {
+            $query->reinforced();
+        })->when($this->runflat, function ($query): void {
+            $query->punctureResistant();
+        })->tyre();
+
+        return $query;
+    }
+
     private function buildQuery(): LengthAwarePaginator
     {
         $query = Product::query();
 
         $query->when($this->manufacturer, function ($query): void {
-            $query->where('manufacturer_id', Manufacturer::where('name', $this->manufacturer)->first('id')->id);
+            $query->where('manufacturer_id', Manufacturer::where('name', $this->manufacturer)->first('id')?->id);
         })->when($this->price_min, function ($query): void {
-            $query->where('net_retail_price', '>=', $this->price_min);
+            $query->where('net_retail_price', '>=', round((int) $this->price_min / 1.27));
         })->when($this->price_max, function ($query): void {
-            $query->where('net_retail_price', '<=', $this->price_max);
+            $query->where('net_retail_price', '<=', round((int) $this->price_max / 1.27));
         })->when($this->width, function ($query): void {
             $query->where('width', $this->width);
         })->when($this->aspect_ratio, function ($query): void {
@@ -111,7 +151,7 @@ final class TyreList extends Component
         })->when($this->si, function ($query): void {
             $query->where('si', $this->si);
         })->when($this->seasons, function ($query): void {
-            $query->whereIn('season', $this->seasons);
+            $query->whereIn('season', array_map('strval', $this->seasons));
         })->when($this->consumptions, function ($query): void {
             $query->whereIn('consumption', $this->consumptions);
         })->when($this->grips, function ($query): void {
@@ -131,6 +171,13 @@ final class TyreList extends Component
         })->when($this->runflat, function ($query): void {
             $query->punctureResistant();
         })->tyre();
+
+        // Rendezés
+        match ($this->sortBy) {
+            'price_asc' => $query->orderBy('net_retail_price', 'asc'),
+            'price_desc' => $query->orderBy('net_retail_price', 'desc'),
+            default => $query->orderBy('all_quantity', 'desc'), // availability
+        };
 
         return $query->paginate(24);
     }

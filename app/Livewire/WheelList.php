@@ -52,6 +52,9 @@ final class WheelList extends Component
 
     public $et_max; // ET maximum
 
+    #[Url]
+    public $sortBy = 'availability'; // availability, price_asc, price_desc
+
     public function mount(): void {}
 
     public function render(): View|Factory
@@ -75,9 +78,9 @@ final class WheelList extends Component
                 $query->where('diameter', $this->diameter);
             })
             ->when($this->price_min, function ($query): void {
-                $query->where('net_retail_price', '>=', $this->price_min);
+                $query->where('net_retail_price', '>=', round((int) $this->price_min / 1.27));
             })->when($this->price_max, function ($query): void {
-                $query->where('net_retail_price', '<=', $this->price_max);
+                $query->where('net_retail_price', '<=', round((int) $this->price_max / 1.27));
             })->when($this->pcd, function ($query): void {
                 $query->where('pcd', $this->pcd);
             })->when($this->bolt_count, function ($query): void {
@@ -116,6 +119,13 @@ final class WheelList extends Component
             })->when($this->outlet, function ($query): void {
                 $query->where('outlet', true);
             })->wheel();
+
+        // Rendezés
+        match ($this->sortBy) {
+            'price_asc' => $query->orderBy('net_retail_price', 'asc'),
+            'price_desc' => $query->orderBy('net_retail_price', 'desc'),
+            default => $query->orderBy('all_quantity', 'desc'), // availability
+        };
 
         return $query->paginate(24);
     }
