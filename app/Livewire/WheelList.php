@@ -113,9 +113,9 @@ final class WheelList extends Component
             })->when($this->rim_color, function ($query): void {
                 $query->where('rim_color', $this->rim_color);
             })->when($this->et_min, function ($query): void {
-                $query->where('et', '>=', $this->et_min);
+                $query->whereRaw('CAST(et AS UNSIGNED) >= ?', [(int) $this->et_min]);
             })->when($this->et_max, function ($query): void {
-                $query->where('et', '<=', $this->et_max);
+                $query->whereRaw('CAST(et AS UNSIGNED) <= ?', [(int) $this->et_max]);
             })->when($this->outlet, function ($query): void {
                 $query->where('outlet', true);
             })->wheel();

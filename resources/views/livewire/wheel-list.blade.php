@@ -272,10 +272,10 @@
                 if (slider.length && typeof slider.ionRangeSlider === 'function') {
                     slider.ionRangeSlider({
                         type: "double",
-                        min: {{ (int) (Product::wheel()->min('et') ?? 0) }},
-                        max: {{ (int) (Product::wheel()->max('et') ?? 60) }},
-                        from: {{ (int) (Product::wheel()->min('et') ?? 0) }},
-                        to: {{ (int) (Product::wheel()->max('et') ?? 60) }},
+                        min: {{ (int) Product::wheel()->selectRaw('MIN(CAST(et AS UNSIGNED))')->value('MIN(CAST(et AS UNSIGNED))') ?: 0 }},
+                        max: {{ (int) Product::wheel()->selectRaw('MAX(CAST(et AS UNSIGNED))')->value('MAX(CAST(et AS UNSIGNED))') ?: 60 }},
+                        from: {{ (int) Product::wheel()->selectRaw('MIN(CAST(et AS UNSIGNED))')->value('MIN(CAST(et AS UNSIGNED))') ?: 0 }},
+                        to: {{ (int) Product::wheel()->selectRaw('MAX(CAST(et AS UNSIGNED))')->value('MAX(CAST(et AS UNSIGNED))') ?: 60 }},
                         step: 1,
                         grid: true,
                         skin: "round",
