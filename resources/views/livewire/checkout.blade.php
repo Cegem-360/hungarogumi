@@ -1,15 +1,15 @@
 @use('App\Models\ShippingMethod')
 <div class="bg-gray-100 min-h-screen py-8">
     @if (session()->has('error'))
-        <div class="max-w-5xl mx-auto mb-6">
+        <div class="max-w-6xl mx-auto px-4 mb-6">
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                 <span class="block sm:inline">{{ session('error') }}</span>
             </div>
         </div>
     @endif
-    <div class="max-w-5xl mx-auto flex flex-col md:flex-row gap-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row gap-8">
         <!-- Main Content -->
-        <div class="grid grid-cols-2 gap-6">
+        <div class="flex-1 min-w-0">
             <div class="grid grid-cols-1 gap-6">
                 <!-- Megrendelő adatai -->
                 <div class="bg-white rounded shadow p-6 border-t-4 border-green-500">
@@ -273,61 +273,60 @@
                 </div>
 
             </div>
-            <!-- Számlázási adatok -->
+        </div>
 
-            <!-- Sidebar: Cart Summary -->
-            <div class="w-full md:w-80 flex-shrink-0">
-                <div class="bg-white rounded shadow p-6">
-                    <h3 class="font-semibold mb-4 flex items-center gap-2">
-                        <span class="inline-block">
-                            <svg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5 inline' fill='none'
-                                viewBox='0 0 24 24' stroke='currentColor'>
-                                <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2'
-                                    d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m5-9v9m4-9v9m4-9l2 9' />
-                            </svg>
-                        </span>
-                        Kosár tartalma
-                    </h3>
-                    @foreach ($cart->items as $item)
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="{{ $item->product->main_image }}" alt="MSW MSW 78 FS"
-                                class="w-16 h-16 object-contain border rounded" />
-                            <div class="flex-1">
-                                <div class="font-semibold text-sm leading-tight">
-                                    {{ $item->product->item_name }}<br>{{ $item->product->sku }}
-                                </div>
-                                <div class="text-xs text-gray-500">Eladási ár:
-                                    {{ $item->product->getPriceWithCurrency() }} / db<br>Mennyiség:
-                                    {{ $item->quantity }} db
-                                </div>
-                                <div class="text-xs font-semibold">Összesen:
-                                    {{ Number::currency($item->product->getPrice() * $item->quantity, 'HUF', 'hu', 0) }}
-                                </div>
+        <!-- Sidebar: Cart Summary -->
+        <div class="w-full lg:w-96 shrink-0">
+            <div class="bg-white rounded shadow p-6 lg:sticky lg:top-8">
+                <h3 class="font-semibold mb-4 flex items-center gap-2">
+                    <span class="inline-block">
+                        <svg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5 inline' fill='none'
+                            viewBox='0 0 24 24' stroke='currentColor'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2'
+                                d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m5-9v9m4-9v9m4-9l2 9' />
+                        </svg>
+                    </span>
+                    Kosár tartalma
+                </h3>
+                @foreach ($cart->items as $item)
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="{{ $item->product->main_image }}" alt="{{ $item->product->item_name }}"
+                            class="w-16 h-16 object-contain border rounded" />
+                        <div class="flex-1">
+                            <div class="font-semibold text-sm leading-tight">
+                                {{ $item->product->item_name }}<br>{{ $item->product->sku }}
+                            </div>
+                            <div class="text-xs text-gray-500">Eladási ár:
+                                {{ $item->product->getPriceWithCurrency() }} / db<br>Mennyiség:
+                                {{ $item->quantity }} db
+                            </div>
+                            <div class="text-xs font-semibold">Összesen:
+                                {{ Number::currency($item->product->getPrice() * $item->quantity, 'HUF', 'hu', 0) }}
                             </div>
                         </div>
-                    @endforeach
+                    </div>
+                @endforeach
 
-                    <hr class="my-4">
-                    <div class="text-sm mb-2 flex justify-between">
-                        <span>Megrendelés értéke</span>
-                        <span class="font-semibold">{{ Number::currency($cart->total(), 'HUF', 'hu', 0) }}</span>
-                    </div>
-                    <div class="text-sm mb-2 flex justify-between">
-                        <span>Szállítás</span>
-                        <span class="text-gray-500">A következő lépésben kerül kiszámításra</span>
-                    </div>
-                    <div class="text-lg font-bold flex justify-between mt-4">
-                        <span>Bruttó végösszeg:</span>
-                        <span>{{ Number::currency($cart->total() * 1.27, 'HUF', 'hu', 0) }}</span>
-                    </div>
-                    <button wire:click="checkout"
-                        class="w-full bg-green-600 hover:bg-green-700 text-white text-lg font-semibold rounded py-3 transition mt-4">
-                        Megrendelés véglegesítése
-                    </button>
+                <hr class="my-4">
+                <div class="text-sm mb-2 flex justify-between">
+                    <span>Megrendelés értéke</span>
+                    <span class="font-semibold">{{ Number::currency($cart->total(), 'HUF', 'hu', 0) }}</span>
                 </div>
+                <div class="text-sm mb-2 flex justify-between">
+                    <span>Szállítás</span>
+                    <span class="text-gray-500">A következő lépésben kerül kiszámításra</span>
+                </div>
+                <div class="text-lg font-bold flex justify-between mt-4">
+                    <span>Bruttó végösszeg:</span>
+                    <span>{{ Number::currency($cart->total() * 1.27, 'HUF', 'hu', 0) }}</span>
+                </div>
+                <button wire:click="checkout"
+                    class="w-full bg-green-600 hover:bg-green-700 text-white text-lg font-semibold rounded py-3 transition mt-4">
+                    Megrendelés véglegesítése
+                </button>
             </div>
-            <!-- END Sidebar: Cart Summary -->
         </div>
+        <!-- END Sidebar: Cart Summary -->
     </div>
 
 </div>
