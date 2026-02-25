@@ -55,7 +55,7 @@
                                     </td>
                                     <td
                                         class="py-4 px-2 align-middle text-xl font-bold text-gray-900 whitespace-nowrap">
-                                        {{ Number::currency($item->product->net_retail_price * $item->quantity, 'HUF', 'hu', 0) }}
+                                        {{ Number::currency(round($item->product->net_retail_price * 1.27) * $item->quantity, 'HUF', 'hu', 0) }}
 
                                     </td>
                                     <td class="py-4 px-2 align-middle text-center">

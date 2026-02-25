@@ -71,7 +71,7 @@
                         <div class="grid grid-cols-2 gap-3 max-w-md">
                             <div>
                                 <label class="block text-xs font-medium text-gray-600 mb-1">Szélesség (coll)</label>
-                                <select x-model="new.width" @change="calculateDifference()"
+                                <select x-model="newWheel.width" @change="calculateDifference()"
                                     class="w-full px-2 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-brand-blue focus:border-brand-blue">
                                     <option value="">---</option>
                                     <template x-for="width in widthOptions" :key="width">
@@ -82,7 +82,7 @@
 
                             <div>
                                 <label class="block text-xs font-medium text-gray-600 mb-1">ET (mm)</label>
-                                <select x-model="new.et" @change="calculateDifference()"
+                                <select x-model="newWheel.et" @change="calculateDifference()"
                                     class="w-full px-2 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-brand-blue focus:border-brand-blue">
                                     <option value="">---</option>
                                     <template x-for="et in etOptions" :key="et">
@@ -210,7 +210,7 @@
                     width: '7',
                     et: '45'
                 },
-                new: {
+                newWheel: {
                     width: '7',
                     et: '45'
                 },
@@ -229,19 +229,19 @@
                 },
 
                 calculateDifference() {
-                    if (!this.current.width || !this.current.et || !this.new.width || !this.new.et) {
+                    if (!this.current.width || !this.current.et || !this.newWheel.width || !this.newWheel.et) {
                         this.showResults = false;
                         return;
                     }
 
                     // Calculate width difference in mm (1 inch = 25.4mm)
                     const currentWidthMm = parseFloat(this.current.width) * 25.4;
-                    const newWidthMm = parseFloat(this.new.width) * 25.4;
+                    const newWidthMm = parseFloat(this.newWheel.width) * 25.4;
                     const widthDifferenceMm = newWidthMm - currentWidthMm;
 
                     // Calculate ET difference
                     const currentET = parseInt(this.current.et);
-                    const newET = parseInt(this.new.et);
+                    const newET = parseInt(this.newWheel.et);
                     const etDifference = newET - currentET;
 
                     // Calculate inner edge change (ET difference)

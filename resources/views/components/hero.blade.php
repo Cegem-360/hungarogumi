@@ -146,7 +146,7 @@
                             <select name="width"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
                                 <option value="">--</option>
-                                @foreach (Product::tyre()->orderByDesc('width')->pluck('width')->unique() as $productWidth)
+                                @foreach (Product::tyre()->orderBy('width')->pluck('width')->unique() as $productWidth)
                                     <option value="{{ $productWidth }}">{{ $productWidth }}</option>
                                 @endforeach
                             </select>
@@ -156,7 +156,7 @@
                             <select name="aspect_ratio"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue">
                                 <option value="">--</option>
-                                @foreach (Product::tyre()->orderByDesc('aspect_ratio')->pluck('aspect_ratio')->unique() as $productAspectRatio)
+                                @foreach (Product::tyre()->orderBy('aspect_ratio')->pluck('aspect_ratio')->unique() as $productAspectRatio)
                                     <option value="{{ $productAspectRatio }}">{{ $productAspectRatio }}</option>
                                 @endforeach
                             </select>

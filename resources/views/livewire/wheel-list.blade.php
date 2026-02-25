@@ -37,7 +37,7 @@
                                 </div>
                                 <div>
                                     <label for="pcd"
-                                        class="block text-sm font-medium text-gray-700 mb-1">Átmérő*</label>
+                                        class="block text-sm font-medium text-gray-700 mb-1">Osztókör*</label>
                                     <select id="pcd" name="pcd" wire:model.live="pcd"
                                         class="w-full bg-gray-100 border border-gray-300 rounded px-2 py-1 text-center">
                                         <option value="">--</option>
@@ -48,7 +48,7 @@
                                 </div>
                                 <div>
                                     <label for="diameter"
-                                        class="block text-sm font-medium text-gray-700 mb-1">Osztókor*</label>
+                                        class="block text-sm font-medium text-gray-700 mb-1">Átmérő (Coll)*</label>
                                     <select id="diameter" name="diameter" wire:model.live="diameter"
                                         class="w-full bg-gray-100 border border-gray-300 rounded px-2 py-1 text-center">
                                         <option value="">--</option>

@@ -171,10 +171,10 @@
                         <div class="mb-6">
                             <h3 class="font-semibold text-gray-900 mb-3">Árszűrő</h3>
                             <div class="flex items-center gap-2">
-                                <input type="number" name="min_price" id="min_price" min="0" placeholder="min"
+                                <input type="number" wire:model.live.debounce.500ms="price_min" min="0" placeholder="min"
                                     class="w-1/2 bg-gray-100 border border-gray-300 rounded px-2 py-1 text-sm text-center" />
                                 <span class="text-gray-500">-</span>
-                                <input type="number" name="max_price" id="max_price" min="0"
+                                <input type="number" wire:model.live.debounce.500ms="price_max" min="0"
                                     placeholder="max"
                                     class="w-1/2 bg-gray-100 border border-gray-300 rounded px-2 py-1 text-sm text-center" />
                                 <span class="text-gray-500">Ft</span>

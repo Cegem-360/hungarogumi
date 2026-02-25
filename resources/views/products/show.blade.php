@@ -45,20 +45,18 @@
                 <!-- Product Labels -->
                 <x-partials.product-labels :product="$product" />
 
-                <!-- Warning -->
-                <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-md">
-                    <div class="flex items-start gap-4">
-                        <i class="fa-solid fa-circle-check text-2xl text-green-600"></i>
-                        <div class="text-sm">
-                            <p class="mb-2"><strong>DOT Garancia</strong></p>
-                            <p class="mb-2 text-gray-600">Gumiabroncsaink garantáltan frissen gyártottak! A HTA -
-                                Magyar
-                                Gumiabroncs Szövetség besorolása alapján maximum 3 évesek lehetnek!</p>
-                            <p class="mb-2 text-gray-600">A 3 évnél régebbi gubiabroncsoknál minden esetben az
-                                alábbiak
-                                szerint
-                                jelöljük a gyártási évet: DOT+évjárat (pl. DOT18 = 2018-as abroncs)</p>
-                        </div>
+                <!-- Ügyfélszolgálat -->
+                <div class="bg-green-600 text-white p-4 mb-6 rounded-lg">
+                    <h3 class="font-semibold mb-2">ÜGYFÉLSZOLGÁLAT</h3>
+                    <p class="text-sm mb-2">Hívjon minket, ha a termékkel kapcsolatban kérdése van!</p>
+                    <div class="flex items-center text-lg font-bold">
+                        <i class="fas fa-phone mr-2"></i>
+                        +36 30 700 9668
+                    </div>
+                    <div class="mt-3 text-sm">
+                        <div class="font-semibold mb-1">Nyitvatartás</div>
+                        <div>Hétfő - Péntek: 9:00–17:00</div>
+                        <div>Szombat - Vasárnap: Zárva</div>
                     </div>
                 </div>
             </div>
