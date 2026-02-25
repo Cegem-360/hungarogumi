@@ -57,6 +57,41 @@ final class WheelList extends Component
 
     public function mount(): void {}
 
+    public function updatedManufacturer(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatedBoltCount(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatedPcd(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatedDiameter(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatedWheelType(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatedPriceMin(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatedPriceMax(): void
+    {
+        $this->resetPage();
+    }
+
     public function render(): View|Factory
     {
         $products = $this->buildQuery();

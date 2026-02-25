@@ -95,8 +95,8 @@
                                 <option value="">Összes...</option>
                                 @foreach (Manufacturer::whereHas('products', function ($q) {
         $q->wheel();
-    })->distinct('name')->orderBy('name')->get() as $manufacturer)
-                                    <option value="{{ $manufacturer->name }}">{{ $manufacturer->name }}</option>
+    })->distinct('name')->orderBy('name')->get() as $mfr)
+                                    <option value="{{ $mfr->name }}">{{ $mfr->name }}</option>
                                 @endforeach
                             </select>
                         </div>
