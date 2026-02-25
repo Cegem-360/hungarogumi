@@ -3,7 +3,7 @@
         <!-- Sidebar -->
         <div>
             <div class="sticky top-4">
-                <div class="bg-white rounded-lg shadow-sm p-4">
+                <div>
 
                     <!-- Keresőmező -->
                     <div class="mb-6 p-4 bg-gray-200 border border-gray-100 rounded-lg">
