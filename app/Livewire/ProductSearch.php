@@ -29,8 +29,8 @@ final class ProductSearch extends Component
 
     public function mount(): void
     {
-        $this->search = request()->get('search', '');
-        $this->category = request()->get('category', '');
+        $this->search = request()->input('search', '');
+        $this->category = request()->input('category', '');
     }
 
     public function updatedSearch(): void

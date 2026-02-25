@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
+use App\Models\Manufacturer;
 use App\Models\Product;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -18,54 +20,54 @@ final class ProductAccessoriesSearch extends Component
     #[Url]
     public string $category = '';
 
-    public string $sortBy = 'name';
+    public string $manufacturer = '';
 
-    public string $sortDirection = 'asc';
+    public string $price_min = '';
+
+    public string $price_max = '';
+
+    #[Url]
+    public string $sortBy = 'availability';
 
     protected $queryString = [
         'search' => ['except' => ''],
         'category' => ['except' => ''],
-        'sortBy' => ['except' => 'name'],
-        'sortDirection' => ['except' => 'asc'],
+        'sortBy' => ['except' => 'availability'],
     ];
 
     public function mount(): void
     {
-        $this->search = request()->get('search', '');
-        $this->category = request()->get('category', '');
+        $this->search = request()->input('search', '');
+        $this->category = request()->input('category', '');
     }
 
-    public function updatedSearch(): void
+    public function updated($property): void
     {
         $this->resetPage();
     }
 
-    public function updatedCategory(): void
+    #[Computed]
+    public function accessoryCategories()
     {
-        $this->resetPage();
+        return Product::whereNot('item_type_name', 'gumiabroncs')
+            ->whereNot('item_type_name', 'lemezfelni')
+            ->whereNot('item_type_name', 'alufelni')
+            ->where('all_quantity', '>', 0)
+            ->selectRaw('item_type_name, COUNT(*) as count')
+            ->groupBy('item_type_name')
+            ->orderByDesc('count')
+            ->get();
     }
 
-    public function toggleSortDirection(): void
+    #[Computed]
+    public function accessoryManufacturers()
     {
-        $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        $this->resetPage();
-    }
-
-    public function updatedSortBy(): void
-    {
-        $this->resetPage();
-    }
-
-    public function sortBy(string $field): void
-    {
-        if ($this->sortBy === $field) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        } else {
-            $this->sortBy = $field;
-            $this->sortDirection = 'asc';
-        }
-
-        $this->resetPage();
+        return Manufacturer::whereHas('products', function ($q): void {
+            $q->whereNot('item_type_name', 'gumiabroncs')
+                ->whereNot('item_type_name', 'lemezfelni')
+                ->whereNot('item_type_name', 'alufelni')
+                ->where('all_quantity', '>', 0);
+        })->orderBy('name')->get();
     }
 
     public function render()
@@ -95,39 +97,45 @@ final class ProductAccessoriesSearch extends Component
             });
         }
 
-        // Kategória szűrés a categories JSON mezőn alapulva vagy item_type_name alapján
+        // Kategória szűrés
         if ($this->category !== '' && $this->category !== '0') {
-            $query->where(function ($q): void {
-                $q->where('item_type_name', $this->category);
+            $query->where('item_type_name', $this->category);
+        }
+
+        // Gyártó szűrés
+        if ($this->manufacturer !== '') {
+            $query->whereHas('manufacturer', function ($q): void {
+                $q->where('name', $this->manufacturer);
             });
         }
 
-        // Csak aktív termékek
-        $query->where(function ($q): void {
-            $q->where('all_quantity', '>', 0);
-        });
-
-        // Rendezés
-        switch ($this->sortBy) {
-            case 'price':
-                $query->orderBy('net_retail_price', $this->sortDirection);
-                break;
-            case 'manufacturer':
-                $query->join('manufacturers', 'products.manufacturer_id', '=', 'manufacturers.id')
-                    ->orderBy('manufacturers.name', $this->sortDirection)
-                    ->select('products.*');
-                break;
-            default:
-                $query->orderBy('item_name', $this->sortDirection);
+        // Árszűrő (bruttó → nettó konverzió)
+        if ($this->price_min !== '') {
+            $query->where('net_retail_price', '>=', round((int) $this->price_min / 1.27));
         }
 
-        // Szűrés: csak azok, amelyek nem tyre vagy nem wheel típusúak
+        if ($this->price_max !== '') {
+            $query->where('net_retail_price', '<=', round((int) $this->price_max / 1.27));
+        }
+
+        // Csak aktív termékek
+        $query->where('all_quantity', '>', 0);
+
+        // Szűrés: csak kiegészítők
         $query->whereNot(function ($q): void {
             $q->where('item_type_name', 'gumiabroncs')
                 ->orWhere('item_type_name', 'lemezfelni')
                 ->orWhere('item_type_name', 'alufelni');
         });
 
-        return $query->paginate(12);
+        // Rendezés
+        match ($this->sortBy) {
+            'price_asc' => $query->orderBy('net_retail_price', 'asc'),
+            'price_desc' => $query->orderBy('net_retail_price', 'desc'),
+            'name' => $query->orderBy('item_name', 'asc'),
+            default => $query->orderBy('all_quantity', 'desc'),
+        };
+
+        return $query->paginate(24);
     }
 }
