@@ -28,30 +28,24 @@
                     <div class="mb-6 p-4 bg-gray-200 border border-gray-100 rounded-lg">
                         <h3 class="font-semibold text-gray-900 mb-3">Kategória</h3>
                         <div class="space-y-1 max-h-80 overflow-y-auto">
-                            <label
-                                class="flex items-center justify-between p-2 rounded cursor-pointer transition-colors
+                            <button type="button" wire:click="$set('category', '')"
+                                class="w-full flex items-center justify-between p-2 rounded cursor-pointer transition-colors
                                     {{ $category === '' ? 'bg-brand-blue text-white' : 'bg-gray-100 hover:bg-gray-50' }}">
                                 <div class="flex items-center">
-                                    <input type="radio" wire:model.live="category" value=""
-                                        class="sr-only">
                                     <i class="fas fa-border-all text-sm mr-2 {{ $category === '' ? 'text-white' : 'text-brand-blue' }}"></i>
                                     <span class="text-sm font-medium">Összes</span>
                                 </div>
-                            </label>
+                            </button>
                             @foreach ($this->accessoryCategories as $cat)
-                                <label
-                                    class="flex items-center justify-between p-2 rounded cursor-pointer transition-colors
+                                <button type="button" wire:click="$set('category', '{{ $cat->item_type_name }}')"
+                                    class="w-full flex items-center justify-between p-2 rounded cursor-pointer transition-colors
                                         {{ $category === $cat->item_type_name ? 'bg-brand-blue text-white' : 'bg-gray-100 hover:bg-gray-50' }}">
-                                    <div class="flex items-center">
-                                        <input type="radio" wire:model.live="category"
-                                            value="{{ $cat->item_type_name }}" class="sr-only">
-                                        <span class="text-sm capitalize">{{ $cat->item_type_name }}</span>
-                                    </div>
+                                    <span class="text-sm capitalize">{{ $cat->item_type_name }}</span>
                                     <span
                                         class="text-xs px-1.5 py-0.5 rounded-full {{ $category === $cat->item_type_name ? 'bg-white/20 text-white' : 'bg-gray-200 text-gray-500' }}">
                                         {{ $cat->count }}
                                     </span>
-                                </label>
+                                </button>
                             @endforeach
                         </div>
                     </div>

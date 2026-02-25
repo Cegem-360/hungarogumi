@@ -269,19 +269,6 @@
                             </div>
                         </div>
 
-                        <!-- Homologization -->
-                        {{-- <div class="mb-6">
-                            <h3 class="font-semibold text-gray-900 mb-3">Homológizáció</h3>
-                            <select id="homologizacio" wire:model.live="rim_dedicated"
-                                class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-sm">
-                                <option value="">Összes...</option>
-                                @foreach (Product::tyre()->whereNotNull('rim_dedicated')->distinct('rim_dedicated')->pluck('rim_dedicated') as $homologization)
-                                    <option value="{{ $homologization }}">{{ $homologization }}</option>
-                                @endforeach
-
-                            </select>
-                        </div> --}}
-
                         <!-- Pattern -->
                         <div class="mb-6">
                             <h3 class="font-semibold text-gray-900 mb-3">Mintázat</h3>
@@ -313,8 +300,10 @@
                             <div class="space-y-2">
                                 @foreach (['A' => 'green-500', 'B' => 'lime-500', 'C' => 'yellow-500', 'D' => 'amber-500', 'E' => 'orange-500', 'F' => 'red-500', 'G' => 'red-600'] as $grade => $color)
                                     @php $available = in_array($grade, $availableConsumptions); @endphp
-                                    <label class="rating-item rating-{{ strtolower($grade) }} flex items-center bg-gray-100 p-2 rounded {{ $available ? 'cursor-pointer' : 'opacity-40 cursor-not-allowed' }}">
-                                        <input type="checkbox" wire:model.live="consumptions" value="{{ $grade }}"
+                                    <label
+                                        class="rating-item rating-{{ strtolower($grade) }} flex items-center bg-gray-100 p-2 rounded {{ $available ? 'cursor-pointer' : 'opacity-40 cursor-not-allowed' }}">
+                                        <input type="checkbox" wire:model.live="consumptions"
+                                            value="{{ $grade }}"
                                             class="w-4 h-4 text-{{ $color }} rounded focus:ring-brand-blue focus:ring-2 mr-3"
                                             {{ $available ? '' : 'disabled' }}>
                                         <span class="font-medium">{{ $grade }}</span>
@@ -330,7 +319,8 @@
                             <div class="space-y-2">
                                 @foreach (['A' => 'blue-800', 'B' => 'blue-700', 'C' => 'blue-600', 'D' => 'blue-500', 'E' => 'blue-400', 'F' => 'blue-300', 'G' => 'blue-200'] as $grade => $color)
                                     @php $available = in_array($grade, $availableGrips); @endphp
-                                    <label class="rating-item wet-rating-{{ strtolower($grade) }} flex items-center bg-gray-100 p-2 rounded {{ $available ? 'cursor-pointer' : 'opacity-40 cursor-not-allowed' }}">
+                                    <label
+                                        class="rating-item wet-rating-{{ strtolower($grade) }} flex items-center bg-gray-100 p-2 rounded {{ $available ? 'cursor-pointer' : 'opacity-40 cursor-not-allowed' }}">
                                         <input type="checkbox" wire:model.live="grips" value="{{ $grade }}"
                                             class="w-4 h-4 text-{{ $color }} rounded focus:ring-brand-blue focus:ring-2 mr-3"
                                             {{ $available ? '' : 'disabled' }}>
