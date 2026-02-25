@@ -1,9 +1,9 @@
 <div>
     <div class="grid md:grid-cols-[1fr_3fr] gap-6 items-start">
         <!-- Sidebar -->
-        <div class="filter">
-            <div class="sticky-sidebar">
-                <div class="bg-white rounded-lg shadow-sm">
+        <div>
+            <div class="sticky top-4">
+                <div class="bg-white rounded-lg shadow-sm p-4">
 
                     <!-- Keresőmező -->
                     <div class="mb-6 p-4 bg-gray-200 border border-gray-100 rounded-lg">

@@ -1,19 +1,10 @@
-<div>
-    <div class="group bg-white hover:bg-gray-100 hover:shadow-xl transition-all border border-gray-400 rounded-lg p-4">
-        <a href="{{ route('products.show', $product->id) }}"
-            class="block text-center mb-2 hover:underline text-brand-blue font-semibold">
-            {{ $product->item_name ?? 'Nincs termék név' }}
+<div class="h-full">
+    <div class="group bg-white hover:bg-gray-100 hover:shadow-xl transition-all border border-gray-400 rounded-lg p-4 flex flex-col h-full">
+        <a href="{{ route('products.show', $product->id) }}" class="block mb-2">
             <div class="relative">
                 <img src="{{ $product->main_image ?? 'https://placehold.co/200' }}"
-                    alt="{{ $product->item_name ?? 'Nincs termék név' }}" class="w-full h-40 object-contain mb-4">
-                <span
-                    class="absolute top-2 left-2 bg-yellow-400 text-black px-2 py-1 rounded text-xs font-bold">AKCIÓ</span>
+                    alt="{{ $product->item_name ?? 'Nincs termék név' }}" class="w-full h-40 object-contain mb-2">
                 <div class="absolute top-1 right-1 flex flex-col items-center justify-center gap-2">
-                    {{--  <button
-                        class="w-8 h-8 flex items-center justify-center hover:bg-gray-50 border border-gray-300 rounded-md"
-                        title="Kedvencekhez adom">
-                        <i class="far fa-heart text-gray-400"></i>
-                    </button> --}}
                     @if ($product->season == 1)
                         <div class="w-8 h-8 flex items-center justify-center bg-yellow-500 text-white p-1 rounded-md text-2xl"
                             title="Nyári">
@@ -33,32 +24,35 @@
                 </div>
             </div>
         </a>
-        <div class="text-sm font-medium mb-2">{{ $product->manufacturer->name ?? 'Nincs gyártó' }}
-            {{ $product->item_name ?? 'Nincs' }}</div>
-        <div class="text-xl font-bold text-brand-blue mb-2">
-            {{ (int) $product->net_retail_price ? Number::currency(round((int) $product->net_retail_price * 1.27), 'HUF', 'hu', 0) : 'Nincs ár' }}
+        <div class="text-xs text-gray-500 uppercase tracking-wide mb-1">{{ $product->manufacturer->name ?? '' }}</div>
+        <a href="{{ route('products.show', $product->id) }}"
+            class="text-sm font-semibold text-gray-900 hover:text-brand-blue line-clamp-2 mb-2">
+            {{ $product->item_name ?? 'Nincs termék név' }}
+        </a>
+        @if ($product->isTyre() && ($product->consumption || $product->grip))
+            <div class="text-xs text-gray-500 mb-2">
+                {{ $product->consumption ? 'Energiacímke: ' . $product->consumption : '' }}
+                {{ $product->consumption && $product->grip ? '|' : '' }}
+                {{ $product->grip ? 'Tapadás: ' . $product->grip : '' }}
+            </div>
+        @endif
+        <div class="mt-auto">
+            @if ($product->is_external)
+                <div class="text-xs text-amber-600 mb-2"><i class="fas fa-truck mr-1"></i>2-4 munkanap</div>
+            @endif
+            <div class="text-xl font-bold text-brand-blue mb-2">
+                {{ (int) $product->net_retail_price ? Number::currency(round((int) $product->net_retail_price * 1.27), 'HUF', 'hu', 0) : 'Nincs ár' }}
+            </div>
+            @if ($product->all_quantity > 0 && $product->min_order_quantity <= $product->all_quantity)
+                <button type="submit" wire:click="addToCart({{ $product->min_order_quantity ?? 1 }})"
+                    class="w-full bg-brand-blue text-white py-2 rounded hover:bg-brand-blue/80 flex items-center justify-center gap-1">
+                    Kosárba tesz <i class="fas fa-cart-plus"></i>
+                </button>
+            @else
+                <div class="w-full py-2 rounded bg-gray-100 text-gray-500 text-center text-sm">
+                    Jelenleg nem elérhető
+                </div>
+            @endif
         </div>
-        @if ($product->isTyre())
-            <div class="text-xs text-gray-500 mb-3">
-                {{ $product->consumption ? 'Energiacímke: ' . $product->consumption : 'Nincs energiacímke' }} |
-                {{ $product->grip ? 'Tapadás nedves úton: ' . $product->grip : 'Nincs tapadás' }}</div>
-        @else
-            <div class="mb-3"></div>
-        @endif
-        @if ($product->is_external)
-            <div class="text-xs text-amber-600 mb-2"><i class="fas fa-truck mr-1"></i>2-4 munkanap</div>
-        @endif
-        @if ($product->all_quantity > 0 && $product->min_order_quantity <= $product->all_quantity)
-            <button type="submit" wire:click="addToCart({{ $product->min_order_quantity ?? 1 }})"
-                class="w-full bg-brand-blue text-white py-2 rounded hover:bg-brand-blue/80 flex items-center justify-center gap-1">
-                Kosárba tesz <i class="fas fa-cart-plus"></i>
-            </button>
-        @else
-            <p>
-                Jelenleg nem elérhető
-            </p>
-        @endif
-
     </div>
-
 </div>
