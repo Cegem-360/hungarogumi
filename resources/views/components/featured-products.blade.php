@@ -9,7 +9,7 @@
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach (Product::limit(9)->get() ?? [] as $product)
-                <livewire:product-add-to-cart :product_id="$product->id" wire:key="$product->id" />
+                <livewire:product-add-to-cart :productId="$product->id" :key="'featured-' . $product->id" />
             @endforeach
         </div>
     </div>
