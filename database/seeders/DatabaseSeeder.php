@@ -20,7 +20,7 @@ final class DatabaseSeeder extends Seeder
 
         $admin = User::factory()->create([
             'name' => 'Test User',
-            'email' => 'admin@admin.com',
+            'email' => 'info@cegem360.hu',
             'email_verified_at' => now(),
         ]);
 
