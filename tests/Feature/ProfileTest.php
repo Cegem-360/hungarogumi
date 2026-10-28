@@ -69,7 +69,7 @@ describe('Profile', function (): void {
 
         $response = $this->get('/profil/rendelesek');
 
-        $response->assertSee('Rendelés #' . $order->id);
+        $response->assertSee('Rendelés #'.$order->id);
         $response->assertSee('50 000 Ft'); // 2 * 25000
         $response->assertSee('Részletek');
     });
@@ -98,15 +98,15 @@ describe('Profile', function (): void {
 
         $this->actingAs($user);
 
-        $response = $this->get('/profil/rendelesek/' . $order->id);
+        $response = $this->get('/profil/rendelesek/'.$order->id);
 
         $response->assertStatus(200);
         $response->assertViewIs('profile.order-show');
-        $response->assertSee('Rendelés #' . $order->id);
+        $response->assertSee('Rendelés #'.$order->id);
         $response->assertSee('Test Gumiabroncs');
         $response->assertSee('TEST-123');
         $response->assertSee('2 db');
-        $response->assertSee('25 000 Ft');
+        $response->assertSee("25\u{00A0}000\u{00A0}Ft");
         $response->assertSee('Test User');
         $response->assertSee('test@example.com');
         $response->assertSee('Vissza a rendelésekhez');
@@ -122,7 +122,7 @@ describe('Profile', function (): void {
 
         $this->actingAs($user);
 
-        $response = $this->get('/profil/rendelesek/' . $order->id);
+        $response = $this->get('/profil/rendelesek/'.$order->id);
 
         $response->assertStatus(404);
     });
