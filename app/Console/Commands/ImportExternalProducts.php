@@ -8,7 +8,6 @@ use App\Models\Manufacturer;
 use App\Models\Product;
 use Exception;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use phpseclib3\Net\SFTP;
@@ -50,11 +49,11 @@ final class ImportExternalProducts extends Command
             $this->displaySummary();
 
             return self::SUCCESS;
-        } catch (Exception $e) {
-            $this->error('Import failed: '.$e->getMessage());
+        } catch (Exception $exception) {
+            $this->error('Import failed: '.$exception->getMessage());
             Log::error('External product import failed', [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString(),
+                'error' => $exception->getMessage(),
+                'trace' => $exception->getTraceAsString(),
             ]);
 
             return self::FAILURE;
@@ -90,7 +89,7 @@ final class ImportExternalProducts extends Command
             throw new Exception('Failed to download CSV file');
         }
 
-        $this->info('✓ Downloaded CSV file ('.number_format(strlen($csvContent)).' bytes)');
+        $this->info('✓ Downloaded CSV file ('.number_format(mb_strlen($csvContent)).' bytes)');
         $this->info('Parsing CSV data...');
 
         // Parse CSV
@@ -104,7 +103,7 @@ final class ImportExternalProducts extends Command
         $limit = $this->option('limit') ? (int) $this->option('limit') : null;
 
         foreach ($lines as $index => $line) {
-            if (empty(trim($line))) {
+            if (empty(mb_trim($line))) {
                 continue;
             }
 
@@ -115,7 +114,7 @@ final class ImportExternalProducts extends Command
             $row = str_getcsv($line, ';', '"', '');
 
             if (count($row) !== count($headers)) {
-                $this->warn("Skipping line ".($index + 2).": column count mismatch");
+                $this->warn('Skipping line '.($index + 2).': column count mismatch');
 
                 continue;
             }
@@ -213,8 +212,8 @@ final class ImportExternalProducts extends Command
             'url' => $data['url'] ?: null,
             'retail_price_eur' => $this->parseNumeric($data['retail_price_eur'] ?? null),
             'wholesale_price_eur' => $this->parseNumeric($data['wholesale_price_eur'] ?? null),
-            'is_external' => ($this->parseNumeric($data['Készlet - Szentmihályi út'] ?? null) ?? 0) == 0
-                && ($this->parseNumeric($data['Készlet - Késmárk utca'] ?? null) ?? 0) == 0,
+            'is_external' => ($this->parseNumeric($data['Készlet - Szentmihályi út'] ?? null) ?? 0) === 0
+                && ($this->parseNumeric($data['Készlet - Késmárk utca'] ?? null) ?? 0) === 0,
         ];
 
         if ($this->option('dry-run')) {
@@ -256,7 +255,7 @@ final class ImportExternalProducts extends Command
         }
 
         // Remove whitespace and convert comma to dot
-        $cleaned = str_replace([' ', ','], ['', '.'], trim($value));
+        $cleaned = str_replace([' ', ','], ['', '.'], mb_trim($value));
 
         if (! is_numeric($cleaned)) {
             return null;
@@ -271,7 +270,7 @@ final class ImportExternalProducts extends Command
             return null;
         }
 
-        return match (mb_strtolower(trim($season))) {
+        return match (mb_strtolower(mb_trim($season))) {
             'nyári', 'summer' => 1,
             'téli', 'winter' => 2,
             'négy évszakos', 'all season', 'all-season' => 3,

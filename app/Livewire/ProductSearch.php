@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Livewire;
 
 use App\Models\Product;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -66,7 +68,7 @@ final class ProductSearch extends Component
         $this->resetPage();
     }
 
-    public function render()
+    public function render(): Factory|View
     {
         $products = $this->getProducts();
 

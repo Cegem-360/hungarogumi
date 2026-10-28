@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\CartResource\Pages;
 
-use Filament\Actions\CreateAction;
 use App\Filament\Resources\CartResource;
-use Filament\Actions;
+use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
-class ListCarts extends ListRecords
+final class ListCarts extends ListRecords
 {
     protected static string $resource = CartResource::class;
 

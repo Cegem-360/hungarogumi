@@ -47,7 +47,7 @@ final class CategoryResource extends Resource
                 TextInput::make('name')
                     ->live()
                     ->required()
-                    ->afterStateUpdated(function ($state, Set $set) {
+                    ->afterStateUpdated(function ($state, Set $set): void {
                         $set('slug', Str::slug($state, language: 'hu'));
                     })
                     ->label('Név'),

@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\PermissionResource\Pages;
 
-use Filament\Actions\CreateAction;
 use App\Filament\Resources\PermissionResource;
-use Filament\Actions;
+use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
-class ListPermissions extends ListRecords
+final class ListPermissions extends ListRecords
 {
     protected static string $resource = PermissionResource::class;
 

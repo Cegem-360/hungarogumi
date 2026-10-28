@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Livewire;
 
 use App\Services\CartService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -25,7 +27,7 @@ final class CartBadge extends Component
         $this->count = $cart->items->sum('quantity');
     }
 
-    public function render()
+    public function render(): Factory|View
     {
         return view('livewire.cart-badge');
     }

@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
+use App\Models\CartItem;
 use App\Models\Product;
 use App\Services\CartService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 final class AddToCartButton extends Component
@@ -32,7 +35,7 @@ final class AddToCartButton extends Component
     public function addToCart(CartService $cartService): void
     {
         $cartItem = $cartService->getItem($this->product->id);
-        if ($cartItem && $cartItem->quantity + $this->quantity > $this->product->all_quantity) {
+        if ($cartItem instanceof CartItem && $cartItem->quantity + $this->quantity > $this->product->all_quantity) {
             // Dispatch event for frontend notification
             $this->dispatch('notify', [
                 'type' => 'error',
@@ -44,7 +47,7 @@ final class AddToCartButton extends Component
             return;
         }
 
-        if ($this->product && $this->product->all_quantity >= 0 && $this->product->min_order_quantity <= $this->quantity) {
+        if ($this->product instanceof Product && $this->product->all_quantity >= 0 && $this->product->min_order_quantity <= $this->quantity) {
             // Assuming you have a CartService to handle adding items to the cart
             $cartService = new CartService();
 
@@ -80,7 +83,7 @@ final class AddToCartButton extends Component
         }
     }
 
-    public function render()
+    public function render(): Factory|View
     {
         return view('livewire.add-to-cart-button');
     }

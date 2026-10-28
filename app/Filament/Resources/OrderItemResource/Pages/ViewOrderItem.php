@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\OrderItemResource\Pages;
 
-use Filament\Actions\EditAction;
 use App\Filament\Resources\OrderItemResource;
-use Filament\Actions;
+use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewOrderItem extends ViewRecord
+final class ViewOrderItem extends ViewRecord
 {
     protected static string $resource = OrderItemResource::class;
 

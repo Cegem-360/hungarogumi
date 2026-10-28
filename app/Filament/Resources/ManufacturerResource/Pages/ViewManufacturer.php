@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\ManufacturerResource\Pages;
 
-use Filament\Actions\EditAction;
 use App\Filament\Resources\ManufacturerResource;
-use Filament\Actions;
+use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewManufacturer extends ViewRecord
+final class ViewManufacturer extends ViewRecord
 {
     protected static string $resource = ManufacturerResource::class;
 

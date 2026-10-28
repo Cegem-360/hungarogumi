@@ -6,6 +6,8 @@ namespace App\Livewire;
 
 use App\Models\Manufacturer;
 use App\Models\Product;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -70,7 +72,7 @@ final class ProductAccessoriesSearch extends Component
         })->orderBy('name')->get();
     }
 
-    public function render()
+    public function render(): Factory|View
     {
         $products = $this->getProducts();
 

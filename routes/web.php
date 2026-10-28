@@ -10,6 +10,9 @@ use App\Http\Middleware\EnsureCartExists;
 use App\Http\Middleware\EnsureCartNotEmpty;
 use App\Models\Product;
 use App\Services\CartService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,10 +23,10 @@ Route::view('/kereses', 'pages.search')->name('search');
 Route::prefix('termekek')->as('products.')->group(
     function (): void {
         Route::get('/', function () {
-            return redirect()->route('home');
+            return to_route('home');
         })->name('index');
 
-        Route::get('/{product}', function (Product $product) {
+        Route::get('/{product}', function (Product $product): Factory|View {
             $relatedProducts = [];
 
             return view('products.show', ['product' => $product, 'relatedProducts' => $relatedProducts]);
@@ -74,21 +77,21 @@ Route::middleware(['auth', 'verified'])->prefix('profil')->as('profile.')->group
 
 Route::middleware([EnsureCartExists::class])->group(function (): void {
 
-    Route::get('kiegeszitok', function () {
+    Route::get('kiegeszitok', function (): Factory|View {
         return view('pages.accessories');
     })->name('accessories');
 
     // Add routes here that require the ensureCartExist middleware
-    Route::get('/kosar', function () {
+    Route::get('/kosar', function (): Factory|View {
         // You can pass the cart service to the view if needed
         return view('pages.cart');
     })->name('cart.index');
 
     // Cart add route using CartService
-    Route::post('/cart/add', function (Request $request, CartService $cartService) {
+    Route::post('/cart/add', function (Request $request, CartService $cartService): RedirectResponse {
         $cartService->addItem($request->product_id, $request->quantity);
 
-        return redirect()->back();
+        return back();
     })->name('cart.add');
 });
 Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
@@ -96,13 +99,13 @@ Route::middleware([EnsureCartExists::class])->group(function (): void {
 
     // Success and cancel pages do not require cart not empty
 
-    Route::get('/checkout/cancel', function () {
+    Route::get('/checkout/cancel', function (): Factory|View {
         return view('pages.checkout-cancel');
     })->name('checkout.cancel');
     // Checkout pages except success
     Route::middleware([EnsureCartNotEmpty::class])->group(function (): void {
         // Checkout page
-        Route::get('/checkout', function () {
+        Route::get('/checkout', function (): Factory|View {
             return view('pages.checkout');
         })->name('checkout.index');
 

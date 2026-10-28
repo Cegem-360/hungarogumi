@@ -6,6 +6,8 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use App\Services\CartService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 final class Cart extends Component
@@ -21,7 +23,7 @@ final class Cart extends Component
 
     public function updateQuantity($cartItemId, $quantity): void
     {
-        $cartService = app(CartService::class);
+        $cartService = resolve(CartService::class);
         $cartItem = $cartService->getItem($cartItemId);
         if ($cartItem && $quantity > $cartItem->product->all_quantity) {
             // Dispatch event for frontend notification
@@ -54,9 +56,9 @@ final class Cart extends Component
         }
     }
 
-    public function render()
+    public function render(): Factory|View
     {
-        $cartService = app(CartService::class);
+        $cartService = resolve(CartService::class);
         $cart = $cartService->getCart();
 
         return view('livewire.cart', [

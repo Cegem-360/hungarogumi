@@ -7,6 +7,8 @@ namespace App\Livewire;
 use App\Models\CartItem;
 use App\Models\Product;
 use App\Services\CartService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 
@@ -25,7 +27,7 @@ final class ProductAddToCart extends Component
     {
         $cartService = new CartService();
         $cartItem = $cartService->getItem($this->productId);
-        if (!$cartItem instanceof CartItem) {
+        if (! $cartItem instanceof CartItem) {
             $cartService->addItem($this->productId, $quantity);
             $this->dispatch('notify', [
                 'type' => 'success',
@@ -37,7 +39,7 @@ final class ProductAddToCart extends Component
             return;
         }
 
-        if ($cartItem && $cartItem->quantity + $quantity > $cartItem->product->all_quantity) {
+        if ($cartItem instanceof CartItem && $cartItem->quantity + $quantity > $cartItem->product->all_quantity) {
             // Dispatch event for frontend notification
             $this->dispatch('notify', [
                 'type' => 'error',
@@ -61,7 +63,7 @@ final class ProductAddToCart extends Component
 
     }
 
-    public function render()
+    public function render(): Factory|View
     {
         $product = Product::find($this->productId);
 

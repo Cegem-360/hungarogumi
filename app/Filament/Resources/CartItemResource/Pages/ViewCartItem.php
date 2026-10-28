@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\CartItemResource\Pages;
 
-use Filament\Actions\EditAction;
 use App\Filament\Resources\CartItemResource;
-use Filament\Actions;
+use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewCartItem extends ViewRecord
+final class ViewCartItem extends ViewRecord
 {
     protected static string $resource = CartItemResource::class;
 

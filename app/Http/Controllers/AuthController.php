@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,12 +15,12 @@ use Illuminate\Validation\ValidationException;
 
 final class AuthController extends Controller
 {
-    public function showLogin()
+    public function showLogin(): Factory|View
     {
         return view('auth.login');
     }
 
-    public function showRegister()
+    public function showRegister(): Factory|View
     {
         return view('auth.register');
     }
@@ -36,7 +38,7 @@ final class AuthController extends Controller
             $user = Auth::user();
 
             if (! $user->hasVerifiedEmail()) {
-                return redirect()->route('verification.notice');
+                return to_route('verification.notice');
             }
 
             return redirect()->intended(route('profile.orders'))
@@ -65,7 +67,7 @@ final class AuthController extends Controller
         $user->sendEmailVerificationNotification();
         Auth::login($user);
 
-        return redirect()->route('verification.notice')
+        return to_route('verification.notice')
             ->with('success', 'Sikeres regisztráció! Elküldtük a megerősítő emailt a megadott címre.');
     }
 
@@ -77,11 +79,11 @@ final class AuthController extends Controller
         $request->session()->regenerate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('home')
+        return to_route('home')
             ->with('success', 'Sikeresen kijelentkeztünk!');
     }
 
-    public function verificationNotice()
+    public function verificationNotice(): Factory|View
     {
         return view('auth.verify-email');
     }
@@ -90,13 +92,13 @@ final class AuthController extends Controller
     {
         // Ellenőrizzük, hogy a felhasználó már megerősítette-e az email címét
         if (Auth::user()->hasVerifiedEmail()) {
-            return redirect()->route('profile.orders')
+            return to_route('profile.orders')
                 ->with('info', 'Email cím már megerősítve!');
         }
 
         $request->fulfill();
 
-        return redirect()->route('profile.orders')
+        return to_route('profile.orders')
             ->with('success', 'Email cím sikeresen megerősítve!');
     }
 

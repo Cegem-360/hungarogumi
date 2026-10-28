@@ -6,7 +6,7 @@ use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Product;
 
-it('calculates the total as a float', function () {
+it('calculates the total as a float', function (): void {
     $cart = Cart::factory()->create();
 
     $product = Product::factory()->create(['net_retail_price' => 10000]);
@@ -24,7 +24,7 @@ it('calculates the total as a float', function () {
     expect($cart->total())->toBe($expected);
 });
 
-it('returns zero for an empty cart', function () {
+it('returns zero for an empty cart', function (): void {
     $cart = Cart::factory()->create();
 
     expect($cart->total())->toBe(0.0);

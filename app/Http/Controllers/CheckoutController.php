@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 final class CheckoutController extends Controller
 {
-    public function success(Request $request)
+    public function success(Request $request): Factory|View
     {
         $orderId = $request->session()->get('order_id');
         $order = $orderId ? Order::with(['orderItems.product', 'shippingMethod'])->find($orderId) : null;

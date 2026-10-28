@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\ShippingMethodResource\Pages;
 
-use Filament\Actions\EditAction;
 use App\Filament\Resources\ShippingMethodResource;
-use Filament\Actions;
+use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewShippingMethod extends ViewRecord
+final class ViewShippingMethod extends ViewRecord
 {
     protected static string $resource = ShippingMethodResource::class;
 

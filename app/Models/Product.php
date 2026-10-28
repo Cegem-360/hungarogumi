@@ -4,15 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Product\Category;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Number;
 
 final class Product extends Model
@@ -129,7 +125,7 @@ final class Product extends Model
          return $this->belongsToMany(Category::class);
      } */
 
-    public function getPrice(): int|float
+    public function getPrice(): int
     {
         return (int) $this->net_retail_price ?? 0;
     }

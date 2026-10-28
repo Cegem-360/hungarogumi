@@ -11,11 +11,12 @@ use App\Models\OrderItem;
 use App\Models\ShippingMethod;
 use App\Services\CartService;
 use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
-use Throwable;
 
 final class Checkout extends Component
 {
@@ -98,7 +99,7 @@ final class Checkout extends Component
             ]);
         }
 
-        $cartService = app(CartService::class);
+        $cartService = resolve(CartService::class);
         $cart = $cartService->getCart();
 
         $orderData = [
@@ -166,12 +167,12 @@ final class Checkout extends Component
         // Redirect or emit event
         session()->flash('success', 'Order placed successfully!');
 
-        return redirect()->route('checkout.success', ['order' => $order->id]);
+        return to_route('checkout.success', ['order' => $order->id]);
     }
 
-    public function render()
+    public function render(): Factory|View
     {
-        $cartService = app(CartService::class);
+        $cartService = resolve(CartService::class);
 
         return view('livewire.checkout', ['cart' => $cartService->getCart()]);
     }
